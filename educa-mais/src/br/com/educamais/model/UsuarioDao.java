@@ -11,8 +11,6 @@ public class UsuarioDao {
 	
 	public boolean autenticar(String email, String senha) {
 		
-		System.out.println(email+senha);
-		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("educa-mais");
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
