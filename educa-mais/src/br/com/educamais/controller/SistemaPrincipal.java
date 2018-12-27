@@ -8,7 +8,7 @@ public class SistemaPrincipal {
 	
 	@RequestMapping("teste")
 	public String test() {
-		
+		//teste
 		return "teste";
 	}
 }
