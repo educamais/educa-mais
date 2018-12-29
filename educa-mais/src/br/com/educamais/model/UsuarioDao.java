@@ -9,26 +9,40 @@ import javax.persistence.Query;
 
 public class UsuarioDao {
 	
-	public boolean autenticar(String email, String senha) {
+	public boolean verificarExistencia(String email, String senha) {
 		
+		//Conexão
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("educa-mais");
 		EntityManager manager = factory.createEntityManager();
+		
 		Query query = null;
+		List<Usuario> result = null;
 		
-		manager.getTransaction().begin();
-		query = manager.createQuery("FROM Usuario WHERE email = :email AND senha = :senha");
-		query.setParameter("email", email);
-		query.setParameter("senha", senha);
+		email = email != null ? email : "";
+		senha = senha != null ? senha : "";
 		
-		List<Usuario> result = query.getResultList();
+		if(!email.equals("") && !senha.equals("")) {
+			
+			//Consulta
+			manager.getTransaction().begin();
+			query = manager.createQuery("FROM Usuario WHERE email = :email AND senha = :senha");
+			query.setParameter("email", email);
+			query.setParameter("senha", senha);
+			
+			//Resultado
+			result = query.getResultList();
+		}
 		
+		//Encerrando conexão
 		manager.close();
 		factory.close();
 		
+		//Se tiver resultado pode logar
 		if(result.size() == 1 ) {
 			return true;
 		}
 		
+		//Caso contrário, não poderá
 		return false;
 	}
 }
