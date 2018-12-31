@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.educamais.model.Usuario;
 import br.com.educamais.model.UsuarioDao;
 
 @Controller
@@ -38,5 +39,37 @@ public class UsuarioController {
 		
 		//Voltando para tela de login
 		return"forward:login";
+	}
+	
+	/* Rota para incluir no banco
+	 * Recebe como parâmetro Usuario e confirmarSenha
+	 * e um Model para enviar mensagem de erro para view
+	*/
+	@RequestMapping("save")
+	public String save(Usuario usuario, @RequestParam("confirmarSenha") String confirmarSenha, Model model) {
+		
+		//Verifica se as senhas são iguais
+		if( !usuario.getSenha().equals(confirmarSenha) ) {
+			model.addAttribute("mensagem", "senhas não coincidem!");
+			return "forward:login";
+		}
+		
+		UsuarioDao dao = new UsuarioDao();
+		
+		/* Se o método salvar retornar true, o usuário foi cadastrado
+		 * Se retornar false, é porque já existe um registro no banco
+		*/
+		switch( dao.salvar(usuario, confirmarSenha) ) {
+			case 1:
+				model.addAttribute("mensagem", "preencha todos os campos");
+				return "forward:login";
+			case 2:
+				model.addAttribute("mensagem", "E-mail já cadastrado!");
+				return "forward:login";
+			default:
+				return "logadoComSucesso";
+		}
+		
+			
 	}
 }

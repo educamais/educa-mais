@@ -9,10 +9,12 @@ import javax.persistence.Query;
 
 public class UsuarioDao {
 	
+	private static final String PERSISTENCE_UNIT = "educa-mais";
+	
 	public boolean verificarExistencia(String email, String senha) {
 		
 		//Conexão
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("educa-mais");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		
 		Query query = null;
@@ -44,5 +46,36 @@ public class UsuarioDao {
 		
 		//Caso contrário, não poderá
 		return false;
+	}
+	
+	public int salvar(Usuario usuario, String confirmarSenha) {
+		
+		//Conexão
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		
+		String nome = usuario.getNome() != null ? usuario.getNome() : "";
+		String email = usuario.getEmail() != null ? usuario.getEmail() : "";
+		String senha = usuario.getSenha() != null ? usuario.getSenha() : "";
+		
+		if(nome == "" || email == "" || senha == "") {
+			return 1;
+		}
+		
+		//Verificar se já existe um registro no banco
+		if ( verificarExistencia(usuario.getEmail(), usuario.getSenha()) ) {
+			return 2;
+		}
+		
+		//Inclusão no banco
+		manager.getTransaction().begin();
+		manager.persist(usuario);
+		manager.getTransaction().commit();
+		
+		//Encerramento de conexão
+		manager.close();
+		factory.close();
+		
+		return 0;
 	}
 }

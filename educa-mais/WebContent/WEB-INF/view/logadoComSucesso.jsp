@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>Logado com sucesso!</h1>
+	<a href="login">Voltar</a>
 </body>
 </html>
