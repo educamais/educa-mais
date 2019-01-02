@@ -13,7 +13,7 @@ public class UsuarioController {
 
 	// Rota para testa tela de usuário
 	@RequestMapping("usuario")
-	public String telaUsuario() {
+	public String telaUsuarioNovo() {
 		return "telaUsuario";
 	}
 
