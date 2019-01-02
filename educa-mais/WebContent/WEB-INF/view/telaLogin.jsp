@@ -11,12 +11,13 @@
     <title>Educa+</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/telaLogin/style.css">
-    <script src="<%=request.getContextPath()%>/resources/telaLogin/script.js"></script>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css">
+		
+	<!-- Style -->   
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/telaLoginStyle/style.css">
+   
     <!-- Ícones -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
-    <!-- JQuery -->
-    <script src="<%=request.getContextPath()%>/resources/telaLogin/jquery.js"></script>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fontawesome/css/all.css">
     
 </head>
 <body>
@@ -31,7 +32,7 @@
                     
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <h1 class="display-1 text-roxo" style="font-family:Meatloaf;">
+                            <h1 class="display-1 text-roxo logotipo">
                                 Educa+
                             </h1>
                         </li>
@@ -104,16 +105,16 @@
                     <div class="col-sm-5">
                         
                         <!-- NAV -->
-                        <ul class="nav nav-tabs nav-justified">
+                        <ul class="nav nav-tabs nav-justified border rounded">
                             <li class="nav-item">
-                                <a class="nav-link font-weight-bold text-roxo" data-toggle="tab" href="#login">
+                                <a class="nav-link active font-weight-bold text-roxo" data-toggle="tab" href="#login">
                                     <span style="font-family:Gravity;">
                                         Login
                                     </span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active font-weight-bold text-roxo" data-toggle="tab" href="#cadastro">
+                                <a class="nav-link font-weight-bold text-roxo" data-toggle="tab" href="#cadastro">
                                     <span style="font-family:Gravity;">
                                         Cadastro
                                     </span>
@@ -125,7 +126,7 @@
                         <div class="tab-content bg-white">
                             
                             <!--Login-->
-                            <div class="tab-pane container fade border shadow p-4" id="login">
+                            <div class="tab-pane container active border shadow p-4" id="login">
                                 
                                 <!-- MENSAGEM DE ERRO -->
                                 <c:if test="${not empty mensagem}">
@@ -177,7 +178,7 @@
                             </div>
                             
                             <!--Cadastro-->
-                            <div class="tab-pane container active border shadow p-4" id="cadastro">
+                            <div class="tab-pane container fade border shadow p-4" id="cadastro">
                                 
                                 <!-- MENSAGEM DE ERRO -->
                                 <c:if test="${not empty mensagem}">
@@ -231,5 +232,10 @@
             </div>
         </div>
     </div>
+    <!-- JQuery -->
+	<script src="<%=request.getContextPath()%>/resources/jquery.js"></script>
+	
+	<!-- Bootstrap -->
+	<script src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
