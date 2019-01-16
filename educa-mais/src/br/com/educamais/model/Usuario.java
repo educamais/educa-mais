@@ -15,7 +15,8 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_usuario;
+	@Column(name="id_usuario")
+	private int idUsuario;
 	
 	@Column
 	private String nome;
@@ -25,24 +26,13 @@ public class Usuario {
 	
 	@Column
 	private String senha;
-	
-	@Column
-	private Date data_usuario;
-	
-	public String getEmail() {
-		return email;
+
+	public int getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public int getId_usuario() {
-		return id_usuario;
-	}
-
-	public void setId_usuario(int id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public String getNome() {
@@ -53,6 +43,14 @@ public class Usuario {
 		this.nome = nome;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getSenha() {
 		return senha;
 	}
@@ -60,15 +58,4 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	public Date getData_usuario() {
-		return data_usuario;
-	}
-
-	public void setData_usuario(Date data_usuario) {
-		this.data_usuario = data_usuario;
-	}
-	
-	
-
 }
