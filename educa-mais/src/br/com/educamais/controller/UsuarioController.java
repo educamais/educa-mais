@@ -11,6 +11,21 @@ import br.com.educamais.model.UsuarioDao;
 @Controller
 public class UsuarioController {
 
+
+	// Rota para testa tela de usuário
+	@RequestMapping("usuario")
+	public String telaUsuarioNovo() {
+		return "telaUsuario";
+	}
+	
+	// Rota para testa tela de aluno
+	@RequestMapping("aluno")
+	public String telaAlunoNovo() {
+		return "telaAluno";
+
+	}
+
+
 	//Rota para testa autenticação Recebe como parâmetro um Usuario
 	@RequestMapping("autenticar")
 	public String autenticar(Usuario usuario) {
