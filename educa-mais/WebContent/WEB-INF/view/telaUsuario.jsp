@@ -17,19 +17,45 @@
 		
 	</head>
 	<body>
-		
-		 <!-- LOGO -->
-		<nav class="navbar bg-white border">
-			<div class="container">
-				<a class="logo" href="#">
-					<span class="text-roxo">
-						Educa+
-					</span>
-				</a>
-			</nav>
-			
-			
-			<!-- CONTEÚDO -->
+
+	<!-- MENU PRINCIPAL -->
+	<nav class="navbar bg-white border">
+		<div class="container">
+
+			<a class="logo" href="#"> <span class="text-roxo"> Educa+
+			</span>
+			</a>
+
+			<div class="row font-3">
+
+				<a class="nav-link d-none d-sm-block text-roxo" href="#">Criar Turma</a>
+				<a class="nav-link d-none d-sm-block text-roxo" href="#">Entrar</a>
+
+				<!-- Dropdown-->
+				<div class="nav-item dropdown">
+
+					<a class="nav-link dropdown-toggle text-roxo"
+						data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+						aria-expanded="false"> Nilson Candido </a>
+
+					<div class="dropdown-menu dropdown-menu-right">
+						<a class="dropdown-item font-1" href="#">Home</a> <a
+							class="dropdown-item font-1" href="#">Minhas Turmas</a> <a
+							class="dropdown-item d-sm-none font-1" href="#">Ranking</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item font-1" href="#">Alterar Nome</a> <a
+							class="dropdown-item font-1" href="#">Alterar Senha</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item font-1" href="#">Sair</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</nav>
+
+
+	<!-- CONTEÚDO -->
 			<div class="container mt-5 pt-5 ">
 				<div class="row">
 					<div class="col-md-4">
