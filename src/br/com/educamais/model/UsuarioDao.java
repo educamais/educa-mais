@@ -41,6 +41,7 @@ public class UsuarioDao {
 		usuario = result.get(0);
 		
 		return usuario;
+
 	}
 
 	public void salvar(Usuario usuario) {
@@ -68,6 +69,7 @@ public class UsuarioDao {
 	}
 	
 	public Usuario buscarPorId(int id) {
+
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 

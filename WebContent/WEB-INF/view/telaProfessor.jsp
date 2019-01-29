@@ -48,11 +48,14 @@
                         <a class="dropdown-item font-1" href="/educa-mais/turma/minhasTurmas">Minhas Turmas</a>
                         <a class="dropdown-item d-sm-none font-1" href="#">Ranking</a>
                         <a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#codigoTurma">Código</a>
+
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item font-1" href="#">Alterar Nome</a>
                         <a class="dropdown-item font-1" href="#">Alterar Senha</a>
                         <div class="dropdown-divider"></div>
+
                         <a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
+
                     </div>
                     
                 </div>
@@ -61,7 +64,7 @@
     </nav>
     <div class="container my-5">
         
-        <!-- MENU SECUNDÃRIO -->
+        <!-- MENU SECUNDÁRIO -->
         <ul class="nav nav-tabs nav-justified" id="lista-menu">
             <li class="nav-item">
                 <a class="nav-link active border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" href="#mural">
@@ -113,7 +116,7 @@
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a class="nav-link active border font-weight-bold bg-azulc text-white" style="font-family:Gravity;" data-toggle="tab">
-                                Professor 1 - Titulo da publicaÃ§Ã£o
+                                Professor 1 - Titulo da publicação
                             </a>
                         </li>
                     </ul>
@@ -159,7 +162,7 @@
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a class="nav-link active border font-weight-bold bg-azulc text-white" style="font-family:Gravity;" data-toggle="tab">
-                                Professor 2 - Titulo da publicaÃ§Ã£o
+                                Professor 2 - Titulo da publicação
                             </a>
                         </li>
                     </ul>
@@ -324,10 +327,10 @@
                                         <td>KEYLA MARIA DA SILVA</td>
                                     </tr>
                                     <tr>
-                                        <td>SÃVIO FELIPE ALVES DE AZEVEDO</td>
+                                        <td>SÁVIO FELIPE ALVES DE AZEVEDO</td>
                                     </tr>
                                     <tr>
-                                        <td>SÃVIO FELIPE ALVES DE AZEVEDO</td>
+                                        <td>SÁVIO FELIPE ALVES DE AZEVEDO</td>
                                     </tr>
                                     <tr>
                                         <td>ROBERTA DE MOURA SANTOS</td>
@@ -385,10 +388,10 @@
                                         <td>CARLA BEATRIZ FERREIRA DA SILVA</td>
                                     </tr>
                                     <tr>
-                                        <td>MARIA VITÃRIA CARDOSO NASCIMENTO</td>
+                                        <td>MARIA VITÓRIA CARDOSO NASCIMENTO</td>
                                     </tr>
                                     <tr>
-                                        <td>EWERTON HENRIQUE JOSÃ BORTOLETTO SILVA</td>
+                                        <td>EWERTON HENRIQUE JOSÉ BORTOLETTO SILVA</td>
                                     </tr>
                                     <tr>
                                         <td>RICKELLEM MARIA DE LIMA SILVA</td>

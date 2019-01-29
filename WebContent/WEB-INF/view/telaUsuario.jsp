@@ -14,7 +14,6 @@
 
 	<!-- MENU PRINCIPAL -->
     <nav class="navbar border">
-
         <a class="nav-brand" href="/educa-mais/usuario">
             Educa+
         </a>
@@ -26,12 +25,13 @@
             <div class="col-auto d-none d-sm-block ">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#participar">Participar</a>
             </div>
-            
+
             <div class="col-auto">
                 <!-- Dropdown-->
                 <div class="nav-item dropdown">
 
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+
                         ${usuario.nome}
                     </a>
 
@@ -45,6 +45,7 @@
                         <a class="dropdown-item" href="#">Alterar Senha</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/educa-mais/logout">Sair</a>
+
                     </div>
                 </div>
             </div>

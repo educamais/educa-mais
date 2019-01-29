@@ -44,11 +44,13 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
                         <a class="dropdown-item font-1" href="/educa-mais/turma/minhasTurmas">Minhas Turmas</a>
+
                         <a class="dropdown-item d-sm-none font-1" href="#">Ranking</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item font-1" href="#">Alterar Nome</a>
                         <a class="dropdown-item font-1" href="#">Alterar Senha</a>
                         <div class="dropdown-divider"></div>
+
                         <a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
                     </div>
                     

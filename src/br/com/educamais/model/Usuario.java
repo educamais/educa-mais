@@ -38,7 +38,6 @@ public class Usuario {
     inverseJoinColumns={@JoinColumn(name="id_turma")})
     private List<Turma> listaAlunoTurma = new ArrayList<Turma>();
 
-	
 	public List<Turma> getListaAlunoTurma() {
 		return listaAlunoTurma;
 	}
@@ -78,14 +77,4 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-
-
-	@Override
-	public String toString() {
-		return "Usuario [idUsuario=" + idUsuario + ", nome=" + nome + ", email=" + email + ", senha=" + senha
-				+ ", listaAlunoTurma=" + listaAlunoTurma + "]";
-	}
-
-	
 }

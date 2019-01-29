@@ -116,5 +116,4 @@ public class TurmaDao {
 		manager.close();
 		factory.close();
 	}
-	
 }
