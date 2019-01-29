@@ -6,10 +6,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,34 +27,16 @@ public class Turma {
 	@Column(name="nome_turma")
 	private String nomeTurma;
 	
-	@Column(name="codigo_professor")
-	private String codigoProfessor;
+	@ManyToOne
+	@JoinColumn(name = "id_professor")
+	private Usuario professor;
 	
 	@Column(name="codigo_aluno")
 	private String codigoAluno;
 
-	@ManyToMany(mappedBy="listaAlunoTurma", cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy="listaAlunoTurma", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Usuario> listaAluno = new ArrayList<Usuario>();
-	
-	@ManyToMany(mappedBy="listaProfessorTurma", cascade=CascadeType.ALL)
-    private List<Usuario> listaProfessor = new ArrayList<Usuario>();
 
-	public List<Usuario> getListaProfessor() {
-		return listaProfessor;
-	}
-
-	public void setListaProfessor(List<Usuario> listaProfessor) {
-		this.listaProfessor = listaProfessor;
-	}
-
-	public List<Usuario> getListaAluno() {
-		return listaAluno;
-	}
-
-	public void setListaAluno(List<Usuario> listaAluno) {
-		this.listaAluno = listaAluno;
-	}
-	
 	public int getIdTurma() {
 		return idTurma;
 	}
@@ -68,12 +53,12 @@ public class Turma {
 		this.nomeTurma = nomeTurma;
 	}
 
-	public String getCodigoProfessor() {
-		return codigoProfessor;
+	public Usuario getProfessor() {
+		return professor;
 	}
 
-	public void setCodigoProfessor(String codigoProfessor) {
-		this.codigoProfessor = codigoProfessor;
+	public void setProfessor(Usuario professor) {
+		this.professor = professor;
 	}
 
 	public String getCodigoAluno() {
@@ -82,5 +67,13 @@ public class Turma {
 
 	public void setCodigoAluno(String codigoAluno) {
 		this.codigoAluno = codigoAluno;
+	}
+
+	public List<Usuario> getListaAluno() {
+		return listaAluno;
+	}
+
+	public void setListaAluno(List<Usuario> listaAluno) {
+		this.listaAluno = listaAluno;
 	}
 }

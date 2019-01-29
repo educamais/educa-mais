@@ -1,12 +1,11 @@
 package br.com.educamais.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,26 +32,13 @@ public class Usuario {
 	@Column
 	private String senha;
 
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name="aluno_turma",
     joinColumns={@JoinColumn(name="id_aluno")},
     inverseJoinColumns={@JoinColumn(name="id_turma")})
     private List<Turma> listaAlunoTurma = new ArrayList<Turma>();
-	
-	@ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="professor_turma",
-    joinColumns={@JoinColumn(name="id_professor")},
-    inverseJoinColumns={@JoinColumn(name="id_turma")})
-    private List<Turma> listaProfessorTurma = new ArrayList<Turma>();
-	
-	public List<Turma> getListaProfessorTurma() {
-		return listaProfessorTurma;
-	}
 
-	public void setListaProfessorTurma(List<Turma> listaProfessorTurma) {
-		this.listaProfessorTurma = listaProfessorTurma;
-	}
-
+	
 	public List<Turma> getListaAlunoTurma() {
 		return listaAlunoTurma;
 	}
@@ -92,4 +78,14 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+
+
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", nome=" + nome + ", email=" + email + ", senha=" + senha
+				+ ", listaAlunoTurma=" + listaAlunoTurma + "]";
+	}
+
+	
 }

@@ -8,11 +8,12 @@ public class Util {
 
         Random random = new Random();
 
-        int val = random.nextInt();
+        int val1 = random.nextInt(999999);
+        int val2 = random.nextInt(999999);
 
         String Hex = new String();
 
-        Hex = Integer.toHexString(val);
+        Hex = Integer.toHexString(val1 * val2);
 
         return Hex;
 

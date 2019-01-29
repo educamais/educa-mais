@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -23,7 +26,7 @@
     <nav class="navbar bg-white border">
         <div class="container">
             
-            <a class="logo" href="#">
+            <a class="logo" href="/educa-mais/usuario">
                 <span class="text-roxo">
                     Educa+
                 </span>
@@ -37,18 +40,19 @@
                 <div class="nav-item dropdown">
                     
                     <a class="nav-link dropdown-toggle text-roxo" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        Gabriel Neves
+                        ${usuario.nome}
                     </a>
                     
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item font-1" href="#">Home</a>
-                        <a class="dropdown-item font-1" href="#">Minhas Turmas</a>
+                        <a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
+                        <a class="dropdown-item font-1" href="/educa-mais/turma/minhasTurmas">Minhas Turmas</a>
                         <a class="dropdown-item d-sm-none font-1" href="#">Ranking</a>
+                        <a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#codigoTurma">Código</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item font-1" href="#">Alterar Nome</a>
                         <a class="dropdown-item font-1" href="#">Alterar Senha</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item font-1" href="#">Sair</a>
+                        <a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
                     </div>
                     
                 </div>
@@ -57,7 +61,7 @@
     </nav>
     <div class="container my-5">
         
-        <!-- MENU SECUNDÁRIO -->
+        <!-- MENU SECUNDÃRIO -->
         <ul class="nav nav-tabs nav-justified" id="lista-menu">
             <li class="nav-item">
                 <a class="nav-link active border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" href="#mural">
@@ -109,7 +113,7 @@
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a class="nav-link active border font-weight-bold bg-azulc text-white" style="font-family:Gravity;" data-toggle="tab">
-                                Professor 1 - Titulo da publicação
+                                Professor 1 - Titulo da publicaÃ§Ã£o
                             </a>
                         </li>
                     </ul>
@@ -155,7 +159,7 @@
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a class="nav-link active border font-weight-bold bg-azulc text-white" style="font-family:Gravity;" data-toggle="tab">
-                                Professor 2 - Titulo da publicação
+                                Professor 2 - Titulo da publicaÃ§Ã£o
                             </a>
                         </li>
                     </ul>
@@ -320,10 +324,10 @@
                                         <td>KEYLA MARIA DA SILVA</td>
                                     </tr>
                                     <tr>
-                                        <td>SÁVIO FELIPE ALVES DE AZEVEDO</td>
+                                        <td>SÃVIO FELIPE ALVES DE AZEVEDO</td>
                                     </tr>
                                     <tr>
-                                        <td>SÁVIO FELIPE ALVES DE AZEVEDO</td>
+                                        <td>SÃVIO FELIPE ALVES DE AZEVEDO</td>
                                     </tr>
                                     <tr>
                                         <td>ROBERTA DE MOURA SANTOS</td>
@@ -381,10 +385,10 @@
                                         <td>CARLA BEATRIZ FERREIRA DA SILVA</td>
                                     </tr>
                                     <tr>
-                                        <td>MARIA VITÓRIA CARDOSO NASCIMENTO</td>
+                                        <td>MARIA VITÃRIA CARDOSO NASCIMENTO</td>
                                     </tr>
                                     <tr>
-                                        <td>EWERTON HENRIQUE JOSÉ BORTOLETTO SILVA</td>
+                                        <td>EWERTON HENRIQUE JOSÃ BORTOLETTO SILVA</td>
                                     </tr>
                                     <tr>
                                         <td>RICKELLEM MARIA DE LIMA SILVA</td>
@@ -404,6 +408,7 @@
         </div>
         
     </div>
-    
+    <!-- Modal Participar Turma -->
+	<c:import url="/WEB-INF/view/modais/codigoTurma.jsp"/>
 </body>
 </html>

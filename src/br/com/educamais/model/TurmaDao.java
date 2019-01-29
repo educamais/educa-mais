@@ -11,19 +11,18 @@ public class TurmaDao {
 
 	private static final String PERSISTENCE_UNIT = "educa-mais";
 	
-	public boolean verificarExistencia(Turma turma) {
+	public Turma verificarExistencia(Turma turma) {
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		
-		String codigoProfessor = turma.getCodigoProfessor() != null ? turma.getCodigoProfessor() : "";
 		String codigoAluno = turma.getCodigoAluno() != null ? turma.getCodigoAluno() : "";
+		
 		Query query = null;
 		
-		if(!codigoProfessor.equals("") && !codigoAluno.equals("")) {
+		if(!codigoAluno.equals("")) {
 			manager.getTransaction().begin();
-			query = manager.createQuery("FROM Turma WHERE codigoProfessor = :codigoProfessor or codigoAluno = :codigoAluno");
-			query.setParameter("codigoProfessor", codigoProfessor);
+			query = manager.createQuery("FROM Turma WHERE codigoAluno = :codigoAluno");
 			query.setParameter("codigoAluno", codigoAluno);
 		}
 		
@@ -32,11 +31,11 @@ public class TurmaDao {
 		manager.close();
 		factory.close();
 		
-		if(result.size() == 1) {
-			return true;
+		if(result.size() == 0) {
+			return null;
 		}
 		
-		return false;
+		return result.get(0);
 	}
 	
 	public void salvar(Turma turma) {
@@ -51,4 +50,71 @@ public class TurmaDao {
 		manager.close();
 		factory.close();
 	}
+	
+	public List<Turma> listar(Usuario usuario){
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		
+		Query query = manager.createQuery("FROM Turma WHERE id_professor = :paramProfessor");
+		query.setParameter("paramProfessor", usuario);
+		
+		List<Turma> listaTurma = query.getResultList();
+		
+		manager.close();
+		factory.close();
+		
+		return listaTurma;
+	}
+	
+	public Turma buscarPorId(int id) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+
+		Turma turma = manager.find(Turma.class, id);
+		
+		manager.close();
+		factory.close();
+		
+		return  turma;
+	}
+	
+	public Turma buscarSala(String codigo) {
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		
+		if(codigo.equals("") || codigo.equals(null)) {
+			return null;
+		}
+		
+		Query query = manager.createQuery("FROM Turma WHERE codigo_aluno = :paramCodigo");
+		query.setParameter("paramCodigo", codigo);
+		
+		Turma turma = (Turma)query.getSingleResult();
+		
+		manager.close();
+		factory.close();
+		
+		return  turma;
+	}
+		
+	public void entrarSala(Usuario usuario, Turma turma) {
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		
+		
+		List<Turma> listaTurma = usuario.getListaAlunoTurma();
+		listaTurma.add(turma);
+		usuario.setListaAlunoTurma(listaTurma);
+		
+		manager.getTransaction().begin();
+		manager.merge(usuario);
+		manager.getTransaction().commit();
+		
+		manager.close();
+		factory.close();
+	}
+	
 }

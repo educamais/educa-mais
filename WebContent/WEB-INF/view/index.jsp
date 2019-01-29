@@ -131,7 +131,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-roxo text-white">@</span>
                                         </div>
-                                        <input type="email" class="form-control w-75" id="inputForm:emailLogin" name="email" placeholder="Digite o seu e-mail.." required>
+                                        <input type="email" class="form-control w-75" id="emailLogin" name="email" placeholder="Digite o seu e-mail.." required>
                                     </div>
                                     
                                     <!-- Senha -->
@@ -139,13 +139,13 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-roxo text-white"><i class='fas fa-lock'></i></span>
                                         </div>
-                                        <input type="password" class="form-control w-75" id="inputForm:senhaLogin" name="senha" placeholder="Digite a sua senha...">
+                                        <input type="password" class="form-control w-75" id="senhaLogin" name="senha" placeholder="Digite a sua senha...">
                                     </div>
                                     
                                     <!-- Botões e links -->
                                     <a class="float-right text-roxo mb-2" href="#"><i>Esqueceu a senha?</i></a><br>
                                     
-                                    <button id="botaoForm:Entrar" type="submit" class="btn btn-roxo btn-lg btn-block">
+                                    <button id="botaoEntrar" type="submit" class="btn btn-roxo btn-lg btn-block">
                                         <span style="font-family:Gravity;">
                                             Entrar
                                         </span>
@@ -208,7 +208,7 @@
                                     </div>
                                     
                                     <!-- Botão -->
-                                    <button id="btnCadastrar" type="submit" class="btn btn-roxo btn-lg btn-block">
+                                    <button id="botaoCadastrar" type="submit" class="btn btn-roxo btn-lg btn-block">
                                         <span style="font-family:Gravity;">
                                             Cadastrar
                                         </span>
@@ -227,6 +227,6 @@
     
     <script src="<%=request.getContextPath()%>/resources/Validation/jquery.validate.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/localization/messages_pt_BR.min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/validationForm.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormIndex.js"></script>
 </body>
 </html>

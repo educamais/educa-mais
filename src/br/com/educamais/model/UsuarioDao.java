@@ -11,13 +11,12 @@ public class UsuarioDao {
 
 	private static final String PERSISTENCE_UNIT = "educa-mais";
 
-	public boolean verificarExistencia(Usuario usuario) {
+	public Usuario verificarExistencia(Usuario usuario) {
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 
 		Query query = null;
-		List<Usuario> result = null;
 
 		String email = usuario.getEmail() != null ? usuario.getEmail() : "";
 		String senha = usuario.getSenha() != null ? usuario.getSenha() : "";
@@ -30,16 +29,18 @@ public class UsuarioDao {
 			query.setParameter("senha", senha);	
 		}
 
-		result = query.getResultList();
+		List<Usuario> result = query.getResultList();
 		
 		manager.close();
 		factory.close();
 		
-		if (result.size() == 1) {
-			return true;
+		if (result.size() == 0) {
+			return null;
 		}
-
-		return false;
+		
+		usuario = result.get(0);
+		
+		return usuario;
 	}
 
 	public void salvar(Usuario usuario) {
@@ -65,24 +66,8 @@ public class UsuarioDao {
 		manager.close();
 		factory.close();
 	}
-	public void atualizarListaProfessor(Usuario usuario, Turma turma) {
-		
-		List<Turma> listaTurma = null;
-		listaTurma.add(turma);
-		usuario.setListaProfessorTurma(listaTurma);
-		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-		EntityManager manager = factory.createEntityManager();
-
-		manager.getTransaction().begin();
-		manager.merge(usuario);
-		manager.getTransaction().commit();
-		
-		manager.close();
-		factory.close();
-	}
 	
-	public Usuario find(int id) {
+	public Usuario buscarPorId(int id) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 
