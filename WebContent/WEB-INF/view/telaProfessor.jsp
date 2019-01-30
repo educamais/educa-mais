@@ -31,7 +31,7 @@
     <nav class="navbar bg-white border">
         <div class="container">
             
-            <a class="logo" href="#">
+            <a class="logo" href="/educa-mais/usuario">
                 <span class="text-roxo">
                     Educa+
                 </span>
@@ -45,13 +45,15 @@
                 <div class="nav-item dropdown">
                     
                     <a class="nav-link dropdown-toggle text-roxo" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        Gabriel Neves
+                         ${usuario.nome}
                     </a>
                     
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item font-1" href="#">Home</a>
-                        <a class="dropdown-item font-1" href="#">Minhas Turmas</a>
+                        <a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
+                        <a class="dropdown-item font-1" href="/educa-mais/turma/minhasTurmas">Minhas Turmas</a>
                         <a class="dropdown-item d-sm-none font-1" href="#">Ranking</a>
+                        <a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#codigoTurma">Código</a>
+                        
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item font-1" href="#">Alterar Nome</a>
                         <a class="dropdown-item font-1" href="#">Alterar Senha</a>
@@ -412,6 +414,8 @@
         </div>
         
     </div>
+     <!-- Modal Participar Turma -->
+	<c:import url="/WEB-INF/view/modais/codigoTurma.jsp"/>
     
  
     
