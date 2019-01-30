@@ -11,22 +11,27 @@
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+   
+    <!--******************************************************SCRIPT BOOTSTRAP*****************************************8-->
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" href="style.css">
-    <script src="tabPane.js"></script>
+        	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
+
+    <script src="<%=request.getContextPath()%>/resources/js/tabPane.js"></script>
     
     
 </head>
+
 <body>
     
     <!-- MENU PRINCIPAL -->
     <nav class="navbar bg-white border">
         <div class="container">
             
-            <a class="logo" href="/educa-mais/usuario">
+            <a class="logo" href="#">
                 <span class="text-roxo">
                     Educa+
                 </span>
@@ -40,22 +45,18 @@
                 <div class="nav-item dropdown">
                     
                     <a class="nav-link dropdown-toggle text-roxo" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        ${usuario.nome}
+                        Gabriel Neves
                     </a>
                     
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
-                        <a class="dropdown-item font-1" href="/educa-mais/turma/minhasTurmas">Minhas Turmas</a>
+                        <a class="dropdown-item font-1" href="#">Home</a>
+                        <a class="dropdown-item font-1" href="#">Minhas Turmas</a>
                         <a class="dropdown-item d-sm-none font-1" href="#">Ranking</a>
-                        <a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#codigoTurma">Código</a>
-
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item font-1" href="#">Alterar Nome</a>
                         <a class="dropdown-item font-1" href="#">Alterar Senha</a>
                         <div class="dropdown-divider"></div>
-
-                        <a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
-
+                        <a class="dropdown-item font-1" href="#">Sair</a>
                     </div>
                     
                 </div>
@@ -67,7 +68,7 @@
         <!-- MENU SECUNDÁRIO -->
         <ul class="nav nav-tabs nav-justified" id="lista-menu">
             <li class="nav-item">
-                <a class="nav-link active border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" href="#mural">
+                <a class="nav-link active border active font-weight-bold" style="font-family:Gravity;" data-toggle="tab" href="#mural">
                     Mural
                 </a>
             </li>
@@ -77,7 +78,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" href="#participantes">
+                <a class="nav-link  border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" href="#participantes">
                     Participantes
                 </a>
             </li>
@@ -87,7 +88,7 @@
         <div class="tab-content bg-white">
             
             <!-- MURAL -->
-            <div class="tab-pane active container border shadow p-4" id="mural">
+            <div class="tab-pane fade container border shadow p-4" id="mural">
                 
                 <div class="capsula border mb-5">
                     
@@ -297,7 +298,7 @@
             </div>
             
             <!-- PARTICIPANTES -->
-            <div class="tab-pane container fade border shadow p-4" id="participantes">
+            <div class="tab-pane container active border shadow p-4" id="participantes">
                 
                 <div class="capsula mb-5">
                     
@@ -411,7 +412,9 @@
         </div>
         
     </div>
-    <!-- Modal Participar Turma -->
-	<c:import url="/WEB-INF/view/modais/codigoTurma.jsp"/>
+    
+ 
+    
 </body>
+
 </html>
