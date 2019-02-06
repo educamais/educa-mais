@@ -26,13 +26,13 @@
                 <!-- LOGO -->
                 <nav class="navbar navbar-expand-sm d-flex justify-content-center">
                     
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <h1 class="display-1 text-roxo" style="font-family:Meatloaf;">
-                                Educa+
-                            </h1>
-                        </li>
-                    </ul>
+                  <a class="logo" href="/educa-mais/usuario"><span
+				class="text-roxo"> <img alt=""
+					class="rounded mx-auto d-block"
+					src="<%=request.getContextPath()%>/resources/img/logo3.png"
+					width="20%" height="20%" />
+			</span>
+			</a>
                     
                 </nav>
                 
@@ -43,54 +43,54 @@
                     
                     <div class="col-lg d-none d-lg-block">
                         <p id="text">
-                            <span class="text-crosa" style="font-size:10px">didática</span>
-                            <span class="text-crosa" style="font-size:15px">Socialização</span>
+                            <span class="text-verde" style="font-size:10px">didática</span>
+                            <span class="text-verde" style="font-size:15px">Socialização</span>
                             <span class="text-clilas" style="font-size:20px">Aprendizagem</span>
-                            <span class="text-croxo">videos</span>
-                            <span class="text-croxo" style="font-size:20px">Cultura</span>
+                            <span class="text-azul">videos</span>
+                            <span class="text-azul" style="font-size:20px">Cultura</span>
                             <span class="text-cazule">verdade</span>
                             <span class="text-cazulc">
                                 descobrimento
                                 viagem
                             </span>
-                            <span class="text-crosa" style="font-size:20px">Educação</span>
+                            <span class="text-verde" style="font-size:20px">Educação</span>
                             <span class="text-clilas" style="font-size:10px">Tutorial</span>
                             <span class="text-clilas">televisão</span>
-                            <span class="text-croxo" style="font-size:15px">Ensino</span>
-                            <span class="text-croxo">jornal</span>
-                            <span class="text-croxo" style="font-size:20px">Comunicação</span>
+                            <span class="text-azul" style="font-size:15px">Ensino</span>
+                            <span class="text-azul">jornal</span>
+                            <span class="text-azul" style="font-size:20px">Comunicação</span>
                             <span class="text-cazule">youtube</span>
                             <span class="text-cazulc" style="font-size:20px">Ciência</span>
                             <span class="text-cazulc" style="font-size:10px">visualização</span>
-                            <span class="text-crosa">
+                            <span class="text-verde">
                                 blogs
                                 wiki
                             </span>
                             <span class="text-clilas" style="font-size:10px">interface</span>
                             <span class="text-clilas" style="font-size:20px">Usabilidade</span>
-                            <span class="text-croxo">rádio</span>
-                            <span class="text-croxo" style="font-size:20px">Interação</span>
-                            <span class="text-croxo">escola</span>
+                            <span class="text-azul">rádio</span>
+                            <span class="text-azul" style="font-size:20px">Interação</span>
+                            <span class="text-azul">escola</span>
                             <span class="text-cazule" style="font-size:15px">Cooperação</span>
                             <span class="text-cazulc" style="font-size:20px">Experiência</span>
-                            <span class="text-crosa">
+                            <span class="text-verde">
                                 cursos
                             </span>
                             <span class="text-clilas">conversa</span>
                             <span class="text-clilas" style="font-size:15px">Superar</span>
                             <span class="text-clilas" style="font-size:20px">Tecnologia</span>
-                            <span class="text-croxo" style="font-size:20px">Conhecimento</span>
+                            <span class="text-azul" style="font-size:20px">Conhecimento</span>
                             <span class="text-cazule">quadrinhos</span>
                             <span class="text-cazulc">dicionário</span>
                             <span class="text-cazulc" style="font-size:15px">Arte</span>
-                            <span class="text-crosa" style="font-size:10px">Liberdade</span>
+                            <span class="text-verde" style="font-size:10px">Liberdade</span>
                             <span class="text-clilas">
                                 música
                                 podcast
                             </span>
                             <span class="text-clilas" style="font-size:20px">Disciplina</span>
                             <span class="text-clilas">revistas</span>
-                            <span class="text-croxo" style="font-size:10px">Respeito</span>
+                            <span class="text-azul" style="font-size:10px">Respeito</span>
                             <span class="text-cazule">histórias</span>
                             <span class="text-cazule" style="font-size:15px">Emoção</span>
                             <span class="text-cazulc" style="font-size:18px">Razão</span>

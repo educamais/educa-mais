@@ -18,7 +18,7 @@
 
 /* Background */
 body{
-    background-image: linear-gradient(to left, #548FCE,#3F4AD8,#6F42C1,#B949D8,#CE3F96); 
+    background-image: url("../img/login-bg.jpg"); 
 }
 .ctp-0 {
     background-color: rgba(255,255,255, .95);
@@ -26,18 +26,18 @@ body{
 
 /* TEXTO COLORIDO */
 /*rosa*/
-.text-crosa{
-    color:#CE3F96!important
+.text-verde{
+    color:#243f11!important
 }
 
 /*lilas*/
 .text-clilas{
-    color:#B949D8!important
+    color:#3F4AD8!important
 }
 
 /*roxo*/
-.text-croxo{
-    color:#6f42c1!important
+.text-azul{
+    color:#204a87!important
 }
 
 /*azul escuro*/
@@ -52,15 +52,15 @@ body{
 
 /* Texto */
 .text-roxo{
-    color:#6f42c1!important
+    color:#243F11!important
 }
 a.text-roxo:focus,a.text-roxo:hover{
-    color:#6f42c1!important
+    color:#243F11!important
 }
 
 /* Background color */
 .bg-roxo{
-    background-color:#6f42c1!important
+    background-color:#243F11!important
 }
 a.bg-roxo:focus,a.bg-roxo:hover,button.bg-roxo:focus,button.bg-roxo:hover{
     background-color:#6f42c1!important
@@ -68,29 +68,29 @@ a.bg-roxo:focus,a.bg-roxo:hover,button.bg-roxo:focus,button.bg-roxo:hover{
 /* Botão */
 .btn-roxo{
     color:#fff;
-    background-color:#6f42c1;
-    border-color:#6f42c1
+    background-color:#243F11;
+    border-color:#243F11
 }
 .btn-roxo:hover{
-    color:#6f42c1;
+    color:#243F11;
     background-color:#fff;
-    border-color:#6f42c1
+    border-color:#243F11
 }
 .btn-roxo.focus,.btn-roxo:focus{
-    box-shadow:0 0 0 .2rem #6e42c1be
+    box-shadow:0 0 0 .2rem #6ff0000
 }
 .btn-roxo.disabled,.btn-roxo:disabled{
     color:#fff;
-    background-color:#6e42c1be;
-    border-color:#6e42c1be
+    background-color:#6ff0000;
+    border-color:#243F11
 }
 .btn-roxo:not(:disabled):not(.disabled).active,.btn-roxo:not(:disabled):not(.disabled):active,.show>.btn-roxo.dropdown-toggle{
     color:#fff;
-    background-color:#6f42c1;
+    background-color:#6ff0000;
     border-color:#6f42c1
 }
 .btn-roxo:not(:disabled):not(.disabled).active:focus,.btn-roxo:not(:disabled):not(.disabled):active:focus,.show>.btn-roxo.dropdown-toggle:focus{
-    box-shadow:0 0 0 .2rem #6e42c1be
+    box-shadow:0 0 0 .2rem #243F11
 }
 
 /********** FIM DAS ALTERAÇõES ***************/

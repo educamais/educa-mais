@@ -9,6 +9,10 @@
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min .js"></script>
 </head>
 <body>
+
+
 	<h1>Erro!</h1>
+	
+	
 </body>
 </html>
