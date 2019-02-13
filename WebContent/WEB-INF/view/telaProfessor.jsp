@@ -35,7 +35,7 @@
 				class="text-roxo"> <img alt=""
 					class="rounded mx-auto d-block"
 					src="<%=request.getContextPath()%>/resources/img/logo3.png"
-					width="70" height="70" />
+					width="70%" height="70%" />
 			</span>
 			</a>
 

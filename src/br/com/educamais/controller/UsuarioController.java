@@ -36,19 +36,13 @@ public class UsuarioController {
 	}
 	
 	
+	@RequestMapping("atividade")
+	public String atividade(){
+		return "telaAtividade";
+	}
+	
 	
 	@RequestMapping("aluno")
-	public String aluno(){
-		return "telaAluno";
-	}
-	
-	@RequestMapping("professor")
-	public String professor(){
-		return "telaProfessor";
-	}
-	
-	
-	/*@RequestMapping("aluno")
 	public String aluno(@RequestParam("id") int id, HttpSession session, Model model) {
 		
 		if(session.getAttribute("usuario") == null) {
@@ -95,7 +89,7 @@ public class UsuarioController {
 		model.addAttribute("link", "usuario");
 		model.addAttribute("mensagem", "Turma inválida!");
 		return "mensagem";
-	}*/
+	}
 	
 	@RequestMapping("logout")
 	public String logout(HttpSession session, Model model) {
