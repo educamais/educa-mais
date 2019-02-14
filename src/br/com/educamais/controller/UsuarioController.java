@@ -36,10 +36,7 @@ public class UsuarioController {
 	}
 	
 	
-	@RequestMapping("atividade")
-	public String atividade(){
-		return "telaAtividade";
-	}
+
 	
 	
 	@RequestMapping("aluno")

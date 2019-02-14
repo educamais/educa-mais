@@ -43,7 +43,7 @@ public class SistemaPrincipal {
 		if (dao.verificarExistencia(usuario) == null) {
 			dao.salvar(usuario);
 			
-			model.addAttribute("link", "telaUsuario");
+			model.addAttribute("link", "usuario");
 			model.addAttribute("mensagem", "Conta criada com sucesso!");
 			return "mensagem";
 		}

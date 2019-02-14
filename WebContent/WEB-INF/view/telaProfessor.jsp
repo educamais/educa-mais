@@ -18,7 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     
-        	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 
     <script src="<%=request.getContextPath()%>/resources/js/tabPane.js"></script>
     
@@ -31,12 +31,9 @@
     <nav class="navbar bg-white border">
 		<div class="container">
 
-			<a class="logo" href="/educa-mais/usuario"> <span
-				class="text-roxo"> <img alt=""
-					class="rounded mx-auto d-block"
-					src="<%=request.getContextPath()%>/resources/img/logo3.png"
-					width="70%" height="70%" />
-			</span>
+			<a class="logo" href="/educa-mais/usuario">
+			<img alt="" class="rounded mx-auto d-block logo" src="<%=request.getContextPath()%>/resources/img/logo3.png"/>
+			
 			</a>
 
 			<div class="row font-3">
@@ -94,7 +91,7 @@
         <!-- CORPO DO SITE -->
         <div class="tab-content bg-white">
             
-            <!-- MURAL -->
+            <!-- ******************************MURAL ********************************************************-->
             <div class="tab-pane fade container border shadow p-4" id="mural">
                 
                 <div class="capsula border mb-5">
@@ -233,12 +230,104 @@
                 
             </div>
             
-            <!-- ATIVIDADES -->
+            
+            
+ <!-- **************************ATIVIDADES ***************************************-->
             <div class="tab-pane fade container border shadow p-4" id="atividades">
                 
                 <div class="capsula mb-5">
-                    
-                    <button class="btn btn-rosa float-right my-3 mb-5">Cadastrar Atividade</button>
+                
+            <div class="d-flex justify-content-end">  <button class="btn btn-rosa my-3 mb-5"  type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="cadAtividade">Cadastrar Atividade</button>
+</div> 
+           
+ 
+<!--***************COLLAPSE DA ATIVIDADE****************** -->
+
+<div class="collapse multi-collapse" id="cadAtividade" data-parent="#cadAtividade">
+  <div class="card card-body ">
+  
+ <!-- FORMULÁRIO -->
+    <form>
+				<div class="d-flex justify-content-center mx-5 " >
+					<input type="text" id="newsletternomeAtividadeInput" name="nomeAtividade" class="form-input form-control form-control-lg text-center " required="required" placeholder="Nome da Atividade" size="30">
+				</div>
+				<br> <br>
+
+
+				<div class="d-flex justify-content-end ">
+							<label for="dia" class="text-dark"> Data da Atividade: &nbsp; </label><input class="text-center " type="date" id="dia" name="dia" >
+						</div>
+                        <br> <br>
+
+						<table class="table table-hover">
+                        <thead class="thead-rosa">
+                            <tr>
+                                <th scope="col">
+                                    # &nbsp; 
+                                    <i class="fas fa-sort"></i>
+                                </th>
+                                 <th scope="col">
+                                    Nome &nbsp; 
+                                    <i class="fas fa-sort"></i>
+                                </th>
+                                <th scope="col">
+                                    Data &nbsp;
+                                    <i class="fas fa-sort"></i>
+                                </th>
+                            </tr>
+                        </thead>
+							<tbody>
+								<tr>
+								   <td scope="row">1</td>
+								    <td>João Victor</td>
+									<td>Thornton</td>
+								
+								</tr>
+								
+								
+								<tr>
+								<td scope="row">2</td>
+								<td>João Victor</td>
+								<td>Thornton</td>
+                                </tr>
+                                
+                                
+								<tr>
+								<td scope="row">3</td>
+								<td>João Victor</td>
+								<td>Thornton</td>
+								</tr>
+								
+								<tr>
+								<td scope="row">4</td>
+								<td>João Victor</td>
+								<td>Thornton</td>
+								</tr>
+								
+								<tr>
+								<td scope="row">5</td>
+								<td>João Victor</td>
+								<td>Thornton</td>
+								</tr>
+								
+								<tr>
+								<td scope="row">6</td>
+								<td>João Victor</td>
+								<td>Thornton</td>
+								</tr>
+							</tbody>
+						</table>
+
+
+					</form>
+  </div>
+  </div>
+
+
+<!--****************COLLAPSE DA Lista de atividade************** -->
+
+          <div class="collapse multi-collapse show" id="listAtividade" >
+  <div class="card card-body ">          
                     
                     <table class="table table-striped">
                         <thead class="thead-rosa">
@@ -300,11 +389,14 @@
                             </tr>
                         </tbody>
                     </table>
-                    
+                    </div>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- PARTICIPANTES -->
+          </div>
+          
+          
+          
+  <!-- **********PARTICIPANTES************ -->
             <div class="tab-pane container active border shadow p-4" id="participantes">
                 
                 <div class="capsula mb-5">
@@ -418,7 +510,7 @@
             </div>
         </div>
         
-    </div>
+    
      <!-- Modal Participar Turma -->
 	<c:import url="/WEB-INF/view/modais/codigoTurma.jsp"/>
     

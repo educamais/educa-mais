@@ -42,10 +42,8 @@
 		<div class="container">
 
 			<a class="logo" href="/educa-mais/usuario"><span
-				class="text-roxo"> <img alt=""
-					class="rounded mx-auto d-block"
-					src="<%=request.getContextPath()%>/resources/img/logo3.png"
-					width="70%" height="70%" />
+				class="text-roxo"> <img alt="" class="rounded mx-auto d-block logo" src="<%=request.getContextPath()%>/resources/img/logo3.png"
+					/>
 			</span>
 			</a>
 
