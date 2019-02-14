@@ -274,6 +274,10 @@
                                     Data &nbsp;
                                     <i class="fas fa-sort"></i>
                                 </th>
+                                <th scope="col">
+                                    Nota &nbsp;
+                                    <i class="fas fa-sort"></i>
+                                </th>
                             </tr>
                         </thead>
 							<tbody>
@@ -281,44 +285,14 @@
 								   <td scope="row">1</td>
 								    <td>João Victor</td>
 									<td>Thornton</td>
-								
+									<td><input type="text" name="nota" class="form-input form-control  text-center " required="required" size="3"></td>
 								</tr>
 								
 								
-								<tr>
-								<td scope="row">2</td>
-								<td>João Victor</td>
-								<td>Thornton</td>
-                                </tr>
-                                
-                                
-								<tr>
-								<td scope="row">3</td>
-								<td>João Victor</td>
-								<td>Thornton</td>
-								</tr>
 								
-								<tr>
-								<td scope="row">4</td>
-								<td>João Victor</td>
-								<td>Thornton</td>
-								</tr>
-								
-								<tr>
-								<td scope="row">5</td>
-								<td>João Victor</td>
-								<td>Thornton</td>
-								</tr>
-								
-								<tr>
-								<td scope="row">6</td>
-								<td>João Victor</td>
-								<td>Thornton</td>
-								</tr>
 							</tbody>
 						</table>
-
-
+					<button class="btn btn-primary my-3 mb-5 float-right "  type="submit" > Enviar</button>
 					</form>
   </div>
   </div>
@@ -367,26 +341,7 @@
                                 <td>Atividade 1</td>
                                 <td>10/07/2018</td>
                             </tr>
-                            <tr>
-                                <td>Atividade 1</td>
-                                <td>10/07/2018</td>
-                            </tr>
-                            <tr>
-                                <td>Atividade 1</td>
-                                <td>10/07/2018</td>
-                            </tr>
-                            <tr>
-                                <td>Atividade 1</td>
-                                <td>10/07/2018</td>
-                            </tr>
-                            <tr>
-                                <td>Atividade 1</td>
-                                <td>10/07/2018</td>
-                            </tr>
-                            <tr>
-                                <td>Atividade 1</td>
-                                <td>10/07/2018</td>
-                            </tr>
+                         
                         </tbody>
                     </table>
                     </div>
