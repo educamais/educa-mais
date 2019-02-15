@@ -8,7 +8,10 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min .js"></script>
 </head>
-<body>
-	<h1>Página não encontrada</h1>
+<body >
+		<div  class="d-flex justify-content-center">
+		<img alt="" class="img-fluid" src="<%=request.getContextPath()%>/resources/img/erro404.png" >
+	
+</div>
 </body>
 </html>

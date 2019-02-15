@@ -29,8 +29,9 @@
 			</list>
 		</property>
 	</bean>
-	
+	 
 	<mvc:interceptors>
 		<bean class="br.com.educamais.util.AutorizadorInterceptor" />
 	</mvc:interceptors>
+	
 </beans>

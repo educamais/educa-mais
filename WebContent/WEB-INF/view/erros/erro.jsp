@@ -8,11 +8,14 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min .js"></script>
 </head>
-<body>
+<body >
 
 
-	<h1>Erro!</h1>
-	
-	
+	<div class="d-flex justify-content-center">
+
+		<img alt="" class="img-fluid" src="<%=request.getContextPath()%>/resources/img/erro.png"/>
+	</div>
+
+
 </body>
 </html>
