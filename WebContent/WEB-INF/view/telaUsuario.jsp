@@ -4,10 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-    <meta charset="UTF-8">
-	<title>Usuário</title>
+	<meta charset="UTF-8">
+	<title>Educa+</title>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
@@ -37,7 +35,7 @@
 
                     <div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item" href="/educa-mais/usuario">Home</a>                 
-                    	<a class="dropdown-item" href="/educa-mais/turma/minhasTurmas">Minhas Turmas</a>
+                    	<a class="dropdown-item" href="/educa-mais/turma/minhasturmas">Minhas Turmas</a>
                         <a class="dropdown-item d-sm-none" href="#criarTurma">Criar Turma</a>
                         <a class="dropdown-item d-sm-none" href="#participar">Participar</a>
                         <div class="dropdown-divider"></div>

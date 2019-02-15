@@ -23,12 +23,14 @@
     font-family: CaviarDreamsBold;
     font-weight: bolder;
     font-size: 1.8em;
+    width :30%;
+   
 }
 .logo:hover {
     text-decoration: none;
 }
 a:active {
-    background-color: #6f42c1;
+    background-color: #d3d7cf;
 }
 /* FONTS */
 @font-face {

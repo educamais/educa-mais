@@ -1,20 +1,17 @@
 package br.com.educamais.controller;
 
 import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import br.com.educamais.model.Usuario;
 import br.com.educamais.model.UsuarioDao;
 
 @Controller
 public class SistemaPrincipal {
-
-	@RequestMapping("teste")
-	public String teste(HttpSession session) {
-		
-		return "mensagem";
-	}
 	
 	@RequestMapping("autenticar")
 	public String autenticar(Usuario usuario, Model model, HttpSession session) {
@@ -25,27 +22,25 @@ public class SistemaPrincipal {
 		
 		if (usuario == null) {
 			model.addAttribute("mensagem", "Usuário ou senha incorreto!");
-			return "mensagem";
+			return "index";
 		}
 		
 		session.setAttribute("usuario", usuario);
-		model.addAttribute("link", "usuario");
-		model.addAttribute("mensagem", "Logado com sucesso");
-		return "mensagem";
+		return "redirect:usuario";
 	}
 
 	
 	@RequestMapping("save")
-	public String save(Usuario usuario, Model model) {
+	public String save(Usuario usuario, Model model, HttpSession session) {
 
 		UsuarioDao dao = new UsuarioDao();
 		
-		if (dao.verificarExistencia(usuario) == null) {
+		if(dao.verificarExistencia(usuario) == null) {
+			
 			dao.salvar(usuario);
 			
-			model.addAttribute("link", "telaUsuario");
-			model.addAttribute("mensagem", "Conta criada com sucesso!");
-			return "mensagem";
+			session.setAttribute("usuario", usuario);
+			return "redirect:usuario";
 		}
 		
 		model.addAttribute("mensagem", "E-mail já cadastrado!");

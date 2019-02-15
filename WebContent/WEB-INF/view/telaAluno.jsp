@@ -6,30 +6,17 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Educa+</title>
 
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 <!--******************************************************SCRIPT BOOTSTRAP*****************************************8-->
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 <script src="<%=request.getContextPath()%>/resources/js/tabPane.js"></script>
 
 
@@ -42,10 +29,8 @@
 		<div class="container">
 
 			<a class="logo" href="/educa-mais/usuario"><span
-				class="text-roxo"> <img alt=""
-					class="rounded mx-auto d-block"
-					src="<%=request.getContextPath()%>/resources/img/logo3.png"
-					width="70" height="70" />
+				class="text-roxo"> <img alt="" class="rounded mx-auto d-block logo" src="<%=request.getContextPath()%>/resources/img/logo3.png"
+					/>
 			</span>
 			</a>
 
@@ -84,7 +69,7 @@
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
 						<a class="dropdown-item font-1"
-							href="/educa-mais/turma/minhasTurmas">Minhas Turmas</a> <a
+							href="/educa-mais/turma/minhasturmas">Minhas Turmas</a> <a
 							class="dropdown-item d-sm-none font-1" href="#">Ranking</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item font-1" href="#">Alterar Nome</a> <a

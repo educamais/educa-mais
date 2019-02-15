@@ -26,7 +26,13 @@ public class UsuarioDao {
 			manager.getTransaction().begin();
 			query = manager.createQuery("FROM Usuario WHERE email = :email AND senha = :senha");
 			query.setParameter("email", email);
-			query.setParameter("senha", senha);	
+			query.setParameter("senha", senha);
+			
+		}else if(!email.equals("") && senha.equals("")) {
+			
+			manager.getTransaction().begin();
+			query = manager.createQuery("FROM Usuario WHERE email = :email");
+			query.setParameter("email", email);
 		}
 
 		List<Usuario> result = query.getResultList();

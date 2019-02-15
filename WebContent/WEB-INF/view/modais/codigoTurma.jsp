@@ -10,7 +10,7 @@
 			</div>
 
 			<div class="modal-body">
-				${turma.codigoAluno}
+				${turma.codigoTurma}
 			</div>
 
 			<div class="modal-footer">

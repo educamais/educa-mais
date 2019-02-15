@@ -1,7 +1,6 @@
 package br.com.educamais.model;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -16,14 +15,14 @@ public class TurmaDao {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		
-		String codigoAluno = turma.getCodigoAluno() != null ? turma.getCodigoAluno() : "";
+		String codigoTurma = turma.getCodigoTurma() != null ? turma.getCodigoTurma() : "";
 		
 		Query query = null;
 		
-		if(!codigoAluno.equals("")) {
+		if(!codigoTurma.equals("")) {
 			manager.getTransaction().begin();
-			query = manager.createQuery("FROM Turma WHERE codigoAluno = :codigoAluno");
-			query.setParameter("codigoAluno", codigoAluno);
+			query = manager.createQuery("FROM Turma WHERE codigoTurma = :codigoTurma");
+			query.setParameter("codigoTurma", codigoTurma);
 		}
 		
 		List<Turma> result = query.getResultList();
@@ -56,7 +55,7 @@ public class TurmaDao {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		
-		Query query = manager.createQuery("FROM Turma WHERE id_professor = :paramProfessor");
+		Query query = manager.createQuery("FROM Turma WHERE professor = :paramProfessor");
 		query.setParameter("paramProfessor", usuario);
 		
 		List<Turma> listaTurma = query.getResultList();
@@ -88,7 +87,7 @@ public class TurmaDao {
 			return null;
 		}
 		
-		Query query = manager.createQuery("FROM Turma WHERE codigo_aluno = :paramCodigo");
+		Query query = manager.createQuery("FROM Turma WHERE codigoTurma = :paramCodigo");
 		query.setParameter("paramCodigo", codigo);
 		
 		Turma turma = (Turma)query.getSingleResult();
@@ -98,19 +97,15 @@ public class TurmaDao {
 		
 		return  turma;
 	}
-		
-	public void entrarSala(Usuario usuario, Turma turma) {
-		
+	
+	public void remover(int id) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
-		
-		
-		List<Turma> listaTurma = usuario.getListaAlunoTurma();
-		listaTurma.add(turma);
-		usuario.setListaAlunoTurma(listaTurma);
+
+		Turma turma = manager.find(Turma.class, id);
 		
 		manager.getTransaction().begin();
-		manager.merge(usuario);
+		manager.remove(turma);
 		manager.getTransaction().commit();
 		
 		manager.close();
