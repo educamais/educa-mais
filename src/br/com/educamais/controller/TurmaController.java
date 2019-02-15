@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import br.com.educamais.model.AlunoTurmaDao;
 import br.com.educamais.model.Turma;
 import br.com.educamais.model.TurmaDao;
 import br.com.educamais.model.Usuario;
@@ -17,57 +18,47 @@ public class TurmaController {
 	@RequestMapping("turma/save")
 	public String save(Turma turma, HttpSession session, Model model) {
 		
-		if(session.getAttribute("usuario") == null) {
-			model.addAttribute("mensagem", "Usuário não está autenticado!");
-			return "mensagem";
-		}
-		
 		TurmaDao turmaDao = new TurmaDao();
 		
 		String uniqueID = Util.randomHex();
-		turma.setCodigoAluno(uniqueID);
+		turma.setCodigoTurma(uniqueID);
 		
 		Usuario professor = (Usuario) session.getAttribute("usuario");
 		turma.setProfessor(professor);
 		
 		turmaDao.salvar(turma);
 		
-		model.addAttribute("mensagem", "Turma criada com sucesso!");
-		model.addAttribute("link", "professor?id="+turma.getIdTurma());
-		
-		return "mensagem";
+		return "redirect:/usuario";
 	}
 	
-	@RequestMapping("turma/entrarSala")
+	@RequestMapping("turma/participar")
 	public String entraSala(@RequestParam("codigo") String codigo, HttpSession session, Model model) {
 		
-		if(session.getAttribute("usuario") == null) {
-			model.addAttribute("mensagem", "Usuário não está autenticado!");
-			return "mensagem";
-		}
-		
 		Usuario usuario = (Usuario)session.getAttribute("usuario");
-		TurmaDao dao = new TurmaDao();
-		Turma turma = dao.buscarSala(codigo);
 		
-		if(turma.equals(null)) {
+		TurmaDao turmaDao = new TurmaDao();
+		Turma turma = turmaDao.buscarSala(codigo);
+		
+		if(turma == null) {
 			model.addAttribute("mensagem", "Sala não existe");
 			model.addAttribute("link", "usuario");
 			return "mensagem";
 		}
-		dao.entrarSala(usuario, turma);
 		
-		model.addAttribute("link", "aluno?id="+turma.getIdTurma());
-		return "mensagem";
-	}
-	
-	@RequestMapping("turma/minhasTurmas")
-	public String entraSala(HttpSession session, Model model) {
-		
-		if(session.getAttribute("usuario") == null) {
-			model.addAttribute("mensagem", "Usuário não está autenticado!");
+		if(turma.getProfessor().getIdUsuario() == usuario.getIdUsuario()) {
+			model.addAttribute("mensagem", "Você não pode ser aluno e professor da mesma sala!");
+			model.addAttribute("link", "usuario");
 			return "mensagem";
 		}
+		
+		AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
+		alunoTurmaDao.participar(usuario, turma);
+		
+		return "redirect:/aluno?id="+turma.getIdTurma();
+	}
+	
+	@RequestMapping("turma/minhasturmas")
+	public String entraSala(HttpSession session, Model model) {
 		
 		Usuario usuario = (Usuario)session.getAttribute("usuario");
 		
@@ -77,5 +68,18 @@ public class TurmaController {
 		model.addAttribute("turmasProfessor", turmasProfessor);
 		model.addAttribute("usuario", usuario);
 		return "telaUsuario";
+	}
+	
+	@RequestMapping("turma/remover")
+	public String entraSala(@RequestParam("id") int id) {
+		AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
+		TurmaDao turmaDao = new TurmaDao();
+		
+		Turma  turma = turmaDao.buscarPorId(id);
+		
+		alunoTurmaDao.remover(turma);
+		turmaDao.remover(id);
+		
+		return "redirect:/usuario";
 	}
 }

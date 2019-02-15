@@ -14,21 +14,27 @@ import javax.persistence.Table;
 @Entity
 @Table(name="atividade")
 public class Atividade {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_atividade")
 	private int idAtividade;
 	
-	@Column (name = "nome_atividade")
+	@Column(name="nome_atividade")
 	private String nomeAtividade;
 	
-	@Column (name = "data_atividade")	
+	@Column(name="data_atividade")
 	private Date dataAtividade;
 	
-	/*@OneToMany
-	@JoinColumn(name = "id_professor")
-	private Usuario id_usuario;*/
+	@ManyToOne
+	@JoinColumn(name="id_turma")
+	private Turma turma;
+	
+	@Column
+	private double nota;
 
+	// GET's E SET's
+	
 	public int getIdAtividade() {
 		return idAtividade;
 	}
@@ -52,8 +58,12 @@ public class Atividade {
 	public void setDataAtividade(Date dataAtividade) {
 		this.dataAtividade = dataAtividade;
 	}
-	
-	
-	
-	
+
+	public double getNota() {
+		return nota;
+	}
+
+	public void setNota(double nota) {
+		this.nota = nota;
+	}
 }

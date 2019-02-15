@@ -1,17 +1,12 @@
 package br.com.educamais.model;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -28,14 +23,13 @@ public class Turma {
 	private String nomeTurma;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_professor")
+	@JoinColumn(name = "professor")
 	private Usuario professor;
 	
-	@Column(name="codigo_aluno")
-	private String codigoAluno;
+	@Column(name="codigo_turma")
+	private String codigoTurma;
 
-	@ManyToMany(mappedBy="listaAlunoTurma", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Usuario> listaAluno = new ArrayList<Usuario>();
+	//GET E SET
 
 	public int getIdTurma() {
 		return idTurma;
@@ -61,19 +55,11 @@ public class Turma {
 		this.professor = professor;
 	}
 
-	public String getCodigoAluno() {
-		return codigoAluno;
+	public String getCodigoTurma() {
+		return codigoTurma;
 	}
 
-	public void setCodigoAluno(String codigoAluno) {
-		this.codigoAluno = codigoAluno;
-	}
-
-	public List<Usuario> getListaAluno() {
-		return listaAluno;
-	}
-
-	public void setListaAluno(List<Usuario> listaAluno) {
-		this.listaAluno = listaAluno;
+	public void setCodigoTurma(String codigoTurma) {
+		this.codigoTurma = codigoTurma;
 	}
 }

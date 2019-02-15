@@ -14,14 +14,13 @@
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="100000" />
+		<property name="maxUploadSize" value="100000000" />
 	</bean>
 
 	<!-- A linha abaixo é necessária para poder carregar nos JSP os arquivos CSS, imagens, JavaScript e etc -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
-	<mvc:annotation-driven
-		conversion-service="conversionService" />
+	<mvc:annotation-driven conversion-service="conversionService" />
 	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
 		<property name="converters">
 			<list>
@@ -30,5 +29,8 @@
 			</list>
 		</property>
 	</bean>
-
+	
+	<mvc:interceptors>
+		<bean class="br.com.educamais.util.AutorizadorInterceptor" />
+	</mvc:interceptors>
 </beans>

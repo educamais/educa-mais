@@ -26,13 +26,11 @@
                 <!-- LOGO -->
                 <nav class="navbar navbar-expand-sm d-flex justify-content-center">
                     
-                  <a class="logo" href="/educa-mais/usuario"><span
-				class="text-roxo"> <img alt=""
-					class="rounded mx-auto d-block"
-					src="<%=request.getContextPath()%>/resources/img/logo3.png"
-					width="20%" height="20%" />
-			</span>
-			</a>
+               		<a class="logo" href="/educa-mais/usuario">
+                  		<span class="text-roxo">
+                  			<img alt="" class="rounded mx-auto d-block" src="<%=request.getContextPath()%>/resources/img/logo3.png" width="20%" height="20%" />
+						</span>
+					</a>
                     
                 </nav>
                 
