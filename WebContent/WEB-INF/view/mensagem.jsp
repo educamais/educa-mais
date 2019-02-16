@@ -12,12 +12,10 @@
 </head>
 <body >
 	
-<div class="d-flex justify-content-center mt-5">
+<div class="d-flex justify-content-center mx-5 my-5">
 
-	<h1 class=" text-danger">ola estou testanton${mensagem}</h1>
+	<h2 class=" text-danger">ola estou testanton${mensagem}</h2>
 </div>
-
-
 
 </body>
 </html>
