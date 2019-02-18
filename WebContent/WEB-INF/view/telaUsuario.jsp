@@ -76,11 +76,11 @@
 								<div class="text-center"></div>
 							</div>
 							<a class="" href="/educa-mais/professor?id=${turma.idTurma }">
-							<div class="card-footer">
-								<div class="text-center d-flex justify-content-around">
-									Entrar
+								<div class="card-footer">
+									<div class="text-center d-flex justify-content-around">
+										Entrar
+									</div>
 								</div>
-							</div>
 							</a>
 						</div>
 					</div>

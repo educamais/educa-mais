@@ -71,7 +71,7 @@ public class PostagemDao {
 		if (turma != null) {
 			
 			manager.getTransaction().begin();
-			query = manager.createQuery("FROM Postagem WHERE turma = :turma ORDER BY id_postagem DESC");
+			query = manager.createQuery("FROM Postagem p WHERE turma = :turma ORDER BY p.idPostagem DESC");
 			query.setParameter("turma", turma);
 		}
 
@@ -111,7 +111,6 @@ public class PostagemDao {
 		
 		manager.close();
 		factory.close();
-		
 	}
 
 	public void atualizar(Postagem postagem) {

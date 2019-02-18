@@ -1,7 +1,6 @@
 package br.com.educamais.controller;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.educamais.model.AlunoTurmaDao;
-import br.com.educamais.model.ArquivoPostagem;
-import br.com.educamais.model.ArquivoPostagemDao;
+import br.com.educamais.model.Atividade;
+import br.com.educamais.model.AtividadeDao;
 import br.com.educamais.model.Postagem;
 import br.com.educamais.model.PostagemDao;
 import br.com.educamais.model.Turma;
@@ -74,21 +73,25 @@ public class UsuarioController {
 		TurmaDao turmaDao = new TurmaDao();
 		Turma turma = turmaDao.buscarPorId(id);
 		
-		PostagemDao postagemDao = new PostagemDao();
+		
 		
 		if(turma != null) {
 			if(usuario.getIdUsuario() == turma.getProfessor().getIdUsuario()) {
 				
-				AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao(); 
-				
-				List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
-				
+				PostagemDao postagemDao = new PostagemDao();
 				List<Postagem> listaPostagem = postagemDao.getListaPostagem(turma);
+				
+				AtividadeDao atividadeDao = new AtividadeDao();
+				List<Atividade> listaAtividade = atividadeDao.getlistAtividade(turma);
+				
+				AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
+				List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
 				
 				model.addAttribute("usuario", usuario);
 				model.addAttribute("turma", turma);
-				model.addAttribute("listaAluno", listaAluno);
 				model.addAttribute("listaPostagem", listaPostagem);
+				model.addAttribute("listaAtividade", listaAtividade);
+				model.addAttribute("listaAluno", listaAluno);
 				return "telaProfessor";
 			}
 		}

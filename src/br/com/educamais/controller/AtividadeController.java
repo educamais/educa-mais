@@ -1,25 +1,34 @@
 package br.com.educamais.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.educamais.model.AlunoTurmaDao;
+import com.google.gson.Gson;
+
+import br.com.educamais.model.AlunoNota;
+import br.com.educamais.model.AlunoNotaDao;
 import br.com.educamais.model.Atividade;
+import br.com.educamais.model.AtividadeDao;
 import br.com.educamais.model.Turma;
 import br.com.educamais.model.TurmaDao;
 import br.com.educamais.model.Usuario;
+import br.com.educamais.model.UsuarioDao;
 
 @Controller
 public class AtividadeController {
-
+	
 	@RequestMapping("atividade/save")
-	public String cadastroAdd(Atividade atividade, @RequestParam("id") int idTurma, @RequestParam("notaAluno") double[] notasAluno, HttpSession session, Model model) {
+	public String atividadeAdd(Atividade atividade, @RequestParam("id") int idTurma, @RequestParam("notaAluno") String[] notaAluno, @RequestParam("idAluno") String[] idAluno, HttpSession session, Model model) {
 		
 		Usuario usuario = (Usuario)session.getAttribute("usuario");
 		
@@ -28,10 +37,37 @@ public class AtividadeController {
 		
 		if(turma != null) {
 			if(usuario.getIdUsuario() == turma.getProfessor().getIdUsuario()) {
+
+				atividade.setTurma(turma);
 				
-				//Código entra aqui
+				Date date = new Date();
+				atividade.setDataAtividade(date);
 				
-				return "";
+				AtividadeDao atividadeDao = new AtividadeDao();
+				
+				Atividade UltimaAtividade = atividadeDao.salvar(atividade);
+				
+				UsuarioDao usuarioDao = new UsuarioDao();
+				AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+				
+				for(int i = 0; i < idAluno.length; i++) {
+					
+					if(!idAluno[i].equals("") && !notaAluno[i].equals("")) {
+						
+						double nota = Double.parseDouble(notaAluno[i]);
+						Usuario aluno = usuarioDao.buscarPorId(Integer.parseInt(idAluno[i]));
+						
+						AlunoNota alunoNota = new AlunoNota();
+						
+						alunoNota.setAluno(aluno);
+						alunoNota.setAtividade(UltimaAtividade);
+						alunoNota.setNota(nota);
+	
+						alunoNotaDao.salvar(alunoNota);
+					}
+				}
+				
+				return "redirect:/professor?id=" + idTurma;
 			}
 			
 			model.addAttribute("link", "usuario");
@@ -42,4 +78,35 @@ public class AtividadeController {
 		model.addAttribute("mensagem", "Esta turma não existe!");
 		return "mensagem";
 	}
+
+	@RequestMapping(value = "/atividade/filter", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String filter(@RequestParam("pesquisarAtividade") String pesquisarAtividade) {
+		
+		AtividadeDao atividadeDao = new AtividadeDao();
+		List<Atividade> listaAtividade = atividadeDao.getlistAtividade(pesquisarAtividade);
+		
+		return new Gson().toJson(listaAtividade);
+	}
+	
+	@RequestMapping("/atividade/remove")
+	public String remover(@RequestParam("id") int idTurma, @RequestParam("idAtividade") int idAtividade) {
+		
+		AtividadeDao atividadeDao = new AtividadeDao();
+		Atividade atividade = atividadeDao.buscarPorId(idAtividade);
+		
+		AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+		List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(atividade);
+		
+		if(listaAlunoNota != null) {
+			
+			for(AlunoNota alunoNota : listaAlunoNota) {
+				alunoNotaDao.remove(alunoNota);
+			}
+		}
+		
+		atividadeDao.remover(idAtividade);
+		
+		return "redirect:/professor?id="+idTurma;
+	}
+	
 }

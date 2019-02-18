@@ -37,7 +37,7 @@ public class Postagem {
 	private Date dataPostagem;
 	
 	@OneToMany(fetch=FetchType.EAGER)
-    @JoinColumn(name="postagem")
+	@JoinColumn(name="postagem")
 	private List<ArquivoPostagem> listaArquivo;
 	
 	// GET E SET
@@ -81,7 +81,7 @@ public class Postagem {
 	public void setDataPostagem(Date dataPostagem) {
 		this.dataPostagem = dataPostagem;
 	}
-
+	
 	public List<ArquivoPostagem> getListaArquivo() {
 		return listaArquivo;
 	}

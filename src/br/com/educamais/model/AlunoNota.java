@@ -10,13 +10,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="aluno_atividade")
-public class AlunoAtividade {
+@Table(name="aluno_nota")
+public class AlunoNota {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_aluno_atividade")
-	private int idAlunoAtividade;
+	@Column(name="id_aluno_nota")
+	private int idAlunoNota;
 	
 	@ManyToOne
     @JoinColumn(name="aluno")
@@ -25,13 +25,16 @@ public class AlunoAtividade {
 	@ManyToOne
     @JoinColumn(name="atividade")
     private Atividade atividade;
+	
+	@Column
+	private double nota;
 
-	public int getIdAlunoAtividade() {
-		return idAlunoAtividade;
+	public int getIdAlunoNota() {
+		return this.idAlunoNota;
 	}
 
-	public void setIdAlunoAtividade(int idAlunoAtividade) {
-		this.idAlunoAtividade = idAlunoAtividade;
+	public void setIdAlunoNota(int idAlunoNota) {
+		this.idAlunoNota = idAlunoNota;
 	}
 
 	public Usuario getAluno() {
@@ -48,5 +51,13 @@ public class AlunoAtividade {
 
 	public void setAtividade(Atividade atividade) {
 		this.atividade = atividade;
+	}
+
+	public double getNota() {
+		return nota;
+	}
+
+	public void setNota(double nota) {
+		this.nota = nota;
 	}
 }

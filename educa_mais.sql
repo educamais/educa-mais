@@ -47,8 +47,20 @@ CREATE TABLE atividade(
 	nome_atividade VARCHAR(45) NOT NULL,
 	data_atividade DATE NOT NULL,
 	turma INT NOT NULL,
-	nota FLOAT NOT NULL
+	CONSTRAINT fk_turma_atividade FOREIGN KEY (turma) REFERENCES turma(id_turma)
 )CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+INSERT INTO atividade VALUES
+(1, 'Atividade 1', '2019-01-17', 1),
+(2, 'Atividade 2', '2019-02-15', 1),
+(3, 'Atividade 3', '2019-03-05', 1),
+(4, 'Atividade 4', '2019-04-27', 1),
+(5, 'Prova 1', '2019-06-03', 1),
+(6, 'Atividade 5', '2019-07-09', 1),
+(7, 'Trabalho 1', '2019-08-17', 1),
+(8, 'Projeto', '2019-09-21', 1),
+(9, 'Trabalho 2', '2019-10-17', 1),
+(10, 'Prova 2', '2019-11-12', 1);
 
 CREATE TABLE aluno_turma(
 	id_aluno_turma INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -81,12 +93,13 @@ CREATE TABLE aluno_postagem(
 	CONSTRAINT fk_postagem_aluno_postagem FOREIGN KEY (postagem) REFERENCES postagem(id_postagem)
 );
 
-CREATE TABLE aluno_atividade(
-	id_aluno_atividade INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE aluno_nota(
+	id_aluno_nota INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	aluno INT NOT NULL,
 	atividade INT NOT NULL,
-	CONSTRAINT fk_aluno_aluno_atividade FOREIGN KEY (aluno) REFERENCES usuario(id_usuario),
-	CONSTRAINT fk_atividade_aluno_atividade FOREIGN KEY (atividade) REFERENCES atividade(id_atividade)
+	nota INT DEFAULT 0,
+	CONSTRAINT fk_aluno_aluno_nota FOREIGN KEY (aluno) REFERENCES usuario(id_usuario),
+	CONSTRAINT fk_atividade_aluno_nota FOREIGN KEY (atividade) REFERENCES atividade(id_atividade)
 );
 
 CREATE TABLE arquivo_postagem(

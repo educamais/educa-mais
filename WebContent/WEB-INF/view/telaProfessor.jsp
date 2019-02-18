@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -54,17 +55,17 @@
         <!-- MENU SECUNDÁRIO -->
         <ul class="nav nav-tabs nav-justified" id="lista-menu">
             <li class="nav-item">
-                <a class="nav-link active border active font-weight-bold" style="font-family:Gravity;" data-toggle="tab" href="#mural">
+                <a class="nav-link border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" href="#mural">
                     Mural
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" href="#atividades">
+                <a class="nav-link active border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" href="#atividades">
                     Atividades
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link  border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" href="#participantes">
+                <a class="nav-link border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" href="#participantes">
                     Participantes
                 </a>
             </li>
@@ -73,8 +74,8 @@
         <!-- CORPO DO SITE -->
         <div class="tab-content bg-white">
             
-            <!-- ******************************MURAL ********************************************************-->
-            <div class="tab-pane active container border shadow p-4" id="mural">
+            <!-- ****************************** MURAL ************************* -->
+            <div class="tab-pane fade container border shadow p-4" id="mural">
                 
                 <div class="capsula border mb-5">
                     
@@ -199,118 +200,119 @@
                 </c:forEach>
             </div>
             
-            
-            
- 			<!-- **************************ATIVIDADES ***************************************-->
-			<div class="tab-pane fade container border shadow p-4" id="atividades">
-
+ 			<!-- ************************** ATIVIDADES ************************ -->
+			<div class="tab-pane active container border shadow p-4" id="atividades">
 				<div class="capsula mb-5">
 
-					<div class="d-flex justify-content-end">
-						<button class="btn btn-rosa my-3 mb-5" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="cadAtividade">
-							Cadastrar Atividade
+					<div class="d-flex alterarNota justify-content-end">
+						<button class="btn btn-rosa my-2 mb-4" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multi-collapse">
+							Nova Atividade
 						</button>
 					</div>
 
-
-					<!--***************COLLAPSE DA ATIVIDADE****************** -->
-
-					<div class="collapse multi-collapse" id="cadAtividade" data-parent="#cadAtividade">
-						<div class="card card-body ">
+					<!--*************** COLLAPSE DO ATIVIDADE ****************** -->
+					<div class="collapse multi-collapse border p-4">
+						
+						<form action="atividade/save">
 
 							<!-- FORMULÁRIO -->
-							<form action="atividade/save">
-							
-								<div class="d-flex justify-content-center mx-5 mb-3">
-									<div class="col-9">
-										<input type="text" name="nomeAtividade" class="form-input form-control form-control-lg text-center" placeholder="Nome da Atividade" required>
-									</div>
-									
-									<div class="col-3">
-										<input type="text" name="nota" class="form-input form-control form-control-lg text-center" placeholder="Nota" required>
-									</div>
+							<input type="hidden" id="idTurma" name="id" value="${turma.idTurma}">
+
+							<div class="d-flex justify-content-center mx-5 mb-3">
+								<div class="col-9">
+									<input type="text" id="nomeAtividade" name="nomeAtividade" class="form-input form-control form-control-lg text-center" placeholder="Nome da Atividade" required>
 								</div>
-								
-								<table class="table table-hover">
-									<thead class="thead-rosa">
-										<tr>
-											<th scope="col">Nome &nbsp; <i class="fas fa-sort"></i>
-											</th>
-											<th scope="col">Data &nbsp; <i class="fas fa-sort"></i>
-											</th>
-											<th scope="col">Nota &nbsp; <i class="fas fa-sort"></i>
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="aluno" items="${ listaAluno }">
-											<tr>
-												<td>${ aluno.nome.toUpperCase() }</td>
-												<td>21/07/2019</td>
-												<td>
-													<input type="text" name="notaAluno" class="form-input form-control  text-center " required="required" size="3">
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-								
-								<button class="btn btn-primary my-2 mb-1 float-right" type="submit">Cadastrar</button>
-								
-							</form>
-						</div>
-					</div>
+							</div>
 
-					<!--****************COLLAPSE DA Lista de atividade************** -->
-
-					<div class="collapse multi-collapse show" id="listaAtividade">
-						<div class="card card-body ">
-
-							<table class="table table-striped">
+							<table class="table table-hover">
 								<thead class="thead-rosa">
 									<tr>
-										<th scope="col">Nome &nbsp;<i class="fas fa-sort"></i></th>
-										<th scope="col">Data &nbsp;<i class="fas fa-sort"></i></th>
-										<th scope="col" style="vertical-align: middle; text-align: center;">Operação</th>
+										<th scope="col">
+											Nome &nbsp; <i class="fas fa-sort"></i>
+										</th>
+										<th scope="col">
+											Nota &nbsp; <i class="fas fa-sort"></i>
+										</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>Atividade 1</td>
-										<td>10/07/2018</td>
-										<td style="vertical-align: middle; text-align: center;">
-											<a href="edit?id=${produto.id}">Alterar</a>
-											<br>
-											<a href="delete?id=${produto.id}">Remover</a>
-										</td>
-									</tr>
-									<tr>
-										<td>Atividade 1</td>
-										<td>10/07/2018</td>
-										<td style="vertical-align: middle; text-align: center;">
-											<a href="edit?id=${produto.id}">Alterar</a>
-											<br>
-											<a href="delete?id=${produto.id}">Remover</a>
-										</td>
-									</tr>
-									<tr>
-										<td>Atividade 1</td>
-										<td>10/07/2018</td>
-										<td style="vertical-align: middle; text-align: center;">
-											<a href="edit?id=${produto.id}">Alterar</a>
-											<br>
-											<a href="delete?id=${produto.id}">Remover</a>
-										</td>
-									</tr>
-
+									<c:forEach var="aluno" items="${ listaAluno }">
+										<tr>
+											<input type="hidden" name="idAluno" value="${aluno.idUsuario}">
+											<td>${ aluno.nome.toUpperCase() }</td>
+											<td>
+												<input type="text" name="notaAluno" class="form-input form-control  text-center" style="width:20%;">
+											</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
-						</div>
+
+							<button id="btnCadastrar" class="btn btn-primary my-2" type="submit">
+								Cadastrar
+							</button>
+						</form>
 					</div>
+
+					<!--*************** COLLAPSE DO CADASTRO DE ATIVIDADE ************* -->
+					<div class="collapse multi-collapse show border p-4">
+						
+						<div class="d-flex justify-content-center mx-5 mb-3">
+							<div class="col-9">
+								<input type="text" id="pesquisarAtividade" class="form-input form-control form-control-lg text-center" placeholder="Pesquisar atividade..." required>
+							</div>
+						</div>
+						
+						<table class="table table-striped">
+							<thead class="thead-rosa">
+								<tr>
+									<th scope="col">Nome &nbsp;<i class="fas fa-sort"></i></th>
+									<th scope="col">Data &nbsp;<i class="fas fa-sort"></i></th>
+									<th scope="col" style="vertical-align: middle; text-align: center;">Operação</th>
+								</tr>
+							</thead>
+							<tbody id="tabelaAtividade">
+								<c:forEach var="atividade" items="${listaAtividade}">
+									<tr>
+										<td style='vertical-align: middle; text-align: center;'>${atividade.nomeAtividade}</td>
+										<td style='vertical-align: middle; text-align: center;'><fmt:formatDate value="${atividade.dataAtividade}" pattern="dd/MM/yyyy" /></td>
+										<td style="vertical-align: middle; text-align: center;">
+											<a id="alterarNota">Alterar</a>
+											<br>
+											<a href="atividade/remove?id=${turma.idTurma}&idAtividade=${atividade.idAtividade}">Remover</a>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+					
+					<!--****************COLLAPSE DO ALTERAR DE NOTA ******************* -->
+					<div class="border p-4">
+						
+						<div class="d-flex justify-content-center mx-5 mb-3">
+							<div class="col-9">
+								<input type="text" id="pesquisarAtividade" class="form-input form-control form-control-lg text-center" placeholder="Pesquisar atividade..." required>
+							</div>
+						</div>
+						
+						<table class="table table-striped">
+							<thead class="thead-rosa">
+								<tr>
+									<th scope="col">Nome &nbsp;<i class="fas fa-sort"></i></th>
+									<th scope="col">Data &nbsp;<i class="fas fa-sort"></i></th>
+									<th scope="col" style="vertical-align: middle; text-align: center;">Operação</th>
+								</tr>
+							</thead>
+							<tbody id="tabelaAtividade">
+							</tbody>
+						</table>
+					</div>
+					
 				</div>
 			</div>
-
-			<!-- **********PARTICIPANTES************ -->
+			
+			<!-- ************************* PARTICIPANTES ********************** -->
             <div class="tab-pane container fade border shadow p-4" id="participantes">
                 <div class="capsula mb-5">
                     <div class="row d-flex justify-content-center">
@@ -368,6 +370,15 @@
 	<script src="<%=request.getContextPath()%>/resources/jquery.js"></script>
     <script src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/tabPane.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/dataConverter.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/carregarTabelaJSon.js"></script>
+    
+    <script>
+    	$(document).ready(function() {
+    		$("#pesquisarAtividade").keyup(function() {
+    			carregaTabelaJSon();
+    		});
+    	});
+    </script>
 </body>
-
 </html>

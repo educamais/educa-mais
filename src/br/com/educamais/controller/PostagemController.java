@@ -95,45 +95,7 @@ public class PostagemController {
 		return "mensagem";
 	}
 	
-	@RequestMapping("postagem/update")
-	public String atualizar(@RequestParam("turma") int idTurma,
-//			@RequestParam("file") MultipartFile[] files, 
-			@RequestParam("aluno") int[] idAlunos,
-			Postagem post, 
-			HttpSession session) {
-		
-			Usuario usuario = (Usuario)session.getAttribute("usuario");
-			
-			PostagemDao postDao = new PostagemDao();
-			postDao.atualizar(post);
-			
-//			AlunoPostagemDao alunoPostagemDao = new AlunoPostagemDao();
-//			UsuarioDao usuarioDao = new UsuarioDao();
-//			
-//			for(int id : idAlunos) {
-//				Usuario aluno = usuarioDao.buscarPorId(id);
-//				AlunoPostagem alunoPostagem = alunoPostagemDao.buscarAlunoPostagem(aluno, post);
-//				alunoPostagem.setPostagem(post);
-//				alunoPostagemDao.atualizar(alunoPostagem);
-//			}
-//			
-//			ArquivoPostagemDao arquivoPostagemDao = new ArquivoPostagemDao();
-//			
-//			for(MultipartFile file : files) {
-//				if(arquivoPostagemDao.verificarExistencia(file.getOriginalFilename())) {
-//					ArquivoPostagem arquivoPostagem = arquivoPostagemDao.buscaArquivoPostagem(post, file.getOriginalFilename());
-//					arquivoPostagem.setPostagem(post);
-//					arquivoPostagemDao.atualizar(arquivoPostagem);
-//				}else {
-//					if (Util.fazerUploadImagem(file)) {
-//						String arquivo = Util.obterMomentoAtual() + " - " + file.getOriginalFilename();
-//						arquivoPostagemDao.salvar(post, arquivo);
-//					}
-//				}
-//			}
-			
-			return "redirect:/professor?id="+idTurma;
-		}
+
 	
 	@RequestMapping("postagem/remove")
 	public String remover(@RequestParam("id") int idPostagem) {
