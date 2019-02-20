@@ -84,4 +84,19 @@ public class TurmaController {
 	}
 	
 	
+	@RequestMapping("test")
+	public String test(){
+		
+		return "mensagem";
+	}
+	@RequestMapping("test2")
+	public String test2(){
+		
+		return "erros/erro";
+	}
+	@RequestMapping("test3")
+	public String test3(){
+		
+		return "erros/404";
+	}
 }

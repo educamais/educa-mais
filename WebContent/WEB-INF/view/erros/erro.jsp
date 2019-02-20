@@ -8,12 +8,17 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min .js"></script>
 </head>
-<body >
+<body>
 
 
 	<div class="d-flex justify-content-center">
 
-		<img alt="" class="img-fluid" src="<%=request.getContextPath()%>/resources/img/erro.png"/>
+		<img alt="" class="img-fluid" src="<%=request.getContextPath()%>/resources/img/oops.png"/>
+	</div>
+	<div class="d-flex justify-content-center">
+	
+	<h1 class="display-4">ERROR</h1>
+	<hr class="style5">
 	</div>
 
 

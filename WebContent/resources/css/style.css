@@ -78,46 +78,46 @@ a:active {
     background-color: rgba(255,255,255, .95);
 }
 
-.bg-roxo{
-    background-color:#6f42c1!important
+.bg-verde{
+    background-color:#243f11!important
 }
-a.bg-roxo:focus,a.bg-roxo:hover,button.bg-roxo:focus,button.bg-roxo:hover{
-    background-color:#6f42c1!important
+a.bg-verde:focus,a.bg-roxo:hover,button.bg-roxo:focus,button.bg-roxo:hover{
+    background-color:#243f11!important
 }
 
 .bg-azulc{
     background-color:#548FCE!important
 }
 
-.bg-rosa{
-    background-color:#CE3F96!important
+.bg-azul{
+    background-color:#204a87!important
 }
 
-.thead-rosa{
-    background-color:#CE3F96!important;
-    border: 2px solid #CE3F96;
+.thead-azul{
+    background-color:#204a87!important;
+    border: 2px solid #204a87;
     color: white;
 }
 
 /* TEXTO COLORIDO */
-/*rosa*/
-.text-crosa{
-    color:#CE3F96!important
-}
-
-/*lilas*/
-.text-clilas{
-    color:#B949D8!important
+/*verde*/
+.text-verde{
+    color:#243f11!important
 }
 
 /*roxo*/
-.text-croxo{
-    color:#6f42c1!important
+.text-clilas{
+    color:#5c3566!important
 }
 
-/*azul escuro*/
+/*azul*/
+.text-azul{
+    color:#204a87!important
+}
+
+/*amarelo - escuro*/
 .text-cazule{
-    color:#3F4AD8!important
+    color:#8f5902!important
 }
 
 /*azul claro*/
@@ -126,93 +126,104 @@ a.bg-roxo:focus,a.bg-roxo:hover,button.bg-roxo:focus,button.bg-roxo:hover{
 }
 
 /* Texto */
-.text-roxo{
-    color:#6f42c1!important
+
+
+
+text-roxo{
+    color:#243F11!important
 }
 a.text-roxo:focus,a.text-roxo:hover{
-    color:#6f42c1!important
+    color:#243F11!important
 }
 
-
+/* Background color */
+.bg-roxo{
+    background-color:#243F11!important
+}
+a.bg-roxo:focus,a.bg-roxo:hover,button.bg-roxo:focus,button.bg-roxo:hover{
+    background-color:#243f11!important
+}
 /* Botão */
-.btn-roxo{
+.btn-verde{
     color:#fff;
-    background-color:#6f42c1;
-    border-color:#6f42c1
+    background-color:#243F11;
+    border-color:#243F11
 }
-.btn-roxo:hover{
-    color:#6f42c1;
+.btn-verde:hover{
+    color:#243F11;
     background-color:#fff;
-    border-color:#6f42c1
+    border-color:#243F11
 }
 .btn-roxo.focus,.btn-roxo:focus{
-    box-shadow:0 0 0 .2rem #6e42c1be
+    box-shadow:0 0 0 .2rem #6ff0000
 }
 .btn-roxo.disabled,.btn-roxo:disabled{
     color:#fff;
-    background-color:#6e42c1be;
-    border-color:#6e42c1be
+    background-color:#6ff0000;
+    border-color:#243F11
 }
 .btn-roxo:not(:disabled):not(.disabled).active,.btn-roxo:not(:disabled):not(.disabled):active,.show>.btn-roxo.dropdown-toggle{
     color:#fff;
-    background-color:#6f42c1;
+    background-color:#6ff0000;
     border-color:#6f42c1
 }
 .btn-roxo:not(:disabled):not(.disabled).active:focus,.btn-roxo:not(:disabled):not(.disabled):active:focus,.show>.btn-roxo.dropdown-toggle:focus{
-    box-shadow:0 0 0 .2rem #6e42c1be
+    box-shadow:0 0 0 .2rem #243F11
 }
 
+/********** FIM DAS ALTERAÇõES ***************/
 
-.btn-rosa{
+
+.btn-verde{
     color:#fff;
-    background-color:#CE3F96;
-    border-color:#CE3F96
+    background-color:#243F11;
+    border-color:#243F11
 }
-.btn-rosa:hover{
-    color:#CE3F96;
+.btn-verde:hover{
+    color:#243F11;
     background-color:#fff;
-    border-color:#CE3F96
+    border-color:#243F11
 }
 .btn-rosa.focus,.btn-rosa:focus{
-    box-shadow:0 0 0 .2rem #CE3F96be
+    box-shadow:0 0 0 .2rem #243F11be
 }
-.btn-rosa.disabled,.btn-rosa:disabled{
+.btn-verde.disabled,.btn-rosa:disabled{
     color:#fff;
-    background-color:#CE3F96be;
-    border-color:#CE3F96be;
+    background-color:#243F11be;
+    border-color:#243F11be;
 }
 .btn-rosa:not(:disabled):not(.disabled).active,.btn-rosa:not(:disabled):not(.disabled):active,.show>.btn-rosa.dropdown-toggle{
     color:#fff;
-    background-color:#CE3F96;
-    border-color:#CE3F96
+    background-color:#243F11;
+    border-color:#243F11
 }
 .btn-rosa:not(:disabled):not(.disabled).active:focus,.btn-rosa:not(:disabled):not(.disabled):active:focus,.show>.btn-rosa.dropdown-toggle:focus{
-    box-shadow:0 0 0 .2rem #CE3F96be
+    box-shadow:0 0 0 .2rem #243F11be
 }
 
 
-.btn-azulc{
+.btn-verdec{
     color:#fff;
-    background-color:#548FCE;
-    border-color:#548FCE
+    background-color:#243F11;
+    border-color:#243F11
 }
-.btn-azulc:hover{
-    color:#548FCE;
+.btn-verdec:hover{
+    color:#243F11;
     background-color:#fff;
-    border-color:#548FCE
+    border-color:#243F11
 }
-.btn-azulc.focus,.btn-azulc:focus{
-    box-shadow:0 0 0 .2rem #548FCEbe
+.btn-verdec.focus,.btn-azulc:focus{
+    box-shadow:0 0 0 .2rem #243F11
 }
 .btn-azulc.disabled,.btn-azulc:disabled{
     color:#fff;
     background-color:#548FCEbe;
     border-color:#548FCEbe;
 }
-.btn-azulc:not(:disabled):not(.disabled).active,.btn-azulc:not(:disabled):not(.disabled):active,.show>.btn-azulc.dropdown-toggle{
+.btn-verdec:not(:disabled):not(.disabled).active,.btn-azulc:not(:disabled):not(.disabled):active,.show>.btn-azulc.dropdown-toggle{
     color:#fff;
-    background-color:#548FCE;
-    border-color:#548FCE
+    background-color:#243F11;
+    border-color:#243F11
 }
 .btn-azulc:not(:disabled):not(.disabled).active:focus,.btn-azulc:not(:disabled):not(.disabled):active:focus,.show>.btn-azulc.dropdown-toggle:focus{
     box-shadow:0 0 0 .2rem #548FCEbe
@@ -223,10 +234,10 @@ a.text-roxo:focus,a.text-roxo:hover{
     background-color:#3F4AD8;
     border-color:#3F4AD8
 }
-.btn-azule:hover{
-    color:#3F4AD8;
+.btn-verdee:hover{
+    color:#243F11;
     background-color:#fff;
-    border-color:#3F4AD8
+    border-color:#243F11
 }
 .btn-azule.focus,.btn-azule:focus{
     box-shadow:0 0 0 .2rem #3F4AD8be
