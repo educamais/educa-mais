@@ -6,17 +6,24 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.Gson;
 
 import br.com.educamais.model.AlunoPostagem;
 import br.com.educamais.model.AlunoPostagemDao;
 import br.com.educamais.model.AlunoTurmaDao;
 import br.com.educamais.model.ArquivoPostagem;
 import br.com.educamais.model.ArquivoPostagemDao;
+import br.com.educamais.model.Atividade;
+import br.com.educamais.model.AtividadeDao;
 import br.com.educamais.model.Postagem;
 import br.com.educamais.model.PostagemDao;
 import br.com.educamais.model.Turma;
@@ -95,8 +102,6 @@ public class PostagemController {
 		return "mensagem";
 	}
 	
-
-	
 	@RequestMapping("postagem/remove")
 	public String remover(@RequestParam("id") int idPostagem) {
 		
@@ -113,5 +118,17 @@ public class PostagemController {
 		daoPostagem.remover(idPostagem);
 		
 		return "redirect:/professor?id="+idTurma;
+	}
+	
+	@RequestMapping(value = "/postagem", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String filter(@RequestParam int idTurma, @RequestParam String atual, @RequestParam int limite) {
+		
+		TurmaDao turmaDao = new TurmaDao();
+		Turma turma = turmaDao.buscarPorId(idTurma);
+		
+		PostagemDao postagemDao = new PostagemDao();
+		List<Postagem> listaPostagem = postagemDao.getListaPostagem(turma);
+		
+		return new Gson().toJson(listaPostagem);
 	}
 }

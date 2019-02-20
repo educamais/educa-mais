@@ -129,18 +129,39 @@
 
 	<script src="<%=request.getContextPath()%>/resources/jquery.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/infiniteScroll.js"></script>
 	
 	<script src="<%=request.getContextPath()%>/resources/Validation/jquery.validate.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/localization/messages_pt_BR.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormTelaUsuario.js"></script>
 	
 	<script>
+		
+		var idTurma = ${turma.idTurma};
+		var atual = 0;
+		var limite = 5;
+	
+		console.log('000');
+		
 		$(document).ready(function(){
+			
+			console.log('0');
+			
+			$.get("postagem",{
+				
+				"idTurma" : idTurma,
+				"atual" : atual,
+				"limite" : limite
+				
+			},function(postagens) {
+				
+				console.log(postagens);
+			});
+			
 			$("#btn_criarTurma").click(function(){
 				$("#formCriarSala").submit();
 			});
-		});
-		$(document).ready(function(){
+			
 			$("#btn_participar").click(function(){
 				$("#formParticipar").submit();
 			});

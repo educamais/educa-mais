@@ -374,7 +374,23 @@
     <script src="<%=request.getContextPath()%>/resources/js/carregarTabelaJSon.js"></script>
     
     <script>
-    	$(document).ready(function() {
+	    var idTurma = ${turma.idTurma};
+		var atual = 0;
+		var limite = 5;
+	
+		$(document).ready(function(){
+			
+			$.get("postagem",{
+				
+				"idTurma" : idTurma,
+				"atual" : atual,
+				"limite" : limite
+				
+			},function(postagens) {
+				console.log("0");
+				console.log(postagens);
+			});
+			
     		$("#pesquisarAtividade").keyup(function() {
     			carregaTabelaJSon();
     		});
