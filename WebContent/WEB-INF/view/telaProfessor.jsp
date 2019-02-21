@@ -39,8 +39,8 @@
 						<a class="dropdown-item d-sm-none font-1" href="#">Ranking</a>
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#codigoTurma">Código</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item font-1" href="#">Alterar Nome</a>
-						<a class="dropdown-item font-1" href="#">Alterar Senha</a>
+						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
+						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item font-1" href="#">Sair</a>
 					</div>
@@ -366,6 +366,8 @@
     
     <!-- Modal Participar Turma -->
 	<c:import url="/WEB-INF/view/modais/codigoTurma.jsp"/>
+	<c:import url="/WEB-INF/view/modais/alterarNome.jsp"/>
+	<c:import url="/WEB-INF/view/modais/alterarSenha.jsp"/>
 	
 	<script src="<%=request.getContextPath()%>/resources/jquery.js"></script>
     <script src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -393,6 +395,9 @@
 			
     		$("#pesquisarAtividade").keyup(function() {
     			carregaTabelaJSon();
+    		});
+    		$("#btn_alterarNome").click(function() {
+    			$("#alterarNomeForm").submit();
     		});
     	});
     </script>

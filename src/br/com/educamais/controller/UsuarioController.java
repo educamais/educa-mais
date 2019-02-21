@@ -18,6 +18,7 @@ import br.com.educamais.model.PostagemDao;
 import br.com.educamais.model.Turma;
 import br.com.educamais.model.TurmaDao;
 import br.com.educamais.model.Usuario;
+import br.com.educamais.model.UsuarioDao;
 
 @Controller
 public class UsuarioController {
@@ -98,6 +99,34 @@ public class UsuarioController {
 		model.addAttribute("link", "usuario");
 		model.addAttribute("mensagem", "Esta turma não existe!");
 		return "mensagem";
+	}
+	
+	@RequestMapping("alterarnome")
+	public String alterarNome(@RequestParam int idUsuario, @RequestParam int idTurma, @RequestParam String nome, HttpSession session) {
+		
+		UsuarioDao usuarioDao = new UsuarioDao();
+		Usuario usuario = usuarioDao.buscarPorId(idUsuario);
+		
+		usuario.setNome(nome);
+		
+		usuarioDao.atualizar(usuario);
+		
+		session.setAttribute("usuario", usuario);		
+		return "redirect:professor?id="+idTurma;
+	}
+	
+	@RequestMapping("alterarsenha")
+	public String alterarSenha(@RequestParam int idUsuario, @RequestParam int idTurma, @RequestParam String novaSenha, HttpSession session) {
+		
+		UsuarioDao usuarioDao = new UsuarioDao();
+		Usuario usuario = usuarioDao.buscarPorId(idUsuario);
+		
+		usuario.setSenha(novaSenha);
+		
+		usuarioDao.atualizar(usuario);
+		
+		session.setAttribute("usuario", usuario);		
+		return "redirect:professor?id="+idTurma;
 	}
 	
 	@RequestMapping("logout")
