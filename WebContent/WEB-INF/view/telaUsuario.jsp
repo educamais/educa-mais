@@ -7,17 +7,19 @@
 	<meta charset="UTF-8">
 	<title>Educa+</title>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
+	
 </head>
 <body>
 
 	<!-- MENU PRINCIPAL -->
     <nav class="navbar border">
-        <a class="nav-brand" href="/educa-mais/usuario">
-            Educa+
-        </a>
+        <a class="logo" href="/educa-mais/usuario">
+				<img class="rounded mx-auto d-block logo" src="<%=request.getContextPath()%>/resources/img/logo3.png" width ="20%" height="20%"/>
+		</a>
         <div class="row">
             <div class="col-auto d-none d-sm-block">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#criarTurma">Criar Turma</a>
+                <a class="nav-link " href="#" data-toggle="modal" data-target="#criarTurma">Criar Turma</a>
             </div>
             
             <div class="col-auto d-none d-sm-block ">
@@ -75,13 +77,12 @@
 							<div class="card-body text-success">
 								<div class="text-center"></div>
 							</div>
-							<a class="" href="/educa-mais/professor?id=${turma.idTurma }">
-							<div class="card-footer">
-								<div class="text-center d-flex justify-content-around">
-									Entrar
-								</div>
-							</div>
+							<div class="card-footer text-center d-flex justify-content-around">
+							<a class="btn btn-vinho" href="/educa-mais/professor?id=${turma.idTurma }">
+								Entrar	
 							</a>
+							</div>
+							
 						</div>
 					</div>
 				</c:forEach>
@@ -93,6 +94,7 @@
 								${ turma.nomeTurma }
 								<div class="dropdown float-right">
 									<div class="nav-item dropdown">
+									
 										<a class="nav-link dropdown-toggle text-roxo" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"></a>
 										<div class="dropdown-menu dropdown-menu-right">
 											<a class="dropdown-item font-1" href="#">Editar</a>
@@ -105,13 +107,14 @@
 							<div class="card-body text-success">
 								<div class="text-center"></div>
 							</div>
-							<a class="" href="/educa-mais/aluno?id=${turma.idTurma }">
-							<div class="card-footer">
-								<div class="text-center d-flex justify-content-around">
-									Entrar
-								</div>
+							
+							<div class="text-center d-flex justify-content-around card-footer">
+								<a class="btn btn-azul"href="/educa-mais/aluno?id=${turma.idTurma }">
+										Entrar
+									
+								</a>	
 							</div>
-							</a>
+							
 						</div>
 					</div>
 				</c:forEach>

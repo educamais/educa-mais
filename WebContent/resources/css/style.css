@@ -137,30 +137,30 @@ a.text-roxo:focus,a.text-roxo:hover{
 }
 
 /* Background color */
-.bg-roxo{
+.bg-verde{
     background-color:#243F11!important
 }
 a.bg-roxo:focus,a.bg-roxo:hover,button.bg-roxo:focus,button.bg-roxo:hover{
-    background-color:#243f11!important
+    background-color:#6f42c1!important
 }
 /* Botão */
-.btn-verde{
+.btn-azul{
     color:#fff;
-    background-color:#243F11;
-    border-color:#243F11
+    background-color:#204a87;
+    border-color:#204a87
 }
-.btn-verde:hover{
-    color:#243F11;
+.btn-azul:hover{
+    color:#204a87;
     background-color:#fff;
-    border-color:#243F11
+    border-color:#204a87
 }
 .btn-roxo.focus,.btn-roxo:focus{
     box-shadow:0 0 0 .2rem #6ff0000
 }
 .btn-roxo.disabled,.btn-roxo:disabled{
     color:#fff;
-    background-color:#6ff0000;
-    border-color:#243F11
+    background-color:#6ff0000 ;
+    border-color:#6f42c1
 }
 .btn-roxo:not(:disabled):not(.disabled).active,.btn-roxo:not(:disabled):not(.disabled):active,.show>.btn-roxo.dropdown-toggle{
     color:#fff;
@@ -168,7 +168,7 @@ a.bg-roxo:focus,a.bg-roxo:hover,button.bg-roxo:focus,button.bg-roxo:hover{
     border-color:#6f42c1
 }
 .btn-roxo:not(:disabled):not(.disabled).active:focus,.btn-roxo:not(:disabled):not(.disabled):active:focus,.show>.btn-roxo.dropdown-toggle:focus{
-    box-shadow:0 0 0 .2rem #243F11
+    box-shadow:0 0 0 .2rem #6f42c1
 }
 
 /********** FIM DAS ALTERAÇõES ***************/
@@ -202,17 +202,30 @@ a.bg-roxo:focus,a.bg-roxo:hover,button.bg-roxo:focus,button.bg-roxo:hover{
 }
 
 
-.btn-verdec{
+.btn-verde{
     color:#fff;
     background-color:#243F11;
     border-color:#243F11
 }
-.btn-verdec:hover{
+.btn-vinho{
+	 color:#fff;
+    background-color:#4f1e3a;
+    border-color:#4f1e3a
+}
+.btn-vinho:hover{
+    color:#4f1e3a;
+    background-color:#fff;
+    border-color:#4f1e3a
+}
+.btn-vinho.focus,.btn-azulc:focus{
+    box-shadow:0 0 0 .2rem #4f1e3a
+}
+.btn-verde:hover{
     color:#243F11;
     background-color:#fff;
     border-color:#243F11
 }
-.btn-verdec.focus,.btn-azulc:focus{
+.btn-verde.focus,.btn-azulc:focus{
     box-shadow:0 0 0 .2rem #243F11
 }
 .btn-azulc.disabled,.btn-azulc:disabled{
@@ -234,7 +247,7 @@ a.bg-roxo:focus,a.bg-roxo:hover,button.bg-roxo:focus,button.bg-roxo:hover{
     background-color:#3F4AD8;
     border-color:#3F4AD8
 }
-.btn-verdee:hover{
+.btn-verde:hover{
     color:#243F11;
     background-color:#fff;
     border-color:#243F11

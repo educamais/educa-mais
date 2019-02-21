@@ -3,15 +3,26 @@
 <!DOCTYPE html>
 <html>
 <style>
-n2{
+#n2{
 color:#54A4A6;
 
 }
 
-n{
+#n{
 color:#FF7058;
 
 }
+#mensagem{
+color:#666666;
+}
+#linha{
+      border-top: 3px dashed #666666;
+      color: #fff;
+      background-color: #fff;
+      height: 4px;
+      width: 30%;
+    
+    }
 </style>
 <head>
 	<meta charset="UTF-8">
@@ -28,9 +39,12 @@ color:#FF7058;
 	</div>
 	<div class="d-flex justify-content-center">
 	
-	<h1 class="display-4"id="n" >404 &nbsp;</h1> <h1 class="display-4" id="n2"> ERROR </h1>
+	<h1 class="display-4" id="n" >404 &nbsp;</h1> <h1 class="display-4" id="n2"> ERROR </h1>
 	
 	</div>
-	<hr>
+	<hr id="linha">
+	<div class="d-flex justify-content-center">
+	<h2 id="mensagem">Página Não Encontrada</h2>
+	</div>
 </body>
 </html>

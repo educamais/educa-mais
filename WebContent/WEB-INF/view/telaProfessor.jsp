@@ -90,7 +90,7 @@
                             <div class="col-sm-4">
                             
                             	<!-- Button trigger modal -->
-								<button type="button" class="btn btn-rosa btn-block" data-toggle="modal" data-target="#alunos">Lista de alunos</button>
+								<button type="button" class="btn btn-azul btn-block" data-toggle="modal" data-target="#alunos">Lista de alunos</button>
 									
 								<!-- Participantes Modal -->
 								<div class="modal fade" id="alunos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -133,7 +133,7 @@
 						</div>
 
 						<div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-rosa btn-block">Publicar</button>
+                            <button type="submit" class="btn btn-azul btn-block">Publicar</button>
                         </div>
                     </form>
                 </div>
@@ -207,7 +207,7 @@
 				<div class="capsula mb-5">
 
 					<div class="d-flex justify-content-end">
-						<button class="btn btn-rosa my-3 mb-5" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="cadAtividade">
+						<button class="btn btn-azul my-3 mb-5" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="cadAtividade">
 							Cadastrar Atividade
 						</button>
 					</div>
@@ -232,7 +232,7 @@
 								</div>
 								
 								<table class="table table-hover">
-									<thead class="thead-rosa">
+									<thead class="thead-azul">
 										<tr>
 											<th scope="col">Nome &nbsp; <i class="fas fa-sort"></i>
 											</th>
@@ -267,7 +267,7 @@
 						<div class="card card-body ">
 
 							<table class="table table-striped">
-								<thead class="thead-rosa">
+								<thead class="thead-azul">
 									<tr>
 										<th scope="col">Nome &nbsp;<i class="fas fa-sort"></i></th>
 										<th scope="col">Data &nbsp;<i class="fas fa-sort"></i></th>
@@ -319,7 +319,7 @@
                             <!-- TABELA PROFESSORES -->
                             <table class="table table-striped">
                                 
-                                <thead class="thead-rosa">
+                                <thead class="thead-azul">
                                     <tr>
                                         <th scope="col">
                                             PROFESSOR
@@ -338,7 +338,7 @@
                        	 	<!-- TABELA ALUNOS -->
 							<table class="table table-striped">
                                 
-                                <thead class="thead-rosa">
+                                <thead class="thead-azul">
                                     <tr>
                                         <th scope="col">
                                             ALUNOS

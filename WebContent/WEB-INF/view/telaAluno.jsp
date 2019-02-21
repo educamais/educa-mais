@@ -109,27 +109,13 @@
 
 			<div class="tab-pane  container active border shadow p-4" id="mural">
 
-				<!-- MENU FILTRO -->
 
-				<div class="row">
-					<div class="col-xs-0 col-md-1"></div>
-					<div class="col-xs-12 col-md-10 d-flex justify-content-center">
-						<ol class="breadcrumb  mx-1 ">
-
-							<li class="active">Professor 1 |</li>
-							<li><a href="#Professor2"> Professor 2 | </a></li>
-							<li><a href="#Professor3"> Professor 3 </a></li>
-						</ol>
-					</div>
-					<div class="col-xs-0 col-md-3"></div>
-
-				</div>
 				<!-- FEED 1 -->
 				<div class="capsula mb-4">
 
 					<ul class="nav nav-tabs">
 						<li class="nav-item"><a
-							class="nav-link active border font-weight-bold bg-azulc text-white"
+							class="nav-link active border font-weight-bold bg-azul text-white"
 							style="font-family: Gravity;" data-toggle="tab"> Professor 1
 								- Titulo da publicação </a></li>
 					</ul>
@@ -148,7 +134,7 @@
 
 						<div class="row">
 							<div class="col d-flex justify-content-end">
-								<button class="btn btn-azulc">Ler mais-></button>
+								<button class="btn btn-azul">Ler mais-></button>
 							</div>
 						</div>
 
@@ -161,7 +147,7 @@
 
 					<ul class="nav nav-tabs">
 						<li class="nav-item"><a
-							class="nav-link active border font-weight-bold bg-azulc text-white"
+							class="nav-link active border font-weight-bold bg-azul text-white"
 							style="font-family: Gravity;" data-toggle="tab"> Professor 2
 								- Titulo da publicação </a></li>
 					</ul>
@@ -209,7 +195,7 @@
 
 						<div class="row">
 							<div class="col d-flex justify-content-end">
-								<button class="btn btn-azulc">Ler mais-></button>
+								<button class="btn btn-azul">Ler mais-></button>
 							</div>
 						</div>
 
@@ -222,7 +208,7 @@
 
 					<ul class="nav nav-tabs">
 						<li class="nav-item"><a
-							class="nav-link active border font-weight-bold bg-azulc text-white"
+							class="nav-link active border font-weight-bold bg-azul text-white"
 							style="font-family: Gravity;" data-toggle="tab"> Professor 2
 								- Titulo da publicação </a></li>
 					</ul>
@@ -270,7 +256,7 @@
 
 						<div class="row">
 							<div class="col d-flex justify-content-end">
-								<button class="btn btn-azulc">Ler mais-></button>
+								<button class="btn btn-azul">Ler mais-></button>
 							</div>
 						</div>
 
@@ -307,7 +293,7 @@
 
 
 					<table class="table table-striped">
-						<thead class="thead-rosa">
+						<thead class="thead-azul">
 							<tr>
 								<th scope="col">Nome &nbsp; <i class="fas fa-sort"></i>
 								</th>
@@ -396,7 +382,7 @@
 
 							<table class="table table-striped">
 
-								<thead class="thead-rosa">
+								<thead class="thead-azul">
 									<tr>
 										<th scope="col">Nome &nbsp; <i class="fas fa-sort"></i>
 										</th>
@@ -436,7 +422,7 @@
 
 							<table class="table table-striped">
 
-								<thead class="thead-rosa">
+								<thead class="thead-azul">
 									<tr>
 										<th scope="col">Nome &nbsp; <i class="fas fa-sort"></i>
 										</th>
