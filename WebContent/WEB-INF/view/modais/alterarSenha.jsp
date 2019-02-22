@@ -13,15 +13,15 @@
 				<form action="alterarsenha" id="alterarSenhaForm">
 					<input type="hidden" name="idUsuario" value="${usuario.idUsuario}">
 					<input type="hidden" name="idTurma" value="${turma.idTurma}">
-					<input type="password" class="form-control" name="senhaAtual" placeholder="Digite o novo nome..." id="nome" required>
-					<input type="password" class="form-control" name="senhaNova" placeholder="Digite o novo nome..." id="nome" required>
-					<input type="password" class="form-control" name="redigiteSenha" placeholder="Digite o novo nome..." id="nome" required>
+					<input type="password" class="form-control" name="senhaAtual" placeholder="Digite o novo nome..." id="senhaAtual" required>
+					<input type="password" class="form-control" name="senhaNova" placeholder="Digite o novo nome..." id="senhaNova" required>
+					<input type="password" class="form-control" name="redigiteSenha" placeholder="Digite o novo nome..." id="redigiteSenha" required>
 				</form>
 			</div>
 
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-				<button type="button" class="btn btn-primary" id="btn_alterarNome">Alterar Senha</button>
+				<button type="button" class="btn btn-primary" id="btn_alterarSenha">Alterar Senha</button>
 			</div>
 		</div>
 	</div>

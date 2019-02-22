@@ -116,16 +116,19 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping("alterarsenha")
-	public String alterarSenha(@RequestParam int idUsuario, @RequestParam int idTurma, @RequestParam String novaSenha, HttpSession session) {
+	public String alterarSenha(@RequestParam int idUsuario, @RequestParam int idTurma,@RequestParam String senhaAtual, @RequestParam String senhaNova, HttpSession session) {
 		
 		UsuarioDao usuarioDao = new UsuarioDao();
 		Usuario usuario = usuarioDao.buscarPorId(idUsuario);
 		
-		usuario.setSenha(novaSenha);
+		if(senhaAtual.equals(usuario.getSenha())) {
+			usuario.setSenha(senhaNova);
+			usuarioDao.atualizar(usuario);
+			
+			session.setAttribute("usuario", usuario);		
+			return "redirect:professor?id="+idTurma;
+		}
 		
-		usuarioDao.atualizar(usuario);
-		
-		session.setAttribute("usuario", usuario);		
 		return "redirect:professor?id="+idTurma;
 	}
 	

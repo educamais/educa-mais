@@ -371,33 +371,47 @@
 	
 	<script src="<%=request.getContextPath()%>/resources/jquery.js"></script>
     <script src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/Validation/jquery.validate.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/Validation/localization/messages_pt_BR.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/tabPane.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/dataConverter.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/carregarTabelaJSon.js"></script>
     
     <script>
-	    var idTurma = ${turma.idTurma};
-		var atual = 0;
-		var limite = 5;
 	
 		$(document).ready(function(){
 			
-			$.get("postagem",{
-				
-				"idTurma" : idTurma,
-				"atual" : atual,
-				"limite" : limite
-				
-			},function(postagens) {
-				console.log("0");
-				console.log(postagens);
-			});
+			$("#alterarSenhaForm").validate({
+		        rules : {
+		        	senhaAtual : {
+		        		required: true,
+		                minlength: 8,
+		                maxlength: 16
+		            },
+		            senhaNova : {
+		                required: true,
+		                minlength: 8,
+		                maxlength: 16
+		            },
+		            redigiteSenha : {
+		            	required: true,
+		                minlength: 8,
+		                maxlength: 16,
+		            	equalTo: "#senhaNova"
+		            }
+		        }
+		    });
 			
     		$("#pesquisarAtividade").keyup(function() {
     			carregaTabelaJSon();
     		});
+    		
     		$("#btn_alterarNome").click(function() {
     			$("#alterarNomeForm").submit();
+    		});
+    		
+    		$("#btn_alterarSenha").click(function() {
+    			$("#alterarSenhaForm").submit();
     		});
     	});
     </script>
