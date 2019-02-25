@@ -15,6 +15,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
+<script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormAlterarUsuario.js"></script>
+
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 <script src="<%=request.getContextPath()%>/resources/js/tabPane.js"></script>
@@ -23,7 +25,10 @@
 
 </head>
 <body>
-
+	
+	<c:import url="/WEB-INF/view/modais/alterarNome.jsp"/>
+	<c:import url="/WEB-INF/view/modais/alterarSenha.jsp"/>
+	
 	<!-- MENU PRINCIPAL -->
 	<nav class="navbar bg-white border">
 		<div class="container">
@@ -72,8 +77,8 @@
 							href="/educa-mais/turma/minhasturmas">Minhas Turmas</a> <a
 							class="dropdown-item d-sm-none font-1" href="#">Ranking</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item font-1" href="#">Alterar Nome</a> <a
-							class="dropdown-item font-1" href="#">Alterar Senha</a>
+						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
+						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
 					</div>

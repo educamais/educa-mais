@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS educa_mais;
+
 CREATE DATABASE educa_mais;
 USE educa_mais;
 ALTER DATABASE educa_mais CHARSET = UTF8 COLLATE = utf8_general_ci;
@@ -6,16 +8,16 @@ CREATE TABLE usuario(
 	id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(45) NOT NULL,
 	email VARCHAR(45) NOT NULL,
-	senha VARCHAR(16) NOT NULL
+	senha VARCHAR(45) NOT NULL
 )CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 INSERT INTO usuario VALUES
-(1, 'Gabriel Neves', 'Gabriel@gmail.com', '123456789'),
-(2, 'Adriana Neves', 'Adriana@gmail.com', '123456789'),
-(3, 'Alana Neves', 'Alana@gmail.com', '123456789'),
-(4, 'Matheus Pedro', 'Matheus@gmail.com', '123456789'),
-(5, 'Renata Cristiane', 'Renata@gmail.com', '123456789'),
-(6, 'Natália Raquel', 'Natalia@gmail.com', '123456789');
+(1, 'Gabriel Neves', 'Gabriel@gmail.com', '25F9E794323B453885F5181F1B624D0B'),
+(2, 'Adriana Neves', 'Adriana@gmail.com', '25F9E794323B453885F5181F1B624D0B'),
+(3, 'Alana Neves', 'Alana@gmail.com', '25F9E794323B453885F5181F1B624D0B'),
+(4, 'Matheus Pedro', 'Matheus@gmail.com', '25F9E794323B453885F5181F1B624D0B'),
+(5, 'Renata Cristiane', 'Renata@gmail.com', '25F9E794323B453885F5181F1B624D0B'),
+(6, 'Natália Raquel', 'Natalia@gmail.com', '25F9E794323B453885F5181F1B624D0B');
 
 CREATE TABLE turma(
 	id_turma INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -135,6 +137,44 @@ CREATE TABLE aluno_nota(
 	CONSTRAINT fk_aluno_aluno_nota FOREIGN KEY (aluno) REFERENCES usuario(id_usuario),
 	CONSTRAINT fk_atividade_aluno_nota FOREIGN KEY (atividade) REFERENCES atividade(id_atividade)
 );
+
+INSERT INTO aluno_nota VALUES
+
+(1,2,5,5),
+(2,3,5,8),
+(3,4,5,5),
+(4,5,5,9),
+(5,6,5,3),
+
+(6,2,6,6),
+(7,3,6,3),
+(8,4,6,1),
+(9,5,6,7),
+(10,6,6,8),
+
+(11,2,7,5),
+(12,3,7,10),
+(13,4,7,5),
+(14,5,7,7),
+(15,6,7,8),
+
+(16,2,8,6),
+(17,3,8,3),
+(18,4,8,1),
+(19,5,8,7),
+(20,6,8,8),
+
+(21,2,9,5),
+(22,3,9,0),
+(23,4,9,5),
+(24,5,9,0),
+(25,6,9,0),
+
+(26,2,10,6),
+(27,3,10,3),
+(28,4,10,1),
+(29,5,10,7),
+(30,6,10,8);
 
 CREATE TABLE arquivo_postagem(
 	id_arquivo_postagem INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

@@ -19,6 +19,7 @@ import br.com.educamais.model.Turma;
 import br.com.educamais.model.TurmaDao;
 import br.com.educamais.model.Usuario;
 import br.com.educamais.model.UsuarioDao;
+import br.com.educamais.util.Criptografia;
 
 @Controller
 public class UsuarioController {
@@ -66,8 +67,8 @@ public class UsuarioController {
 		
 	}
 	
-	@RequestMapping("professor")
-	public String professor(@RequestParam("id") int id, HttpSession session, Model model) {
+	@RequestMapping("professor/mural")
+	public String mural(@RequestParam("id") int id, HttpSession session, Model model) {
 		
 		Usuario usuario = (Usuario)session.getAttribute("usuario");
 		
@@ -82,6 +83,34 @@ public class UsuarioController {
 				PostagemDao postagemDao = new PostagemDao();
 				List<Postagem> listaPostagem = postagemDao.getListaPostagem(turma);
 				
+				AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
+				List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
+				
+				model.addAttribute("usuario", usuario);
+				model.addAttribute("turma", turma);
+				model.addAttribute("listaPostagem", listaPostagem);
+				model.addAttribute("listaAluno", listaAluno);
+				return "professor/telaProfessorMural";
+			}
+		}
+		model.addAttribute("link", "usuario");
+		model.addAttribute("mensagem", "Esta turma não existe!");
+		return "mensagem";
+	}
+	
+	@RequestMapping("professor/atividade")
+	public String atividade(@RequestParam("id") int id, HttpSession session, Model model) {
+		
+		Usuario usuario = (Usuario)session.getAttribute("usuario");
+		
+		TurmaDao turmaDao = new TurmaDao();
+		Turma turma = turmaDao.buscarPorId(id);
+		
+		
+		
+		if(turma != null) {
+			if(usuario.getIdUsuario() == turma.getProfessor().getIdUsuario()) {
+				
 				AtividadeDao atividadeDao = new AtividadeDao();
 				List<Atividade> listaAtividade = atividadeDao.getlistAtividade(turma);
 				
@@ -90,10 +119,36 @@ public class UsuarioController {
 				
 				model.addAttribute("usuario", usuario);
 				model.addAttribute("turma", turma);
-				model.addAttribute("listaPostagem", listaPostagem);
 				model.addAttribute("listaAtividade", listaAtividade);
 				model.addAttribute("listaAluno", listaAluno);
-				return "telaProfessor";
+				return "professor/telaProfessorAtividade";
+			}
+		}
+		model.addAttribute("link", "usuario");
+		model.addAttribute("mensagem", "Esta turma não existe!");
+		return "mensagem";
+	}
+	
+	@RequestMapping("professor/participantes")
+	public String participantes(@RequestParam("id") int id, HttpSession session, Model model) {
+		
+		Usuario usuario = (Usuario)session.getAttribute("usuario");
+		
+		TurmaDao turmaDao = new TurmaDao();
+		Turma turma = turmaDao.buscarPorId(id);
+		
+		
+		
+		if(turma != null) {
+			if(usuario.getIdUsuario() == turma.getProfessor().getIdUsuario()) {
+								
+				AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
+				List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
+				
+				model.addAttribute("usuario", usuario);
+				model.addAttribute("turma", turma);
+				model.addAttribute("listaAluno", listaAluno);
+				return "professor/telaProfessorParticipantes";
 			}
 		}
 		model.addAttribute("link", "usuario");
@@ -102,34 +157,42 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping("alterarnome")
-	public String alterarNome(@RequestParam int idUsuario, @RequestParam int idTurma, @RequestParam String nome, HttpSession session) {
+	public String alterarNome(@RequestParam Integer idUsuario, @RequestParam Integer idTurma, @RequestParam String nome, HttpSession session) {
 		
 		UsuarioDao usuarioDao = new UsuarioDao();
 		Usuario usuario = usuarioDao.buscarPorId(idUsuario);
-		
 		usuario.setNome(nome);
-		
 		usuarioDao.atualizar(usuario);
+		session.setAttribute("usuario", usuario);
 		
-		session.setAttribute("usuario", usuario);		
-		return "redirect:professor?id="+idTurma;
+		if(idTurma != null) {
+			return "redirect:professor/mural?id="+idTurma;
+		}
+		
+		return "redirect:usuario";
 	}
 	
 	@RequestMapping("alterarsenha")
-	public String alterarSenha(@RequestParam int idUsuario, @RequestParam int idTurma,@RequestParam String senhaAtual, @RequestParam String senhaNova, HttpSession session) {
+	public String alterarSenha(@RequestParam Integer idUsuario, @RequestParam Integer idTurma, @RequestParam String senhaAtual, @RequestParam String senhaNova, HttpSession session) {
 		
 		UsuarioDao usuarioDao = new UsuarioDao();
 		Usuario usuario = usuarioDao.buscarPorId(idUsuario);
+		
+		senhaAtual = Criptografia.criptografar(senhaAtual);
+		senhaNova = Criptografia.criptografar(senhaNova);
 		
 		if(senhaAtual.equals(usuario.getSenha())) {
 			usuario.setSenha(senhaNova);
 			usuarioDao.atualizar(usuario);
 			
-			session.setAttribute("usuario", usuario);		
+			session.setAttribute("usuario", usuario);
+		}
+		
+		if(idTurma != null) {
 			return "redirect:professor?id="+idTurma;
 		}
 		
-		return "redirect:professor?id="+idTurma;
+		return "redirect:usuario";
 	}
 	
 	@RequestMapping("logout")

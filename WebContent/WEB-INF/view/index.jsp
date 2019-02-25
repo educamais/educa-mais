@@ -123,6 +123,11 @@
                             <div class="tab-pane container active border shadow p-4" id="login">
                                 
                                 <form id="formLogin" method="post" action="autenticar">
+                                	<c:if test="${not empty mensagem}">
+                                		<div class="alert alert-danger">
+                                			${mensagem}
+                                		</div>
+                                	</c:if>
 									
 									<!-- E-mail -->                                
                                     <div class="input-group mb-3">

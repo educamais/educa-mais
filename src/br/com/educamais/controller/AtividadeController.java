@@ -37,14 +37,12 @@ public class AtividadeController {
 		
 		if(turma != null) {
 			if(usuario.getIdUsuario() == turma.getProfessor().getIdUsuario()) {
-
-				atividade.setTurma(turma);
 				
 				Date date = new Date();
 				atividade.setDataAtividade(date);
+				atividade.setTurma(turma);
 				
 				AtividadeDao atividadeDao = new AtividadeDao();
-				
 				Atividade UltimaAtividade = atividadeDao.salvar(atividade);
 				
 				UsuarioDao usuarioDao = new UsuarioDao();
@@ -52,11 +50,15 @@ public class AtividadeController {
 				
 				for(int i = 0; i < idAluno.length; i++) {
 					
-					if(!idAluno[i].equals("") && !notaAluno[i].equals("")) {
+					if(!idAluno[i].equals("")) {
 						
-						double nota = Double.parseDouble(notaAluno[i]);
+						double nota = 0;
+						
+						if(!notaAluno[i].equals("")) {
+							nota = Double.parseDouble(notaAluno[i]);
+						}
+						
 						Usuario aluno = usuarioDao.buscarPorId(Integer.parseInt(idAluno[i]));
-						
 						AlunoNota alunoNota = new AlunoNota();
 						
 						alunoNota.setAluno(aluno);
@@ -67,7 +69,7 @@ public class AtividadeController {
 					}
 				}
 				
-				return "redirect:/professor?id=" + idTurma;
+				return "redirect:/professor/atividade?id=" + idTurma;
 			}
 			
 			model.addAttribute("link", "usuario");
@@ -106,7 +108,55 @@ public class AtividadeController {
 		
 		atividadeDao.remover(idAtividade);
 		
-		return "redirect:/professor?id="+idTurma;
+		return "redirect:/professor/atividade?id="+idTurma;
 	}
 	
+	@RequestMapping(value="atividade/listagem", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String listagem(@RequestParam int idAtividade) {
+		
+		AtividadeDao atividadeDao = new AtividadeDao();
+		Atividade atividade = atividadeDao.buscarPorId(idAtividade);
+		
+		AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+		List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(atividade);
+		
+		return new Gson().toJson(listaAlunoNota);
+	}
+
+	@RequestMapping("atividade/alterar")
+	public String update(@RequestParam int[] idAlunoNota, @RequestParam int idTurma, @RequestParam Integer[] nota, HttpSession session, Model model) {
+		
+		Usuario usuario = (Usuario)session.getAttribute("usuario");
+		
+		TurmaDao turmaDao = new TurmaDao();
+		Turma turma = turmaDao.buscarPorId(idTurma);
+		
+		if(turma != null) {
+			if(usuario.getIdUsuario() == turma.getProfessor().getIdUsuario()) {
+				
+				AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+				
+				for(int i = 0; i < idAlunoNota.length; i++) {
+					
+					AlunoNota alunoNota = alunoNotaDao.buscarPorId(idAlunoNota[i]);
+					if(nota[i] != null) {
+						alunoNota.setNota(nota[i]);
+					}else {
+						alunoNota.setNota(0);
+					}
+					
+					alunoNotaDao.alterar(alunoNota);
+				}
+				model.addAttribute("atividade", "1");
+				return "redirect:/professor/atividade?id=" + idTurma;
+			}
+			
+			model.addAttribute("link", "usuario");
+			model.addAttribute("mensagem", "Você não é professor da sala!");
+			return "mensagem";
+		}
+		model.addAttribute("link", "usuario");
+		model.addAttribute("mensagem", "Esta turma não existe!");
+		return "mensagem";
+	}
 }

@@ -39,8 +39,8 @@
                         <a class="dropdown-item d-sm-none" href="#criarTurma">Criar Turma</a>
                         <a class="dropdown-item d-sm-none" href="#participar">Participar</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Alterar Nome</a>
-                        <a class="dropdown-item" href="#">Alterar Senha</a>
+                        <a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
+                        <a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/educa-mais/logout">Sair</a>
 
@@ -66,7 +66,7 @@
 										<a class="nav-link dropdown-toggle text-roxo" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"></a>
 										<div class="dropdown-menu dropdown-menu-right">
 											<a class="dropdown-item font-1" href="#">Editar</a>
-											<a class="dropdown-item font-1" href="#">Excluir</a>
+											<a class="dropdown-item font-1" href="/educa-mais/turma/remover?id=${turma.idTurma}">Excluir</a>
 										</div>
 									</div>
 								</div>
@@ -75,7 +75,7 @@
 							<div class="card-body text-success">
 								<div class="text-center"></div>
 							</div>
-							<a class="" href="/educa-mais/professor?id=${turma.idTurma }">
+							<a class="" href="/educa-mais/professor/mural?id=${turma.idTurma }">
 								<div class="card-footer">
 									<div class="text-center d-flex justify-content-around">
 										Entrar
@@ -120,43 +120,21 @@
 		</div>
 	</div>
 
-
-	<!-- Modal Participar Turma -->
 	<c:import url="/WEB-INF/view/modais/participarTurma.jsp"/>
-
-	<!-- Modal Criar Turma -->
 	<c:import url="/WEB-INF/view/modais/criarTurma.jsp"/>
+	<c:import url="/WEB-INF/view/modais/alterarNome.jsp"/>
+	<c:import url="/WEB-INF/view/modais/alterarSenha.jsp"/>
 
 	<script src="<%=request.getContextPath()%>/resources/jquery.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/infiniteScroll.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
 	
 	<script src="<%=request.getContextPath()%>/resources/Validation/jquery.validate.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/localization/messages_pt_BR.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormTelaUsuario.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormAlterarUsuario.js"></script>
 	
 	<script>
-		
-		var idTurma = ${turma.idTurma};
-		var atual = 0;
-		var limite = 5;
-	
-		console.log('000');
-		
 		$(document).ready(function(){
-			
-			console.log('0');
-			
-			$.get("postagem",{
-				
-				"idTurma" : idTurma,
-				"atual" : atual,
-				"limite" : limite
-				
-			},function(postagens) {
-				
-				console.log(postagens);
-			});
 			
 			$("#btn_criarTurma").click(function(){
 				$("#formCriarSala").submit();
@@ -165,6 +143,13 @@
 			$("#btn_participar").click(function(){
 				$("#formParticipar").submit();
 			});
+			$("#btn_alterarNome").click(function() {
+    			$("#alterarNomeForm").submit();
+    		});
+    		
+    		$("#btn_alterarSenha").click(function() {
+    			$("#alterarSenhaForm").submit();
+    		});
 		});
 	</script>
 

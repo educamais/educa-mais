@@ -67,6 +67,9 @@ public class AtividadeDao {
 			manager.getTransaction().begin();
 			query = manager.createQuery("FROM Atividade a WHERE nomeAtividade LIKE :nomeAtividade ORDER BY a.idAtividade DESC");
 			query.setParameter("nomeAtividade", "%"+pesquisarAtividade+"%");
+		}else {
+			manager.getTransaction().begin();
+			query = manager.createQuery("FROM Atividade a ORDER BY a.idAtividade DESC");
 		}
 
 		List<Atividade> listaAtividade = query.getResultList();

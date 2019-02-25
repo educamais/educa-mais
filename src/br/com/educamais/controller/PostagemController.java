@@ -71,31 +71,34 @@ public class PostagemController {
 			}
 		}
 		
-		return "redirect:/professor?id="+idTurma;
+		return "redirect:/professor/mural?id="+idTurma;
 	}
 	
 	@RequestMapping("postagem/alterar")
-	public String atualizar(@RequestParam("id") int idPostagem, Model model) {
+	public String atualizar(@RequestParam int idPostagem, @RequestParam String tituloPostagem, @RequestParam String descricaoPostagem, @RequestParam int idTurma, @RequestParam int professor, @RequestParam Integer[] alunos,Model model) {
 				
 		PostagemDao postagemDao = new PostagemDao();
-		Postagem postagem = postagemDao.buscarPorId(idPostagem); 
+		
+		Postagem postagem = postagemDao.buscarPorId(idPostagem);
+		postagem.setTituloPostagem(tituloPostagem);
+		postagem.setDescricaoPostagem(descricaoPostagem);
+		
 		
 		if(postagem != null) {
-			
-			AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
-			List<Usuario> listaAlunosTurma = alunoTurmaDao.getListaAluno(postagem.getTurma());
-			
 			AlunoPostagemDao alunoPostagemDao = new AlunoPostagemDao();
-			List<Usuario> listaAlunoPostagem = alunoPostagemDao.getListaAluno(postagem);
+				
+			alunoPostagemDao.remover(postagem);
 			
-			ArquivoPostagemDao arquivoPostagemDao = new ArquivoPostagemDao();
-			List<String> listaArquivo = arquivoPostagemDao.getListaArquivo(postagem);
-
-			model.addAttribute("postagem", postagem);
-			model.addAttribute("listaArquivo", listaArquivo);
-			model.addAttribute("listaAlunoPostagem", listaAlunoPostagem);
-			model.addAttribute("listaAlunosTurma", listaAlunosTurma);
-			return "alterarPostagem";
+			UsuarioDao usuarioDao = new UsuarioDao();
+			for(Integer id : alunos) {
+				if(id != null) {
+					Usuario aluno = usuarioDao.buscarPorId(id);
+					alunoPostagemDao.salvar(aluno, postagem);
+				}
+			}
+			
+			postagemDao.atualizar(postagem);
+			return "redirect:/professor/mural?id="+idTurma;
 		}
 		model.addAttribute("link", "professor"+postagem.getTurma().getIdTurma());
 		model.addAttribute("mensagem", "Esta Postagem não existe!");
@@ -117,7 +120,7 @@ public class PostagemController {
 		
 		daoPostagem.remover(idPostagem);
 		
-		return "redirect:/professor?id="+idTurma;
+		return "redirect:/professor/mural?id="+idTurma;
 	}
 	
 	@RequestMapping(value = "/postagem", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

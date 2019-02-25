@@ -10,18 +10,27 @@
 			</div>
 
 			<div class="modal-body">
-				<form action="alterarsenha" id="alterarSenhaForm">
+				<form action="/educa-mais/alterarsenha" id="alterarSenhaForm">
 					<input type="hidden" name="idUsuario" value="${usuario.idUsuario}">
 					<input type="hidden" name="idTurma" value="${turma.idTurma}">
-					<input type="password" class="form-control" name="senhaAtual" placeholder="Digite o novo nome..." id="senhaAtual" required>
-					<input type="password" class="form-control" name="senhaNova" placeholder="Digite o novo nome..." id="senhaNova" required>
-					<input type="password" class="form-control" name="redigiteSenha" placeholder="Digite o novo nome..." id="redigiteSenha" required>
+					
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" name="senhaAtual" placeholder="Digite sua senha atual..." id="senhaAtual" required>
+					</div>
+					
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" name="senhaNova" placeholder="Digite sua nova senha..." id="senhaNova" required>
+					</div>
+					
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" name="redigiteSenha" placeholder="Redigite sua nova senha..." id="redigiteSenha" required>
+					</div>
 				</form>
 			</div>
 
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-				<button type="button" class="btn btn-primary" id="btn_alterarSenha">Alterar Senha</button>
+				<button type="submit" class="btn btn-primary" id="btn_alterarSenha">Alterar Senha</button>
 			</div>
 		</div>
 	</div>

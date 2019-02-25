@@ -10,16 +10,18 @@
 			</div>
 
 			<div class="modal-body">
-				<form action="alterarnome" id="alterarNomeForm">
+				<form action="/educa-mais/alterarnome" id="alterarNomeForm">
 					<input type="hidden" name="idUsuario" value="${usuario.idUsuario}">
 					<input type="hidden" name="idTurma" value="${turma.idTurma}">
-					<input type="text" class="form-control" name="nome" placeholder="Digite o novo nome..." id="nome" required>
+					<div class="input-group mb-3">
+						<input id="nome" type="text" class="form-control" name="nome" placeholder="Digite seu nome..." id="nome" required>
+					</div>
 				</form>
 			</div>
 
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-				<button type="button" class="btn btn-primary" id="btn_alterarNome">Alterar Nome</button>
+				<button type="submit" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+				<button type="submit" class="btn btn-primary" id="btn_alterarNome">Alterar Nome</button>
 			</div>
 		</div>
 	</div>

@@ -1,8 +1,8 @@
-function carregaTabelaJSon() {
+function filtrarTabelaNota() {
 
 	var nomeAtividade = $('#pesquisarAtividade').val();
     			
-	$.post('atividade/filter', {
+	$.post('/educa-mais/atividade/filter', {
 					
 		'pesquisarAtividade' : nomeAtividade
 					
@@ -25,6 +25,6 @@ function carregaTabelaJSon() {
 	    	linhas += "</tr>";
 		});
 					
-		$('#tabelaAtividade').html(linhas);
+		$('#tabelaAtividadeBody').html(linhas);
 	});
 }
