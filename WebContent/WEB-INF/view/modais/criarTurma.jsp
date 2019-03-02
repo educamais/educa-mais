@@ -10,8 +10,8 @@
 			</div>
 
 			<div class="modal-body">
-				<form id="formCriarSala" method="post" action="turma/save">
-					<input type="text" class="form-control" name="nomeTurma" placeholder="Digite o nome da turma..." required>
+				<form id="formCriarSala" method="post" action="/educa-mais/turma/save">
+					<input type="text" class="form-control w-100" name="nomeTurma" placeholder="Digite o nome da turma..." required>
 				</form>
 			</div>
 

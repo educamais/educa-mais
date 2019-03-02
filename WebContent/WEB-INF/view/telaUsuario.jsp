@@ -86,6 +86,8 @@
 					</div>
 				</c:forEach>
 				
+				<!-- ALUNOS -->
+				
 				<c:forEach var="turma" items="${turmasAluno}">
 					<div class="col-md-4">
 						<div class="card border-secondary mb-3">
@@ -105,12 +107,12 @@
 							<div class="card-body text-success">
 								<div class="text-center"></div>
 							</div>
-							<a class="" href="/educa-mais/aluno?id=${turma.idTurma }">
-							<div class="card-footer">
-								<div class="text-center d-flex justify-content-around">
-									Entrar
+							<a href="/educa-mais/aluno/mural?id=${turma.idTurma }">
+								<div class="card-footer">
+									<div class="text-center d-flex justify-content-around">
+										Entrar
+									</div>
 								</div>
-							</div>
 							</a>
 						</div>
 					</div>
@@ -130,6 +132,7 @@
 	
 	<script src="<%=request.getContextPath()%>/resources/Validation/jquery.validate.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/localization/messages_pt_BR.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/Validation/additional-methods.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormTelaUsuario.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormAlterarUsuario.js"></script>
 	

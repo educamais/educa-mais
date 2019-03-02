@@ -75,14 +75,10 @@ public class PostagemController {
 	}
 	
 	@RequestMapping("postagem/alterar")
-	public String atualizar(@RequestParam int idPostagem, @RequestParam String tituloPostagem, @RequestParam String descricaoPostagem, @RequestParam int idTurma, @RequestParam int professor, @RequestParam Integer[] alunos,Model model) {
+	public String atualizar(Postagem postagem, @RequestParam int idTurma, @RequestParam Integer[] alunos,Model model) {
 				
 		PostagemDao postagemDao = new PostagemDao();
-		
-		Postagem postagem = postagemDao.buscarPorId(idPostagem);
-		postagem.setTituloPostagem(tituloPostagem);
-		postagem.setDescricaoPostagem(descricaoPostagem);
-		
+		postagem.setDataPostagem(postagemDao.buscarPorId(postagem.getIdPostagem()).getDataPostagem());
 		
 		if(postagem != null) {
 			AlunoPostagemDao alunoPostagemDao = new AlunoPostagemDao();

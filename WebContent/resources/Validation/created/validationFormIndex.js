@@ -1,4 +1,12 @@
-$(document).ready(function(){
+$(document).ready(function() {
+	
+	$.validator.addMethod("regx", function(value, element, regexpr) {          
+	    return regexpr.test(value);
+	}, "Remova os caracteres especiais");
+	
+	$.validator.addMethod("regxNome", function(value, element, regexpr) {          
+	    return regexpr.test(value);
+	}, "O nome só deve conter letras e espaços");
 	
 	$("#formLogin").validate({
         rules : {
@@ -8,8 +16,8 @@ $(document).ready(function(){
             },
             senha : {
                 required: true,
-                minlength: 8,
-                maxlength: 16
+                regx : /^(?=[a-zA-Z\d])\w{1,}$/,
+                rangelength : [8,16]
             }
         }
     });
@@ -18,7 +26,8 @@ $(document).ready(function(){
         rules : {
             nome : {
                 required: true,
-                minlength: 3
+                regxNome : /^([a-zA-ZzáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+\s)*[a-zA-ZzáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+$/,
+                maxlength : 45
             },
             email : {
                 required: true,
@@ -26,13 +35,13 @@ $(document).ready(function(){
             },
             senha : {
                 required : true,
-                minlength: 8,
-                maxlength: 16
+                regx : /^(?=[a-zA-Z\d])\w{1,}$/,
+                rangelength : [8,16]
             },
             confirmarSenha : {
                 required: true,
-                minlength: 8,
-                maxlength: 16,
+                regx : /^(?=[a-zA-Z\d])\w{1,}$/,
+                rangelength : [8,16],
                 equalTo: "#senhaCadastro"
             }
         }

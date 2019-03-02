@@ -26,7 +26,7 @@
 
 			<div class="row font-3">
 
-				<a class="nav-link d-none d-sm-block text-roxo" href="#">Código da Turma: ${turma.codigoTurma}</a>
+				<a class="nav-link d-none d-sm-block text-roxo" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
 				<!-- Dropdown-->
 				<div class="nav-item dropdown">
 
@@ -41,7 +41,7 @@
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item font-1" href="/logout">Sair</a>
+						<a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
 					</div>
 
 				</div>
@@ -72,7 +72,8 @@
         
         <!-- CORPO DO SITE -->
         <div class="tab-content bg-white">
-            
+        
+        	<div id="idAtividades">     
             
  			<!-- ************************** ATIVIDADES ************************ -->
 			<div class="tab-pane active container border shadow p-4" id="atividades">
@@ -125,6 +126,10 @@
 							<button id="btnCadastrar" class="btn btn-primary my-2" type="submit">
 								Cadastrar
 							</button>
+							
+							<button class="btn btn-secondary my-2" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multi-collapse">
+								Cancelar
+							</button>
 						</form>
 					</div>
 
@@ -164,7 +169,7 @@
 							</tbody>
 						</table>
 					</div>
-					
+					</div>
 				</div>
 			</div>
         </div>
@@ -186,6 +191,10 @@
 	    function carregarTabelaAlterarNota(idAtividade){
 	    	carregaTabelaAlterarNota(idAtividade);
 		}
+	    
+	    function carregaDiv() {
+	    	$("#idAtividades").load(" #idAtividades");
+	    }
 	    
 		$(document).ready(function(){
 			

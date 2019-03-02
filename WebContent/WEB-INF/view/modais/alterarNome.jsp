@@ -14,7 +14,7 @@
 					<input type="hidden" name="idUsuario" value="${usuario.idUsuario}">
 					<input type="hidden" name="idTurma" value="${turma.idTurma}">
 					<div class="input-group mb-3">
-						<input id="nome" type="text" class="form-control" name="nome" placeholder="Digite seu nome..." id="nome" required>
+						<input id="nome" type="text" class="form-control w-75" name="nome" placeholder="Digite seu nome..." id="nome" required>
 					</div>
 				</form>
 			</div>

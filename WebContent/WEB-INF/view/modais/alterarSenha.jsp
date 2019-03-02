@@ -15,15 +15,15 @@
 					<input type="hidden" name="idTurma" value="${turma.idTurma}">
 					
 					<div class="input-group mb-3">
-						<input type="password" class="form-control" name="senhaAtual" placeholder="Digite sua senha atual..." id="senhaAtual" required>
+						<input type="password" class="form-control w-75" name="senhaAtual" placeholder="Digite sua senha atual..." id="senhaAtual" required>
 					</div>
 					
 					<div class="input-group mb-3">
-						<input type="password" class="form-control" name="senhaNova" placeholder="Digite sua nova senha..." id="senhaNova" required>
+						<input type="password" class="form-control w-75" name="senhaNova" placeholder="Digite sua nova senha..." id="senhaNova" required>
 					</div>
 					
 					<div class="input-group mb-3">
-						<input type="password" class="form-control" name="redigiteSenha" placeholder="Redigite sua nova senha..." id="redigiteSenha" required>
+						<input type="password" class="form-control w-75" name="redigiteSenha" placeholder="Redigite sua nova senha..." id="redigiteSenha" required>
 					</div>
 				</form>
 			</div>

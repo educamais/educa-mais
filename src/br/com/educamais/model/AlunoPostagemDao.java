@@ -33,11 +33,11 @@ public class AlunoPostagemDao {
 		return listaAluno;
 	}
 	
-	public List<Postagem> getListaPostagem(Usuario aluno){
+	public List<Postagem> getListaPostagem(Usuario aluno, Turma turma){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		
-		Query query = manager.createQuery("FROM AlunoPostagem WHERE aluno = :paramAluno");
+		Query query = manager.createQuery("FROM AlunoPostagem WHERE aluno = :paramAluno ORDER BY postagem.dataPostagem DESC");
 		query.setParameter("paramAluno", aluno);
 		
 		List<AlunoPostagem> result = query.getResultList();
@@ -46,10 +46,17 @@ public class AlunoPostagemDao {
 		factory.close();
 		
 		List<Postagem> listaPostagem = new ArrayList<Postagem>();
+		
+		if(listaPostagem.isEmpty()) {
+			return null;
+		}
 			
 		for(AlunoPostagem alunoPostagem : result) {
-			Postagem postagem = alunoPostagem.getPostagem();
-			listaPostagem.add(postagem);
+			
+			if(alunoPostagem.getPostagem().getTurma().getIdTurma() == turma.getIdTurma()) {
+				Postagem postagem = alunoPostagem.getPostagem();
+				listaPostagem.add(postagem);
+			}
 		}
 		return listaPostagem;
 	}

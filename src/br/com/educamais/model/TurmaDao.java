@@ -95,6 +95,10 @@ public class TurmaDao {
 		manager.close();
 		factory.close();
 		
+		if(turma == null) {
+			return null;
+		}
+		
 		return  turma;
 	}
 	

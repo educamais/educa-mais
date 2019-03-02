@@ -11,7 +11,7 @@
 
 			<div class="modal-body">
 				<form id="formParticipar" method="post" action="/educa-mais/turma/participar">
-					<input type="text" class="form-control" name="codigo" placeholder="Digite o código da turma..." required>
+					<input type="text" class="form-control w-100" name="codigo" placeholder="Digite o código da turma..." required>
 				</form>
 			</div>
 

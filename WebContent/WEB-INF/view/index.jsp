@@ -230,6 +230,7 @@
     
     <script src="<%=request.getContextPath()%>/resources/Validation/jquery.validate.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/localization/messages_pt_BR.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/Validation/additional-methods.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormIndex.js"></script>
 </body>
 </html>

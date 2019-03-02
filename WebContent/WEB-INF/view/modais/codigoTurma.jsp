@@ -9,8 +9,8 @@
 				</button>
 			</div>
 
-			<div class="modal-body">
-				${turma.codigoTurma}
+			<div class="modal-body mx-auto">
+				<p class="h3">${turma.codigoTurma.toUpperCase()}</p>
 			</div>
 
 			<div class="modal-footer">

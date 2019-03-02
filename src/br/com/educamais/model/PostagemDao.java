@@ -38,7 +38,7 @@ public class PostagemDao {
 		if (turma != null && !tituloPostagem.equals("") && !descricaoPostagem.equals("")) {
 			
 			manager.getTransaction().begin();
-			query = manager.createQuery("FROM Postagem WHERE turma = :turma AND tituloPostagem = :tituloPostagem AND descricaoPostagem = :descricaoPostagem");
+			query = manager.createQuery("FROM Postagem WHERE turma = :turma AND tituloPostagem = :tituloPostagem AND descricaoPostagem = :descricaoPostagem").setMaxResults(5);
 			query.setParameter("turma", turma);
 			query.setParameter("tituloPostagem", tituloPostagem);
 			query.setParameter("descricaoPostagem", descricaoPostagem);
@@ -71,7 +71,7 @@ public class PostagemDao {
 		if (turma != null) {
 			
 			manager.getTransaction().begin();
-			query = manager.createQuery("FROM Postagem p WHERE turma = :turma ORDER BY p.idPostagem DESC");
+			query = manager.createQuery("FROM Postagem p WHERE turma = :turma ORDER BY p.postagem.dataPostagem DESC");
 			query.setParameter("turma", turma);
 		}
 

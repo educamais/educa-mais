@@ -25,7 +25,7 @@
 
 			<div class="row font-3">
 
-				<a class="nav-link d-none d-sm-block text-roxo" href="#">1926 pts</a>
+				<a class="nav-link d-none d-sm-block text-roxo" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
 
 				<!-- Dropdown-->
 				<div class="nav-item dropdown">
@@ -41,7 +41,7 @@
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item font-1" href="/logout">Sair</a>
+						<a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
 					</div>
 
 				</div>

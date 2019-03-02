@@ -82,10 +82,13 @@ public class AtividadeController {
 	}
 
 	@RequestMapping(value = "/atividade/filter", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String filter(@RequestParam("pesquisarAtividade") String pesquisarAtividade) {
+	public @ResponseBody String filter(@RequestParam String pesquisarAtividade, @RequestParam int idTurma) {
+		
+		TurmaDao turmaDao = new TurmaDao();
+		Turma turma = turmaDao.buscarPorId(idTurma);
 		
 		AtividadeDao atividadeDao = new AtividadeDao();
-		List<Atividade> listaAtividade = atividadeDao.getlistAtividade(pesquisarAtividade);
+		List<Atividade> listaAtividade = atividadeDao.getlistAtividade(turma, pesquisarAtividade);
 		
 		return new Gson().toJson(listaAtividade);
 	}

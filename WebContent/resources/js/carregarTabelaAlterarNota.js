@@ -21,14 +21,15 @@ function carregaTabelaAlterarNota(idAtividade) {
 			linhas += "<tr>";
 	    	linhas += "<td style='vertical-align: middle;'>"+alunosNota[i].aluno.nome+"</td>";
 	    	linhas += "<td>";
-	    	linhas += "<input type='hidden' name='idAlunoNota' value='"+alunosNota[i].idAlunoNota+"'>";
-	    	linhas += "<input type='text' name='nota' value='"+alunosNota[i].nota+"'>";
+	    	linhas += "<input class='form-input form-control' type='hidden' name='idAlunoNota' value='"+alunosNota[i].idAlunoNota+"'>";
+	    	linhas += "<input class='form-input form-control' type='text' name='nota' value='"+alunosNota[i].nota+"'>";
 	    	linhas += "</td>";
 	    	linhas += "</tr>";
 		});
 		linhas += "</tbody>";
 		linhas += "</table>";
-		linhas += "<button id='btnAlterar' class='btn btn-primary my-2' type='submit'>Alterar</button>";
+		linhas += "<button id='btnAlterar' class='btn btn-primary my-2 mr-1' type='submit'>Alterar</button>";
+		linhas += "<button id='btnVoltar' class='btn btn-secondary my-2' type='button' onclick='carregaDiv()'>Cancelar</button>";
 		linhas += "</form>"
 		$("#crudAtividade").html(linhas);
 	});
