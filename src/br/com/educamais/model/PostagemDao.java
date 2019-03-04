@@ -59,7 +59,7 @@ public class PostagemDao {
 		return postagem;
 	}
 	
-	public List<Postagem> getListaPostagem(Turma turma) {
+	public List<Postagem> getListaPostagem(Turma turma, int inicio) {
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
@@ -71,16 +71,17 @@ public class PostagemDao {
 		if (turma != null) {
 			
 			manager.getTransaction().begin();
-			query = manager.createQuery("FROM Postagem p WHERE turma = :turma ORDER BY p.postagem.dataPostagem DESC");
+			query = manager.createQuery("FROM Postagem WHERE turma = :turma ORDER BY dataPostagem DESC, idPostagem DESC");
 			query.setParameter("turma", turma);
 		}
-
+		query.setFirstResult(inicio);
+		query.setMaxResults(1);
 		List<Postagem> result = query.getResultList();
 		
 		manager.close();
 		factory.close();
 		
-		if (result.isEmpty()) {
+		if(result.isEmpty()) {
 			return null;
 		}
 		

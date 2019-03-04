@@ -14,8 +14,8 @@ function filtrarTabelaNota() {
 					
 		$(dados).each(function (i) {
 						
-			linhas += "<tr>";
-	    	linhas += "<td style='vertical-align: middle;'>" + dados[i].nomeAtividade + "</td>";
+			linhas += "<tr id='tr_"+dados[i].idAtividade+"'>";
+	    	linhas += "<td style='vertical-align: middle;'><button class='btn btn-link' onclick='veAtividade("+dados[i].idAtividade+")'>" + dados[i].nomeAtividade + "</button></td>";
 	    	linhas += "<td style='vertical-align: middle;'>";
 	    	linhas += converterData(dados[i].dataAtividade);
 	    	linhas += "</td>";

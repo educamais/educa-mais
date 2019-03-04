@@ -5,11 +5,18 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
+import br.com.educamais.model.AlunoNota;
+import br.com.educamais.model.AlunoNotaDao;
 import br.com.educamais.model.AlunoPostagemDao;
 import br.com.educamais.model.AlunoTurmaDao;
 import br.com.educamais.model.Atividade;
@@ -128,7 +135,7 @@ public class UsuarioController {
 			if(usuario.getIdUsuario() == turma.getProfessor().getIdUsuario()) {
 				
 				PostagemDao postagemDao = new PostagemDao();
-				List<Postagem> listaPostagem = postagemDao.getListaPostagem(turma);
+				List<Postagem> listaPostagem = postagemDao.getListaPostagem(turma, 0);
 				
 				AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
 				List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
@@ -201,6 +208,72 @@ public class UsuarioController {
 	}
 	
 	
+	@RequestMapping("aluno/ranking")
+	public String ranking(@RequestParam int idTurma, HttpSession session, Model model) {
+		
+		Usuario usuario = (Usuario)session.getAttribute("usuario");
+		
+		TurmaDao turmaDao = new TurmaDao();
+		Turma turma = turmaDao.buscarPorId(idTurma);
+		
+		if(turma != null) {
+			
+			AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+			List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(turma, null);
+			model.addAttribute("turma", turma);
+			model.addAttribute("listaAlunoNota", listaAlunoNota);
+			return "aluno/ranking";
+		}
+		model.addAttribute("link", "usuario");
+		model.addAttribute("mensagem", "Esta turma não existe!");
+		return "mensagem";
+	}
+	
+	
+	@RequestMapping("professor/desempenho")
+	public String desempenho(@RequestParam int idTurma, HttpSession session, Model model) {
+		
+		Usuario usuario = (Usuario)session.getAttribute("usuario");
+		
+		TurmaDao turmaDao = new TurmaDao();
+		Turma turma = turmaDao.buscarPorId(idTurma);
+		
+		if(turma != null) {
+			if(turma.getProfessor().getIdUsuario() == usuario.getIdUsuario()) {
+				AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+				List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(turma, null);
+				
+				AtividadeDao atividadeDao =  new AtividadeDao();
+				List<Atividade> listaAtividade = atividadeDao.getlistAtividade(turma, null);
+				
+				model.addAttribute("turma", turma);
+				model.addAttribute("listaAlunoNota", listaAlunoNota);
+				model.addAttribute("listaAtividade", listaAtividade);
+				
+				return "professor/desempenho";
+			}
+			model.addAttribute("link", "usuario");
+			model.addAttribute("mensagem", "Você não é professor dessa turma!");
+			return "mensagem";
+		}
+		model.addAttribute("link", "usuario");
+		model.addAttribute("mensagem", "Esta turma não existe!");
+		return "mensagem";
+	}
+	
+	@RequestMapping(value = "ranking/filter", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String rankingFilter(@RequestParam int idTurma, @RequestParam String pesquisarNome, HttpSession session, Model model) {
+		
+		TurmaDao turmaDao = new TurmaDao();
+		Turma turma = turmaDao.buscarPorId(idTurma);
+		
+		AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+		List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(turma, pesquisarNome);
+		
+		return new Gson().toJson(listaAlunoNota);
+	}
+	
+	
 	@RequestMapping("alterarnome")
 	public String alterarNome(@RequestParam Integer idUsuario, @RequestParam Integer idTurma, @RequestParam String nome, HttpSession session) {
 		
@@ -209,10 +282,6 @@ public class UsuarioController {
 		usuario.setNome(nome);
 		usuarioDao.atualizar(usuario);
 		session.setAttribute("usuario", usuario);
-		
-		if(idTurma != null) {
-			return "redirect:professor/mural?id="+idTurma;
-		}
 		
 		return "redirect:usuario";
 	}
@@ -233,10 +302,6 @@ public class UsuarioController {
 			usuarioDao.atualizar(usuario);
 			
 			session.setAttribute("usuario", usuario);
-		}
-		
-		if(idTurma != null) {
-			return "redirect:professor?id="+idTurma;
 		}
 	
 		return "redirect:usuario";

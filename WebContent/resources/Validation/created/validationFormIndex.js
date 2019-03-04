@@ -27,7 +27,7 @@ $(document).ready(function() {
             nome : {
                 required: true,
                 regxNome : /^([a-zA-ZzáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+\s)*[a-zA-ZzáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+$/,
-                maxlength : 45
+                rangelength : [3, 45]
             },
             email : {
                 required: true,

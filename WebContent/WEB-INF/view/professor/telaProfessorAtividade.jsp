@@ -13,6 +13,17 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fontawesome/css/all.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
+    
+    <style>
+    	input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+		}
+		input[type="number"] {
+		-moz-appearance: textfield;
+		}
+    </style>
+    
 </head>
 <body>
     
@@ -59,7 +70,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active font-weight-bold" id="participanteTab" style="font-family:Gravity;" href="atividade?id=${turma.idTurma}">
+                <a class="nav-link border text-roxo font-weight-bold" id="participanteTab" style="font-family:Gravity;" href="atividade?id=${turma.idTurma}">
                     Atividades
                 </a>
             </li>
@@ -88,7 +99,7 @@
 					<!--*************** COLLAPSE DO CADASTRO DE ATIVIDADE ****************** -->
 					<div class="collapse multi-collapse border p-4">
 						
-						<form action="/educa-mais/atividade/save">
+						<form action="/educa-mais/atividade/save" id="cadAtividade">
 
 							<!-- FORMULÁRIO -->
 							<input type="hidden" id="idTurma" name="id" value="${turma.idTurma}">
@@ -116,14 +127,14 @@
 											<input type="hidden" name="idAluno" value="${aluno.idUsuario}">
 											<td>${ aluno.nome.toUpperCase() }</td>
 											<td>
-												<input type="text" name="notaAluno" class="form-input form-control  text-center" style="width:20%;">
+												<input type="number" name="notaAluno" class="form-input form-control text-center" style="width:20%;">
 											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 
-							<button id="btnCadastrar" class="btn btn-primary my-2" type="submit">
+							<button id="btnCadastrar" class="btn btn-primary my-2" type="button" onclick="validaAluno()">
 								Cadastrar
 							</button>
 							
@@ -153,7 +164,7 @@
 							<tbody id="tabelaAtividadeBody">
 								<c:forEach var="atividade" items="${listaAtividade}">
 									<tr>
-										<td style='vertical-align: middle;'>${atividade.nomeAtividade}</td>
+										<td style='vertical-align: middle;'><button class="btn btn-link" onclick="verAtividade(${atividade.idAtividade})" data-toggle="collapse" data-target="#tr_${atividade.idAtividade}">${atividade.nomeAtividade}</button></td>
 										<td style='vertical-align: middle;'><fmt:formatDate value="${atividade.dataAtividade}" pattern="dd/MM/yyyy" /></td>
 										<td style="vertical-align: middle; text-align: center;">
 											<button class="btn btn-link collapsed" type="button" onclick="carregarTabelaAlterarNota(${atividade.idAtividade})" 
@@ -165,6 +176,8 @@
 											<a href="/educa-mais/atividade/remove?id=${turma.idTurma}&idAtividade=${atividade.idAtividade}">Remover</a>
 										</td>
 									</tr>
+									<tbody id="tr_${atividade.idAtividade}" class="collapse">
+									</tbody>
 								</c:forEach>
 							</tbody>
 						</table>
@@ -177,23 +190,38 @@
 	<c:import url="/WEB-INF/view/modais/alterarNome.jsp"/>
 	<c:import url="/WEB-INF/view/modais/alterarSenha.jsp"/>
 	<c:import url="/WEB-INF/view/modais/codigoTurma.jsp"/>
+	<c:import url="/WEB-INF/view/modais/avisoAlunoObrigatorio.jsp"/>
 	
 	<script src="<%=request.getContextPath()%>/resources/jquery.js"></script>
     <script src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/jquery.validate.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/localization/messages_pt_BR.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormAlterarUsuario.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormAtividade.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/carregarTabelaAlterarNota.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/dataConverter.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/filtrarTabelaNota.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/veAtividade.js"></script>
 	
     <script>
 	    function carregarTabelaAlterarNota(idAtividade){
 	    	carregaTabelaAlterarNota(idAtividade);
 		}
 	    
+	    function verAtividade(idAtividade) {
+	    	veAtividade(idAtividade);
+	    }
+	    
 	    function carregaDiv() {
 	    	$("#idAtividades").load(" #idAtividades");
+	    }
+	    
+	    function validaAluno() {
+	    	if($('#cadAtividade input[name=notaAluno]').length > 0) {
+				$("#cadAtividade").submit();
+			}else {
+				$("#alunoObrigatorioModal").modal("show");	
+			}
 	    }
 	    
 		$(document).ready(function(){

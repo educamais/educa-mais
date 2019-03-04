@@ -43,6 +43,35 @@ public class AlunoNotaDao {
 			
 			return listaAlunoNota;
 	}
+	
+	public List<AlunoNota> getListaAlunoNota(Turma turma, String pesquisarNome) {
+		
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		
+		Query query;
+		
+		if(pesquisarNome == null) {
+			query = manager.createQuery("SELECT alunoNota.aluno, SUM(alunoNota.nota) FROM AlunoNota alunoNota WHERE alunoNota.atividade IN (FROM Atividade a WHERE a.turma = :turma) GROUP BY alunoNota.aluno");
+			query.setParameter("turma", turma);
+		} else {
+			query = manager.createQuery("SELECT alunoNota.aluno, SUM(alunoNota.nota) FROM AlunoNota alunoNota WHERE alunoNota.atividade IN (FROM Atividade a WHERE a.turma = :turma) AND alunoNota.aluno.nome LIKE :alunoNome GROUP BY alunoNota.aluno");
+			query.setParameter("turma", turma);
+			query.setParameter("alunoNome", "%"+pesquisarNome+"%");
+		}
+		
+		
+		List<AlunoNota> listaAlunoNota = query.getResultList();
+		
+		manager.close();
+		factory.close();
+		
+		if(listaAlunoNota.isEmpty()) {
+			return null;
+		}
+		
+		return listaAlunoNota;
+}
 
 	public void remove(AlunoNota alunoNota) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);

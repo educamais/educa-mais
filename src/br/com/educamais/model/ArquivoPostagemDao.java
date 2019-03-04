@@ -35,7 +35,7 @@ public class ArquivoPostagemDao {
 		return listaArquivo;
 	}
 	
-	public void salvar(Postagem postagem, String arquivo) {
+	public ArquivoPostagem salvar(Postagem postagem, String arquivo) {
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
@@ -52,6 +52,8 @@ public class ArquivoPostagemDao {
 		
 		manager.close();
 		factory.close();
+		
+		return arquivoPostagem;
 	}
 	
 	public void remover(Postagem postagem){

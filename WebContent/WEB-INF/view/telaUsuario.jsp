@@ -57,31 +57,30 @@
 			<div class="row">
 				
 				<c:forEach var="turma" items="${turmasProfessor}">
+					
 					<div class="col-md-4">
+						
 						<div class="card border-secondary mb-3">
-							<div class="card-header bg-transparent border-muted">
+							<div class="card-body bg-transparent border-muted text-center">
+
 								${ turma.nomeTurma }
+
 								<div class="dropdown float-right">
 									<div class="nav-item dropdown">
-										<a class="nav-link dropdown-toggle text-roxo" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"></a>
+										<a class="nav-link dropdown-toggle text-roxo p-0 pl-2 pr-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"></a>
 										<div class="dropdown-menu dropdown-menu-right">
-											<a class="dropdown-item font-1" href="#">Editar</a>
-											<a class="dropdown-item font-1" href="/educa-mais/turma/remover?id=${turma.idTurma}">Excluir</a>
+											<a class="dropdown-item font-1" href="#">Editar</a> <a class="dropdown-item font-1" href="/educa-mais/turma/remover?id=${turma.idTurma}">Excluir</a>
 										</div>
 									</div>
 								</div>
 							</div>
-		
-							<div class="card-body text-success">
-								<div class="text-center"></div>
-							</div>
-							<a class="" href="/educa-mais/professor/mural?id=${turma.idTurma }">
-								<div class="card-footer">
-									<div class="text-center d-flex justify-content-around">
-										Entrar
-									</div>
+
+							<div class="card-footer">
+								<div class="text-center d-flex justify-content-around">
+									<a class=""
+										href="/educa-mais/professor/mural?id=${turma.idTurma }">Entrar</a>
 								</div>
-							</a>
+							</div>
 						</div>
 					</div>
 				</c:forEach>
@@ -89,31 +88,17 @@
 				<!-- ALUNOS -->
 				
 				<c:forEach var="turma" items="${turmasAluno}">
+
 					<div class="col-md-4">
+	
 						<div class="card border-secondary mb-3">
-							<div class="card-header bg-transparent border-muted">
-								${ turma.nomeTurma }
-								<div class="dropdown float-right">
-									<div class="nav-item dropdown">
-										<a class="nav-link dropdown-toggle text-roxo" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"></a>
-										<div class="dropdown-menu dropdown-menu-right">
-											<a class="dropdown-item font-1" href="#">Editar</a>
-											<a class="dropdown-item font-1" href="#">Excluir</a>
-										</div>
-									</div>
+							<div class="card-header bg-transparent border-muted text-center">
+								${ turma.nomeTurma }</div>
+							<div class="card-footer">
+								<div class="text-center d-flex justify-content-around">
+									<a class="" href="/educa-mais/aluno/mural?id=${turma.idTurma }">Entrar</a>
 								</div>
 							</div>
-		
-							<div class="card-body text-success">
-								<div class="text-center"></div>
-							</div>
-							<a href="/educa-mais/aluno/mural?id=${turma.idTurma }">
-								<div class="card-footer">
-									<div class="text-center d-flex justify-content-around">
-										Entrar
-									</div>
-								</div>
-							</a>
 						</div>
 					</div>
 				</c:forEach>

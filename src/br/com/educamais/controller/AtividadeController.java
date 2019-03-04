@@ -93,6 +93,18 @@ public class AtividadeController {
 		return new Gson().toJson(listaAtividade);
 	}
 	
+	@RequestMapping(value = "/atividade/alunos", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String filter(@RequestParam int idAtividade) {
+		
+		AtividadeDao atividadeDao = new AtividadeDao();
+		Atividade atividade = atividadeDao.buscarPorId(idAtividade);
+		
+		AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+		List<AlunoNota> listaAluno = alunoNotaDao.getListaAlunoNota(atividade);
+		
+		return new Gson().toJson(listaAluno);
+	}
+	
 	@RequestMapping("/atividade/remove")
 	public String remover(@RequestParam("id") int idTurma, @RequestParam("idAtividade") int idAtividade) {
 		

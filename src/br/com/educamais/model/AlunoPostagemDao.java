@@ -37,19 +37,20 @@ public class AlunoPostagemDao {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		
-		Query query = manager.createQuery("FROM AlunoPostagem WHERE aluno = :paramAluno ORDER BY postagem.dataPostagem DESC");
+		Query query = manager.createQuery("FROM AlunoPostagem WHERE aluno = :paramAluno AND postagem.turma = :paramTurma ORDER BY postagem.dataPostagem DESC, postagem.idPostagem DESC");
 		query.setParameter("paramAluno", aluno);
+		query.setParameter("paramTurma", turma);
 		
 		List<AlunoPostagem> result = query.getResultList();
 		
 		manager.close();
 		factory.close();
 		
-		List<Postagem> listaPostagem = new ArrayList<Postagem>();
-		
-		if(listaPostagem.isEmpty()) {
+		if(result.isEmpty()) {
 			return null;
 		}
+		
+		List<Postagem> listaPostagem = new ArrayList<Postagem>();
 			
 		for(AlunoPostagem alunoPostagem : result) {
 			
@@ -58,6 +59,7 @@ public class AlunoPostagemDao {
 				listaPostagem.add(postagem);
 			}
 		}
+		
 		return listaPostagem;
 	}
 	

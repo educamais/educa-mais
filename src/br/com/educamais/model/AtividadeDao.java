@@ -44,7 +44,7 @@ public class AtividadeDao {
 		}else if(turma != null && pesquisarAtividade != null) {
 			
 			manager.getTransaction().begin();
-			query = manager.createQuery("FROM Atividade a WHERE turma = :turma AND nomeAtividade LIKE :nomeAtividade ORDER BY a.idAtividade DESC");
+			query = manager.createQuery("FROM Atividade a WHERE turma = :turma AND nomeAtividade LIKE :nomeAtividade ORDER BY a.idAtividade DESC, a.dataAtividade DESC");
 			query.setParameter("turma", turma);
 			query.setParameter("nomeAtividade", "%"+pesquisarAtividade+"%");
 			

@@ -1,10 +1,9 @@
 package br.com.educamais.controller;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -17,13 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
-import br.com.educamais.model.AlunoPostagem;
 import br.com.educamais.model.AlunoPostagemDao;
-import br.com.educamais.model.AlunoTurmaDao;
 import br.com.educamais.model.ArquivoPostagem;
 import br.com.educamais.model.ArquivoPostagemDao;
-import br.com.educamais.model.Atividade;
-import br.com.educamais.model.AtividadeDao;
 import br.com.educamais.model.Postagem;
 import br.com.educamais.model.PostagemDao;
 import br.com.educamais.model.Turma;
@@ -75,12 +70,13 @@ public class PostagemController {
 	}
 	
 	@RequestMapping("postagem/alterar")
-	public String atualizar(Postagem postagem, @RequestParam int idTurma, @RequestParam Integer[] alunos,Model model) {
+	public String atualizar(Postagem postagem, @RequestParam int idTurma, @RequestParam Integer[] alunos, @RequestParam List<MultipartFile> files, Model model) {
 				
 		PostagemDao postagemDao = new PostagemDao();
 		postagem.setDataPostagem(postagemDao.buscarPorId(postagem.getIdPostagem()).getDataPostagem());
+		postagem.setTurma(postagemDao.buscarPorId(postagem.getIdPostagem()).getTurma());
 		
-		if(postagem != null) {
+		{
 			AlunoPostagemDao alunoPostagemDao = new AlunoPostagemDao();
 				
 			alunoPostagemDao.remover(postagem);
@@ -93,12 +89,24 @@ public class PostagemController {
 				}
 			}
 			
+			if(files.size() > 0) {
+				ArquivoPostagemDao arquivoPostagemDao = new ArquivoPostagemDao();
+				arquivoPostagemDao.remover(postagem);
+				
+				List<ArquivoPostagem> listaArquivoPostagem = new ArrayList<>();
+				
+				for(MultipartFile file : files) {
+					if (Util.fazerUploadImagem(file)) {
+						String arquivo = Util.obterMomentoAtual() + " - " + file.getOriginalFilename();
+						listaArquivoPostagem.add(arquivoPostagemDao.salvar(postagem, arquivo));
+					}
+				}
+				postagem.setListaArquivo(listaArquivoPostagem);
+			}
+			
 			postagemDao.atualizar(postagem);
 			return "redirect:/professor/mural?id="+idTurma;
 		}
-		model.addAttribute("link", "professor"+postagem.getTurma().getIdTurma());
-		model.addAttribute("mensagem", "Esta Postagem não existe!");
-		return "mensagem";
 	}
 	
 	@RequestMapping("postagem/remove")
@@ -120,13 +128,13 @@ public class PostagemController {
 	}
 	
 	@RequestMapping(value = "/postagem", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String filter(@RequestParam int idTurma, @RequestParam String atual, @RequestParam int limite) {
+	public @ResponseBody String filter(@RequestParam int idTurma, @RequestParam int inicio) {
 		
 		TurmaDao turmaDao = new TurmaDao();
 		Turma turma = turmaDao.buscarPorId(idTurma);
 		
 		PostagemDao postagemDao = new PostagemDao();
-		List<Postagem> listaPostagem = postagemDao.getListaPostagem(turma);
+		List<Postagem> listaPostagem = postagemDao.getListaPostagem(turma, inicio);
 		
 		return new Gson().toJson(listaPostagem);
 	}

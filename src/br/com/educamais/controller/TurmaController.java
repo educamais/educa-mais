@@ -54,7 +54,7 @@ public class TurmaController {
 		AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
 		alunoTurmaDao.participar(usuario, turma);
 		
-		return "redirect:/aluno?id="+turma.getIdTurma();
+		return "redirect:/aluno/mural?id="+turma.getIdTurma();
 	}
 	
 	@RequestMapping("turma/minhasturmas")

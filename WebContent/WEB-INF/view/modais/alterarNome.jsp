@@ -26,3 +26,11 @@
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function(){
+	$("#btn_alterarNome").click(function() {
+		$("#alterarNomeForm").submit();
+	});
+
+});
+</script>

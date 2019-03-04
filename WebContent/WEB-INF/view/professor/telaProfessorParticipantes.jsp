@@ -65,7 +65,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active border font-weight-bold" style="font-family:Gravity;" href="participantes?id=${turma.idTurma}">
+                <a class="nav-link text-roxo border font-weight-bold" style="font-family:Gravity;" href="participantes?id=${turma.idTurma}">
                     Participantes
                 </a>
             </li>

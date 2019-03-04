@@ -79,9 +79,9 @@
                 <div class="capsula border mb-5">
                     
                     <!-- CADASTRO DE MATERIAIS -->
-                    <form class="p-2" action="/educa-mais/postagem/save" method="post" enctype="multipart/form-data">
+                    <form id="cadPostagem" class="p-2" action="/educa-mais/postagem/save" method="post" enctype="multipart/form-data">
                     	
-                    	<input type="hidden" value="${turma.idTurma}" name="id"/>
+                    	<input type="hidden" value="${turma.idTurma}" id="idTurma" name="id"/>
                     
                         <div class="row mb-2">
                             <div class="form-group col-sm-8">
@@ -106,7 +106,7 @@
 
 											<div class="modal-body">
 												<c:forEach var="aluno" items="${ listaAluno }">
-													<input id="${ aluno.idUsuario }" type="checkbox" name="aluno" value="${aluno.idUsuario}" checked>
+													<input id="${ aluno.idUsuario }" type="checkbox" class="checkbox" name="aluno" value="${aluno.idUsuario}" checked>
 													<label for="${ aluno.idUsuario }">${ aluno.nome }</label><br>
 												</c:forEach>
 											</div>
@@ -122,7 +122,7 @@
                         </div>
                         <!-- DescriÃ§Ã£o -->
                         <div class="form-group">
-							<textarea style="resize:none;" class="form-control" name="descricaoPostagem" rows=5></textarea>
+							<textarea style="resize:none;" class="form-control" name="descricaoPostagem" rows="5" placeholder="D E S C R I Ç Ã O"></textarea>
                         </div>
 
 						<div class="input-group mb-3">
@@ -133,7 +133,7 @@
 						</div>
 
 						<div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-rosa btn-block">Publicar</button>
+                            <button id="btnPublicar" type="submit" class="btn btn-rosa btn-block">Publicar</button>
                         </div>
                     </form>
                 </div>
@@ -143,9 +143,9 @@
                 <!-- FEED -->
                 
                 
-                <div class="capsula">
+                <div class="capsula" id="feed">
                 <c:forEach var="postagem" items="${listaPostagem}">
-	                <div class="mb-3" id="id_${postagem.idPostagem}">
+	                <div class="mb-3 feed" id="id_${postagem.idPostagem}">
 	                    
 	                    <ul class="nav nav-tabs">
 	                        <li class="nav-item">
@@ -156,46 +156,51 @@
 	                    </ul>
 	                    
 	                    <div class="card gedf-card">
-	                        
-	                        <div class="card-header">
-	                            <div class="col d-flex justify-content-end">
-	                                <div class="btn-group">
-	                                    <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                                        <i class="fa fa-ellipsis-h"></i>
-	                                    </button>
-	                                    <div class="dropdown-menu">
-	                                        <button class="btn btn-link dropdown-item" type="button" onclick="alterarPostagem(${postagem.idPostagem})">Editar</button>
-	                                        <div class="dropdown-divider"></div>
-	                                        <a class="dropdown-item" href="/educa-mais/postagem/remove?id=${postagem.idPostagem}">Excluir</a>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        
 	                        <div class="card-body"  id="descricao_postagem">
-	                            <div class="row">
-	                            	<c:if test="${not empty postagem.listaArquivo}">
-		                                <div class="col-4">
-		                                    <div class="row mb-2">
-		                                    	<c:forEach var="arquivo" items="${postagem.listaArquivo}">
-			                                        <div class="col-6">
-			                                            <img src="<%=request.getContextPath()%>/resources/img/upload/arquivo" class="img-fluid img-thumbnail">
-			                                        </div>
-		                                        </c:forEach>
-		                                    </div>
-		                                </div>
-	                                </c:if>
+	                       		<div class="float-right">
+									<button type="button" class="btn btn-link dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<i class="fa fa-ellipsis-h"></i>
+									</button>
+									<div class="dropdown-menu">
+										<button class="btn btn-link dropdown-item" type="button" onclick="alterarPostagem(${postagem.idPostagem}, ${turma.idTurma}, ${usuario.idUsuario})">Editar</button>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="/educa-mais/postagem/remove?id=${postagem.idPostagem}">Excluir</a>
+									</div>
+	                            </div>
+	                        	<div class="row">
 	                                <div class="p-1">
 	                                    <p class="card-text">
-	                                        ${postagem.descricaoPostagem}
+											${ postagem.descricaoPostagem}
 	                                    </p>
 	                                </div>
 	                            </div>
+	                            <div class="row">
+	                            
+	                            	<c:if test="${not empty postagem.listaArquivo}">
+										<c:forEach var="arquivo" items="${postagem.listaArquivo}">
+			                           		<div class="col-6 col-lg-2 mb-1">
+												<c:choose>
+			                                    	<c:when test="${arquivo.arquivo.endsWith('.png') || arquivo.arquivo.endsWith('.jpg') || arquivo.arquivo.endsWith('.jpeg')}">
+			                                        	<a href="<%=request.getContextPath()%>/resources/img/upload/${arquivo.arquivo}" download="${arquivo.arquivo}">
+			                                            	<img src="<%=request.getContextPath()%>/resources/img/image.png" class="img-fluid img-thumbnail">
+			                                            </a>
+			                                        </c:when>
+			                                        <c:when test="${arquivo.arquivo.endsWith('.pdf') || arquivo.arquivo.endsWith('.doc') || arquivo.arquivo.endsWith('.docx') || arquivo.arquivo.endsWith('.odt') || arquivo.arquivo.endsWith('.xlsx') || arquivo.arquivo.endsWith('.ods') || arquivo.arquivo.endsWith('.pptx') || arquivo.arquivo.endsWith('.ppt') || arquivo.arquivo.endsWith('.odp')}">
+			                                           	<a href="<%=request.getContextPath()%>/resources/img/upload/${arquivo.arquivo}" download="${arquivo.arquivo}">
+			                                           		<img src="<%=request.getContextPath()%>/resources/img/doc.png" class="img-fluid img-thumbnail">
+			                                           	</a>
+			                                        </c:when>
+			                                        <c:otherwise>
+			                                          	<a href="<%=request.getContextPath()%>/resources/img/upload/${arquivo.arquivo}" download="${arquivo.arquivo}">
+			                                           		<img src="<%=request.getContextPath()%>/resources/img/docUnknow.png" class="img-fluid img-thumbnail">
+			                                           	</a>
+			                                        </c:otherwise>
+			                                    </c:choose>
+											</div>
+		                                </c:forEach>
+	                                </c:if>
+	                            </div>
 	                        </div>
-	                        <div class="card-footer bg-transparent">
-	                        	<button class="btn btn-azulc float-right">Ler mais-></button>
-							</div>
-	                        
 	                    </div>
 	                </div>
                 </c:forEach>
@@ -207,15 +212,18 @@
 	<c:import url="/WEB-INF/view/modais/alterarNome.jsp"/>
 	<c:import url="/WEB-INF/view/modais/alterarSenha.jsp"/>
 	<c:import url="/WEB-INF/view/modais/codigoTurma.jsp"/>
+	<c:import url="/WEB-INF/view/modais/avisoAlunoObrigatorio.jsp"/>
 	
 	<script src="<%=request.getContextPath()%>/resources/jquery.js"></script>
     <script src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/jquery.validate.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/localization/messages_pt_BR.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormAlterarUsuario.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormPostagem.js"></script>
     
-    <script>
+    <script> 
 	    $(document).ready(function(){
+	    	
 			$("#btn_alterarNome").click(function() {
     			$("#alterarNomeForm").submit();
     		});
@@ -224,40 +232,61 @@
     			$("#alterarSenhaForm").submit();
     		});
     		
+    		$('#btnPublicar').on('click', function(e) {
+    			e.preventDefault();
+    			if($('.checkbox:checked').length > 0) {
+    				$(this).parents('form').submit();
+    			    return;
+    			}
+    			$("#alunoObrigatorioModal").modal("show");
+    			return false;
+    		});
+    		
+    		$('#btnPublicar').on('click', function(e) {
+    			e.preventDefault();
+    			if($('.checkbox:checked').length > 0) {
+    				$(this).parents('form').submit();
+    			    return;
+    			}
+    			$("#alunoObrigatorioModal").modal("show");
+    			return false;
+    		});
     	});
     </script>
     
     <script>
     
-    function cancelar(idPostagem) {
-    	$("#id_"+idPostagem).load(" #id_"+idPostagem);
-    }
-    
-    $("#btnAlterarMaterial").click(function() {
-    	alert("ols");
-    });
-
-    
-	    function alterarPostagem(idPostagem) {
-	    	
+	    function cancelar(idPostagem) {
+	    	$("#id_"+idPostagem).load(" #id_"+idPostagem);
+	    }
+	    
+	    function validaAluno() {
+	    	if($('#formAlterarPostagem .checkbox:checked').length > 0) {
+				$("#formAlterarPostagem").submit();
+			}else {
+				$("#alunoObrigatorioModal").modal("show");	
+			}
+	    }
+	    
+	    function alterarPostagem(idPostagem, idTurma, professor) {
 	    	
 	    	var content = $("#id_"+idPostagem).html();
-	    	$("#id_"+idPostagem).html("<form action='/educa-mais/postagem/alterar'>"+content+"</form>");
+	    	$("#id_"+idPostagem).html("<form action='/educa-mais/postagem/alterar' id='formAlterarPostagem' method='post' enctype='multipart/form-data'>"+content+"</form>");
 	    	
 	    	var titulo = $("#id_"+idPostagem+" #titulo_postagem").text();
 	    	$("#id_"+idPostagem+" #titulo_postagem").html("<input type='text' class='form-control'  name='tituloPostagem' value='"+titulo.trim()+"'>");
 	    	
-	    	var descricao = $("#id_"+idPostagem+" #descricao_postagem").text();
+	    	var descricao = $("#id_"+idPostagem+" #descricao_postagem .card-text").text();
 	    	var linhas = "";
 	    	
 	    	linhas += '<input type="hidden" name="idPostagem" value="'+idPostagem+'">';
-	    	linhas += '<input type="hidden" name="idTurma" value="${turma.idTurma}">';
-	    	linhas += '<input type="hidden" name="professor" value="${usuario.idUsuario}">';
+	    	linhas += '<input type="hidden" name="idTurma" value="'+idTurma+'">';
+	    	linhas += '<input type="hidden" name="professor" value="'+professor+'">';
 	    	
 	    	linhas += "<textarea style='resize:none; width:100%;' name='descricaoPostagem' rows='5'>"+descricao.trim()+"</textarea>";
 	    	linhas += '<div class="input-group my-3">';
 	    	linhas += '<div class="custom-file">';
-	    	linhas += '<input type="file" name="file" class="custom-file-input" id="inputGroupFile01" multiple>';
+	    	linhas += '<input type="file" name="files" class="custom-file-input" id="inputGroupFile01" multiple>';
 	    	linhas += '<label class="custom-file-label" for="inputGroupFile01">Selecionar arquivo</label>';
 	    	linhas += '</div>';
 	    	linhas += '</div>';
@@ -265,8 +294,8 @@
 	    	$("#id_"+idPostagem+" #descricao_postagem").html(linhas);
 	    	
 	    	
-	    	linhas = "";
-	    	
+	    	linhas = "<div class='card-header'>";
+	    	linhas += "<div class='col-lx-6'>";
 	    	linhas += '<button type="button" class="btn btn-rosa btn-block" data-toggle="modal" data-target="#alterarAlunos">Lista de alunos</button>';
 	    	linhas += '<div class="modal fade" id="alterarAlunos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
 	    	linhas += '<div class="modal-dialog" role="document">';
@@ -280,7 +309,7 @@
 	    	linhas += '</div>';
 	    	linhas += '<div class="modal-body">';
 	    	linhas += '<c:forEach var="aluno" items="${ listaAluno }">';
-	    	linhas += '<input id="aluno_${ aluno.idUsuario }" type="checkbox" name="alunos" value="${aluno.idUsuario}" checked>';
+	    	linhas += '<input id="aluno_${ aluno.idUsuario }" type="checkbox" class="checkbox" name="alunos" value="${aluno.idUsuario}" checked>';
 	    	linhas += '<label for="aluno_${ aluno.idUsuario }">${ aluno.nome }</label><br>';
 	    	linhas += '</c:forEach>';
 	    	linhas += '</div>';
@@ -291,24 +320,95 @@
 	    	linhas += '</div>';
 	    	linhas += '</div>';
 	    	linhas += '</div>';
+	    	linhas += '</div>';
+	    	linhas += '</div>';
 	    	
-	    	
-	    	$("#id_"+idPostagem+" .card-header").html('<div class="col-lx-6">'+linhas+'</div>');
-	    	
-	    	linhas = "<div class='row'>";
+	    	$("#id_"+idPostagem+" .card").prepend(linhas);
+	    	linhas = '<div class="card-footer">';
+	    	linhas += "<div class='row'>";
 	    	linhas += "<div class='col-6'>";
 	    	linhas += '<button id="btnCancelar" type="button" class="btn btn-block" onclick="cancelar('+idPostagem+')">Cancelar</button>';
 	    	linhas += "</div>";
 	    	linhas += "<div class='col-6'>";
-	    	linhas += '<button id="btnAlterarMaterial" type="submit" class="btn btn-rosa btn-block">Publicar</button>';
+	    	linhas += '<button id="btnPublicar" type="button" onclick="validaAluno()" class="btn btn-rosa btn-block">Publicar</button>';
 	    	linhas += "</div>";
 	    	linhas += "</div>";
-	    	$("#id_"+idPostagem+" .card-footer").html(linhas);
-	    	
-	    	
+	    	linhas += "</div>";
+	    	$("#id_"+idPostagem+" .card").append(linhas);
 	    }
-	    
-	    
+    </script>
+    
+    <script>
+    
+	$(window).scroll(function () {
+        if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+            $.get("/educa-mais/postagem",{
+            	"idTurma" : $("#idTurma").val(),
+            	'inicio' : $("div.feed").length
+            },function(postagem){
+            	
+            	$(postagem).each(function (i) {
+            		console.log($("#idTurma").val()+" - "+$(".feed").length);
+            		var linhas = '';
+            		linhas += '<div class="mb-3 feed" id="id_'+postagem[i].idPostagem+'">';
+            		linhas += '<ul class="nav nav-tabs">';
+            		linhas += '<li class="nav-item">';
+            		linhas += '<a class="nav-link active border font-weight-bold bg-azulc text-white" style="font-family:Gravity;" data-toggle="tab" id="titulo_postagem">';
+            		linhas += postagem[i].tituloPostagem;
+            		linhas += '</a>';
+            		linhas += '</li>';
+            		linhas += '</ul>';
+                    
+            		linhas += '<div class="card gedf-card">';
+            		linhas += '<div class="card-body"  id="descricao_postagem">';
+            		linhas += '<div class="float-right">';
+            		linhas += '<button type="button" class="btn btn-link dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+            		linhas += '<i class="fa fa-ellipsis-h"></i>';
+            		linhas += '</button>';
+            		linhas += '<div class="dropdown-menu">';
+            		linhas += '<button class="btn btn-link dropdown-item" type="button" onclick="alterarPostagem('+postagem[i].idPostagem+', '+idTurma+', '+postagem[i].turma.professor.idUsuario+')">Editar</button>';
+            		linhas += '<div class="dropdown-divider"></div>';
+            		linhas += '<a class="dropdown-item" href="/educa-mais/postagem/remove?id='+postagem[i].idPostagem+'">Excluir</a>';
+            		linhas += '</div>';
+            		linhas += '</div>';
+            		linhas += '<div class="row">';
+            		linhas += '<div class="p-1">';
+            		linhas += '<p class="card-text">';
+            		linhas += postagem[i].descricaoPostagem;
+            		linhas += '</p>';
+            		linhas += '</div>';
+            		linhas += '</div>';
+            		linhas += '<div class="row">';
+                            
+//                    if (postagem[i].listaArquivo.length > 0){
+//                  	
+//                    	postagem.listaArquivo.each(function(index, value){
+//                    		linhas += '<div class="col-6 col-lg-2 mb-1">';
+//                    		if(value.arquivo.endsWith('.png') || value.arquivo.endsWith('.jpg') || value.arquivo.endsWith('.jpeg')){
+//                    			linhas += '<a href="<%=request.getContextPath()%>/resources/img/upload/${arquivo.arquivo}" download="${arquivo.arquivo}">';
+//                    				linhas += '<img src="<%=request.getContextPath()%>/resources/img/image.png" class="img-fluid img-thumbnail">';
+//                    			linhas += '</a>';
+//                           	} else if(value.arquivo.endsWith('.pdf') || value.arquivo.endsWith('.doc') || value.arquivo.endsWith('.docx') || value.arquivo.endsWith('.odt') || value.arquivo.endsWith('.xlsx') || value.arquivo.endsWith('.ods') || value.arquivo.endsWith('.pptx') || value.arquivo.endsWith('.ppt') || value.arquivo.endsWith('.odp')){
+//                           		linhas += '<a href="<%=request.getContextPath()%>/resources/img/upload/${arquivo.arquivo}" download="${arquivo.arquivo}">';
+//                               		linhas += '<img src="<%=request.getContextPath()%>/resources/img/doc.png" class="img-fluid img-thumbnail">';
+//                               	linhas += '</a>';
+//                            } else {
+//                            	linhas += '<a href="<%=request.getContextPath()%>/resources/img/upload/${arquivo.arquivo}" download="${arquivo.arquivo}">';
+//                            		linhas += '<img src="<%=request.getContextPath()%>/resources/img/docUnknow.png" class="img-fluid img-thumbnail">';
+//                            	linhas += '</a>';
+//                            }
+//                    		linhas += '</div>';
+//                    	});
+//                    }
+                    linhas += '</div>';
+                    linhas += '</div>';
+                    linhas += '</div>';
+                    linhas += '</div>';
+                    $("#feed").append(linhas);
+            	});
+            });
+        }
+    });
     </script>
     
 </body>

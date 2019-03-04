@@ -138,5 +138,18 @@
     <script src="<%=request.getContextPath()%>/resources/Validation/jquery.validate.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/localization/messages_pt_BR.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormAlterarUsuario.js"></script>
+    
+    <script>
+	   $(document).ready(function(){
+			$("#btn_alterarNome").click(function() {
+    			$("#alterarNomeForm").submit();
+    		});
+    		
+    		$("#btn_alterarSenha").click(function() {
+    			$("#alterarSenhaForm").submit();
+    		});
+	    });
+    </script>
+    
 </body>
 </html>
