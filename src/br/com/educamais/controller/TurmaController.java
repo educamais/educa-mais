@@ -32,7 +32,7 @@ public class TurmaController {
 	}
 	
 	@RequestMapping("turma/participar")
-	public String entraSala(@RequestParam("codigo") String codigo, HttpSession session, Model model) {
+	public String entraSala(@RequestParam String codigo, HttpSession session, Model model) {
 		
 		Usuario usuario = (Usuario)session.getAttribute("usuario");
 		

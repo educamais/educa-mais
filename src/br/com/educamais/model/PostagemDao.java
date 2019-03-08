@@ -75,7 +75,7 @@ public class PostagemDao {
 			query.setParameter("turma", turma);
 		}
 		query.setFirstResult(inicio);
-		query.setMaxResults(1);
+		query.setMaxResults(5);
 		List<Postagem> result = query.getResultList();
 		
 		manager.close();

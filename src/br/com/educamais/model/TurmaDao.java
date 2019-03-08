@@ -90,16 +90,16 @@ public class TurmaDao {
 		Query query = manager.createQuery("FROM Turma WHERE codigoTurma = :paramCodigo");
 		query.setParameter("paramCodigo", codigo);
 		
-		Turma turma = (Turma)query.getSingleResult();
+		List<Turma> turma = query.getResultList();
 		
 		manager.close();
 		factory.close();
 		
-		if(turma == null) {
+		if(turma.isEmpty()) {
 			return null;
 		}
 		
-		return  turma;
+		return  turma.get(0);
 	}
 	
 	public void remover(int id) {

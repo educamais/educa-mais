@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import br.com.educamais.model.AlunoPostagemDao;
 import br.com.educamais.model.ArquivoPostagem;
@@ -136,6 +138,20 @@ public class PostagemController {
 		PostagemDao postagemDao = new PostagemDao();
 		List<Postagem> listaPostagem = postagemDao.getListaPostagem(turma, inicio);
 		
-		return new Gson().toJson(listaPostagem);
+		return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(listaPostagem);
+	}
+	
+	@RequestMapping(value = "/alunopostagem", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String alunofilter(@RequestParam int idTurma, @RequestParam int inicio, HttpSession session) {
+		
+		Usuario usuario = (Usuario)session.getAttribute("usuario");
+		
+		TurmaDao turmaDao = new TurmaDao();
+		Turma turma = turmaDao.buscarPorId(idTurma);
+		
+		AlunoPostagemDao alunoPostagemDao = new AlunoPostagemDao();
+		List<Postagem> listaPostagem = alunoPostagemDao.getListaPostagem(usuario, turma, inicio);
+		
+		return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(listaPostagem);
 	}
 }

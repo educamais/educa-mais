@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -20,24 +21,15 @@
 	<nav class="navbar bg-white border">
 		<div class="container">
 
-			<a class="logo" href="/educa-mais/usuario">
-				<span class="text-roxo">
-					<img alt="" class="rounded mx-auto d-block logo" src="<%=request.getContextPath()%>/resources/img/logo3.png"/>
-				</span>
+			<a class="navbar-brand p-0" href="/educa-mais/usuario">
+				<img src="<%=request.getContextPath()%>/resources/img/logo3.png" width="100"/>
 			</a>
 
-
-			<div class="d-flex  d-block">
-				<img alt="" class="rounded mx-auto d-block" src="<%=request.getContextPath()%>/resources/img/trophy_gold.png" width="50" height="50" />
-				<span class="badge badge-white py-3">9</span>
-				<img alt="" class="rounded mx-auto d-block" src="<%=request.getContextPath()%>/resources/img/trophy_silver.png" width="50" height="50" />
-				<span class="badge badge-white py-3">8</span>
-				<img alt="" class="rounded mx-auto d-block" src="<%=request.getContextPath()%>/resources/img/trophy_bronze.png" width="50" height="50" />
-				<span class="badge badge-white py-3">7</span>
+			<div class="font-2">
+				<a class="nav-link d-none d-sm-block text-roxo p-0 text-center" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Minha Pontuação: ${pontuacao.get(0)}</a>
 			</div>
-			<div class="row font-3">
 
-				<a class="nav-link d-none d-sm-block text-roxo" href="#">1926 pts</a>
+			<div class="row font-2">
 
 				<!-- Dropdown-->
 				<div class="nav-item dropdown">
@@ -49,7 +41,7 @@
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
 						<a class="dropdown-item font-1" href="/educa-mais/turma/minhasturmas">Minhas Turmas</a>
-						<a class="dropdown-item d-sm-none font-1" href="#">Ranking</a>
+						<a class="dropdown-item d-sm-none font-1" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Ranking</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
@@ -82,87 +74,31 @@
 			</li>
 		</ul>
 
-		<!-- CORPO DO SITE -->
-		<div class="tab-content bg-white">
-			
-			<div class="tab-pane active container border shadow p-4" id="atividades">
-
-				<div class="capsula mb-5">
-
+		<div class="tab-content bg-white">    
+            <div class="tab-pane active container border shadow p-4" id="atividades">
+				<div class="capsula border p-4">
+											
 					<table class="table table-striped">
-						<thead class="thead-rosa">
+						<thead>
 							<tr>
-								<th scope="col">Nome &nbsp; <i class="fas fa-sort"></i>
-								</th>
-								<th scope="col">Data &nbsp; <i class="fas fa-sort"></i>
-								</th>
-
-								<th scope="col">Notas &nbsp; <i class="fas fa-sort"></i>
-								</th>
+								<th scope="col">Nome &nbsp;<i class="fas fa-sort"></i></th>
+								<th scope="col">Data &nbsp;<i class="fas fa-sort"></i></th>
+								<th scope="col" style="vertical-align: middle; text-align: center;">Nota</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>Atividade 1</td>
-								<td>10/07/2018</td>
-								<td>7,0</td>
-							</tr>
-							<tr>
-								<td>Atividade 1</td>
-								<td>10/07/2018</td>
-								<td>7,0</td>
-							</tr>
-							<tr>
-								<td>Atividade 1</td>
-								<td>10/07/2018</td>
-								<td>7,0</td>
-							</tr>
-							<tr>
-								<td>Atividade 1</td>
-								<td>10/07/2018</td>
-								<td>7,0</td>
-							</tr>
-							<tr>
-								<td>Atividade 1</td>
-								<td>10/07/2018</td>
-								<td>7,0</td>
-							</tr>
-							<tr>
-								<td>Atividade 1</td>
-								<td>10/07/2018</td>
-								<td>7,0</td>
-							</tr>
-							<tr>
-								<td>Atividade 1</td>
-								<td>10/07/2018</td>
-								<td>7,0</td>
-							</tr>
-							<tr>
-								<td>Atividade 1</td>
-								<td>10/07/2018</td>
-								<td>7,0</td>
-							</tr>
-							<tr>
-								<td>Atividade 1</td>
-								<td>10/07/2018</td>
-								<td>7,0</td>
-							</tr>
-							<tr>
-								<td>Atividade 1</td>
-								<td>10/07/2018</td>
-								<td>7,0</td>
-							</tr>
-							<tr>
-								<td>Atividade 1</td>
-								<td>10/07/2018</td>
-								<td>7,0</td>
-							</tr>
+						<tbody id="tabelaAtividadeBody">
+							<c:forEach var="alunoNota" items="${listaAlunoNota}">
+								<tr>
+									<td style='vertical-align: middle;'><button class="btn btn-link">${alunoNota.atividade.nomeAtividade}</button></td>
+									<td style='vertical-align: middle;'><fmt:formatDate value="${alunoNota.atividade.dataAtividade}" pattern="dd/MM/yyyy" /></td>
+									<td style='vertical-align: middle;'>${alunoNota.nota}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
-
 				</div>
 			</div>
-		</div>
+        </div>
 	</div>
 	
 	<c:import url="/WEB-INF/view/modais/alterarNome.jsp"/>
@@ -176,7 +112,8 @@
     
     <script>
 	   $(document).ready(function(){
-			$("#btn_alterarNome").click(function() {
+		   	
+		   	$("#btn_alterarNome").click(function() {
     			$("#alterarNomeForm").submit();
     		});
     		

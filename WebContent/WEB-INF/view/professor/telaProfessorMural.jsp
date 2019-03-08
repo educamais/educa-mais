@@ -19,24 +19,23 @@
     <nav class="navbar bg-white border">
 		<div class="container">
 
-			<a class="logo" href="/educa-mais/usuario">
-				<img class="rounded mx-auto d-block logo" src="<%=request.getContextPath()%>/resources/img/logo3.png"/>
+			<a class="navbar-brand p-0" href="/educa-mais/usuario">
+				<img src="<%=request.getContextPath()%>/resources/img/logo3.png" width="100"/>
 			</a>
 
-			<div class="row font-3">
-
-				<a class="nav-link d-none d-sm-block text-roxo" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
-
+				<div class="font-2">
+					<a class="nav-link d-none d-sm-block text-roxo p-0 text-center" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
+				</div>
+				
 				<!-- Dropdown-->
 				<div class="nav-item dropdown">
 
-					<a class="nav-link dropdown-toggle text-roxo" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> ${usuario.nome} </a>
+					<a class="nav-link dropdown-toggle text-roxo p-0 font-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> ${usuario.nome} </a>
 
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
 						<a class="dropdown-item font-1" href="/educa-mais/turma/minhasturmas">Minhas Turmas</a>
-						<a class="dropdown-item d-sm-none font-1" href="#">Ranking</a>
-						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#codigoTurma">Código</a>
+						<a class="dropdown-item font-1" href="/educa-mais/professor/desempenho?idTurma=${turma.idTurma}">Desempenho</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
@@ -44,7 +43,6 @@
 						<a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
 					</div>
 
-				</div>
 			</div>
 		</div>
 	</nav>
@@ -211,7 +209,6 @@
 
 	<c:import url="/WEB-INF/view/modais/alterarNome.jsp"/>
 	<c:import url="/WEB-INF/view/modais/alterarSenha.jsp"/>
-	<c:import url="/WEB-INF/view/modais/codigoTurma.jsp"/>
 	<c:import url="/WEB-INF/view/modais/avisoAlunoObrigatorio.jsp"/>
 	
 	<script src="<%=request.getContextPath()%>/resources/jquery.js"></script>
@@ -340,15 +337,20 @@
     
     <script>
     
+    var page = 0;
+    
 	$(window).scroll(function () {
+		
         if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+        	
+        	if($(".feed").length >= page+5){
+        	
             $.get("/educa-mais/postagem",{
             	"idTurma" : $("#idTurma").val(),
-            	'inicio' : $("div.feed").length
+            	'inicio' : page += 5
             },function(postagem){
             	
             	$(postagem).each(function (i) {
-            		console.log($("#idTurma").val()+" - "+$(".feed").length);
             		var linhas = '';
             		linhas += '<div class="mb-3 feed" id="id_'+postagem[i].idPostagem+'">';
             		linhas += '<ul class="nav nav-tabs">';
@@ -380,33 +382,38 @@
             		linhas += '</div>';
             		linhas += '<div class="row">';
                             
-//                    if (postagem[i].listaArquivo.length > 0){
-//                  	
-//                    	postagem.listaArquivo.each(function(index, value){
-//                    		linhas += '<div class="col-6 col-lg-2 mb-1">';
-//                    		if(value.arquivo.endsWith('.png') || value.arquivo.endsWith('.jpg') || value.arquivo.endsWith('.jpeg')){
-//                    			linhas += '<a href="<%=request.getContextPath()%>/resources/img/upload/${arquivo.arquivo}" download="${arquivo.arquivo}">';
-//                    				linhas += '<img src="<%=request.getContextPath()%>/resources/img/image.png" class="img-fluid img-thumbnail">';
-//                    			linhas += '</a>';
-//                           	} else if(value.arquivo.endsWith('.pdf') || value.arquivo.endsWith('.doc') || value.arquivo.endsWith('.docx') || value.arquivo.endsWith('.odt') || value.arquivo.endsWith('.xlsx') || value.arquivo.endsWith('.ods') || value.arquivo.endsWith('.pptx') || value.arquivo.endsWith('.ppt') || value.arquivo.endsWith('.odp')){
-//                           		linhas += '<a href="<%=request.getContextPath()%>/resources/img/upload/${arquivo.arquivo}" download="${arquivo.arquivo}">';
-//                               		linhas += '<img src="<%=request.getContextPath()%>/resources/img/doc.png" class="img-fluid img-thumbnail">';
-//                               	linhas += '</a>';
-//                            } else {
-//                            	linhas += '<a href="<%=request.getContextPath()%>/resources/img/upload/${arquivo.arquivo}" download="${arquivo.arquivo}">';
-//                            		linhas += '<img src="<%=request.getContextPath()%>/resources/img/docUnknow.png" class="img-fluid img-thumbnail">';
-//                            	linhas += '</a>';
-//                            }
-//                    		linhas += '</div>';
-//                    	});
-//                    }
+                    if (postagem[i].listaArquivo.length > 0){
+                    	
+                    	postagem[i].listaArquivo.forEach(function(arquivo){
+                    		
+                    		linhas += '<div class="col-6 col-lg-2 mb-1">';
+                    		
+                    		if(arquivo.arquivo.endsWith('.png') || arquivo.arquivo.endsWith('.jpg') || arquivo.arquivo.endsWith('.jpeg')){
+                    			linhas += "<a href='<%=request.getContextPath()%>/resources/img/upload/"+arquivo.arquivo+"' download='"+arquivo.arquivo+"'>";
+                    			linhas += '<img src="<%=request.getContextPath()%>/resources/img/image.png" class="img-fluid img-thumbnail">';
+                    			linhas += '</a>';
+                           	} else if(arquivo.arquivo.endsWith('.pdf') || arquivo.arquivo.endsWith('.doc') || arquivo.arquivo.endsWith('.docx') || arquivo.arquivo.endsWith('.odt') || arquivo.arquivo.endsWith('.xlsx') || arquivo.arquivo.endsWith('.ods') || arquivo.arquivo.endsWith('.pptx') || arquivo.arquivo.endsWith('.ppt') || arquivo.arquivo.endsWith('.odp')){
+                           		linhas += '<a href="<%=request.getContextPath()%>/resources/img/upload/'+arquivo.arquivo+'" download="'+arquivo.arquivo+'">';
+                               	linhas += '<img src="<%=request.getContextPath()%>/resources/img/doc.png" class="img-fluid img-thumbnail">';
+                               	linhas += '</a>';
+                            } else {
+                            	linhas += '<a href="<%=request.getContextPath()%>/resources/img/upload/'+arquivo.arquivo+'" download="'+arquivo.arquivo+'">';
+                            	linhas += '<img src="<%=request.getContextPath()%>/resources/img/docUnknow.png" class="img-fluid img-thumbnail">';
+                            	linhas += '</a>';
+                            }
+                    		linhas += '</div>';
+                    	});
+                    }
                     linhas += '</div>';
                     linhas += '</div>';
                     linhas += '</div>';
                     linhas += '</div>';
+                    
+                    if($("#feed:last"))
                     $("#feed").append(linhas);
             	});
             });
+        }
         }
     });
     </script>

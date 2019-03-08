@@ -20,24 +20,15 @@
 	<nav class="navbar bg-white border">
 		<div class="container">
 
-			<a class="logo" href="/educa-mais/usuario">
-				<span class="text-roxo">
-					<img alt="" class="rounded mx-auto d-block logo" src="<%=request.getContextPath()%>/resources/img/logo3.png"/>
-				</span>
+			<a class="navbar-brand p-0" href="/educa-mais/usuario">
+				<img src="<%=request.getContextPath()%>/resources/img/logo3.png" width="100"/>
 			</a>
 
-
-			<div class="d-flex  d-block">
-				<img alt="" class="rounded mx-auto d-block" src="<%=request.getContextPath()%>/resources/img/trophy_gold.png" width="50" height="50" />
-				<span class="badge badge-white py-3">9</span>
-				<img alt="" class="rounded mx-auto d-block" src="<%=request.getContextPath()%>/resources/img/trophy_silver.png" width="50" height="50" />
-				<span class="badge badge-white py-3">8</span>
-				<img alt="" class="rounded mx-auto d-block" src="<%=request.getContextPath()%>/resources/img/trophy_bronze.png" width="50" height="50" />
-				<span class="badge badge-white py-3">7</span>
+			<div class="font-2">
+				<a class="nav-link d-none d-sm-block text-roxo p-0 text-center" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Minha Pontuação: ${pontuacao.get(0)}</a>
 			</div>
-			<div class="row font-3">
 
-				<a class="nav-link d-none d-sm-block text-roxo" href="#">1926 pts</a>
+			<div class="row font-2">
 
 				<!-- Dropdown-->
 				<div class="nav-item dropdown">
@@ -49,7 +40,7 @@
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
 						<a class="dropdown-item font-1" href="/educa-mais/turma/minhasturmas">Minhas Turmas</a>
-						<a class="dropdown-item d-sm-none font-1" href="#">Ranking</a>
+						<a class="dropdown-item d-sm-none font-1" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Ranking</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
@@ -61,6 +52,8 @@
 			</div>
 		</div>
 	</nav>
+	
+	
 	<div class="container my-5">
 
 		<!-- MENU SECUNDÁRIO -->

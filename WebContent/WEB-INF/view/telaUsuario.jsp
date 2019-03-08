@@ -5,30 +5,37 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Educa+</title>
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Educa+</title>
+    
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/fontawesome/css/all.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 </head>
 <body>
 
 	<!-- MENU PRINCIPAL -->
-    <nav class="navbar border">
-        <a class="nav-brand" href="/educa-mais/usuario">
-            Educa+
-        </a>
-        <div class="row">
+    <nav class="navbar bg-white border">
+		<div class="container">
+
+			<a class="navbar-brand p-0" href="/educa-mais/usuario">
+				<img src="<%=request.getContextPath()%>/resources/img/logo3.png" width="100"/>
+			</a>
+			<div class="row">
             <div class="col-auto d-none d-sm-block">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#criarTurma">Criar Turma</a>
+                <a class="nav-link text-roxo p-0 font-2" href="#" data-toggle="modal" data-target="#criarTurma">Criar Turma</a>
             </div>
             
             <div class="col-auto d-none d-sm-block ">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#participar">Participar</a>
+                <a class="nav-link text-roxo p-0 font-2" href="#" data-toggle="modal" data-target="#participar">Participar</a>
             </div>
 
             <div class="col-auto">
                 <!-- Dropdown-->
                 <div class="nav-item dropdown">
 
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle text-roxo p-0 font-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 
                         ${usuario.nome}
                     </a>
@@ -48,6 +55,7 @@
                 </div>
             </div>
         </div>
+		</div>
 	</nav>
 
 	<div class="container-fluid">
@@ -61,7 +69,7 @@
 					<div class="col-md-4">
 						
 						<div class="card border-secondary mb-3">
-							<div class="card-body bg-transparent border-muted text-center">
+							<div class="card-body bg-transparent border-muted text-center p-2">
 
 								${ turma.nomeTurma }
 
@@ -92,7 +100,7 @@
 					<div class="col-md-4">
 	
 						<div class="card border-secondary mb-3">
-							<div class="card-header bg-transparent border-muted text-center">
+							<div class="card-header bg-transparent border-muted text-center p-2">
 								${ turma.nomeTurma }</div>
 							<div class="card-footer">
 								<div class="text-center d-flex justify-content-around">

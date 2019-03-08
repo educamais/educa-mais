@@ -31,31 +31,29 @@
     <nav class="navbar bg-white border">
 		<div class="container">
 
-			<a class="logo" href="/educa-mais/usuario">
-				<img class="logo" src="<%=request.getContextPath()%>/resources/img/logo3.png"/>
+			<a class="navbar-brand p-0" href="/educa-mais/usuario">
+				<img src="<%=request.getContextPath()%>/resources/img/logo3.png" width="100"/>
 			</a>
 
-			<div class="row font-3">
-
-				<a class="nav-link d-none d-sm-block text-roxo" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
+				<div class="font-2">
+					<a class="nav-link d-none d-sm-block text-roxo p-0 text-center" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
+				</div>
+				
 				<!-- Dropdown-->
 				<div class="nav-item dropdown">
 
-					<a class="nav-link dropdown-toggle text-roxo" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> ${usuario.nome} </a>
+					<a class="nav-link dropdown-toggle text-roxo p-0 font-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> ${usuario.nome} </a>
 
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
 						<a class="dropdown-item font-1" href="/educa-mais/turma/minhasturmas">Minhas Turmas</a>
-						<a class="dropdown-item d-sm-none font-1" href="#">Ranking</a>
-						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#codigoTurma">Código</a>
+						<a class="dropdown-item font-1" href="/educa-mais/professor/desempenho?idTurma=${turma.idTurma}">Desempenho</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
 					</div>
-
-				</div>
 			</div>
 		</div>
 	</nav>
@@ -189,7 +187,6 @@
 	</div>
 	<c:import url="/WEB-INF/view/modais/alterarNome.jsp"/>
 	<c:import url="/WEB-INF/view/modais/alterarSenha.jsp"/>
-	<c:import url="/WEB-INF/view/modais/codigoTurma.jsp"/>
 	<c:import url="/WEB-INF/view/modais/avisoAlunoObrigatorio.jsp"/>
 	
 	<script src="<%=request.getContextPath()%>/resources/jquery.js"></script>

@@ -33,7 +33,7 @@ public class AlunoPostagemDao {
 		return listaAluno;
 	}
 	
-	public List<Postagem> getListaPostagem(Usuario aluno, Turma turma){
+	public List<Postagem> getListaPostagem(Usuario aluno, Turma turma, int inicio){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		
@@ -41,6 +41,8 @@ public class AlunoPostagemDao {
 		query.setParameter("paramAluno", aluno);
 		query.setParameter("paramTurma", turma);
 		
+		query.setFirstResult(inicio);
+		query.setMaxResults(5);
 		List<AlunoPostagem> result = query.getResultList();
 		
 		manager.close();
@@ -63,7 +65,7 @@ public class AlunoPostagemDao {
 		return listaPostagem;
 	}
 	
-	public void salvar(Usuario usuario, Postagem postagem) {
+public void salvar(Usuario usuario, Postagem postagem) {
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
@@ -80,7 +82,7 @@ public class AlunoPostagemDao {
 		
 		manager.close();
 		factory.close();
-	}
+}
 	
 	public void remover(Postagem postagem){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);

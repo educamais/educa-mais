@@ -3,6 +3,7 @@ package br.com.educamais.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.MediaType;
@@ -60,8 +61,12 @@ public class UsuarioController {
 		
 		if(turma != null) {
 			AlunoPostagemDao alunoPostagemDao = new AlunoPostagemDao();
-			List<Postagem> listaPostagem = alunoPostagemDao.getListaPostagem(usuario, turma);
-
+			List<Postagem> listaPostagem = alunoPostagemDao.getListaPostagem(usuario, turma, 0);
+			
+			AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+			List<AlunoNota> pontuacao = alunoNotaDao.getPontuacao(usuario, turma);
+			
+			model.addAttribute("pontuacao", pontuacao);
 			model.addAttribute("usuario", usuario);
 			model.addAttribute("turma", turma);
 			model.addAttribute("listaPostagem", listaPostagem);
@@ -80,13 +85,21 @@ public class UsuarioController {
 		TurmaDao dao = new TurmaDao();
 		Turma turma = dao.buscarPorId(id);
 		
-		AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
+		AlunoNotaDao alunoTurmaDao = new AlunoNotaDao();
+		List<AlunoNota> listaAlunoNota = alunoTurmaDao.getListaAlunoNota(turma, null, usuario);
 		
 		if(turma != null) {
 			for(Usuario u : alunoTurmaDao.getListaAluno(turma)) {
 				if(u.getIdUsuario() == usuario.getIdUsuario()) {
+					
+					AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+					List<AlunoNota> pontuacao = alunoNotaDao.getPontuacao(usuario, turma);
+					
+					model.addAttribute("pontuacao", pontuacao);
 					model.addAttribute("turma", turma);
 					model.addAttribute("usuario", usuario);
+					model.addAttribute("listaAlunoNota", listaAlunoNota);
+					
 					return "aluno/telaAlunoAtividade";
 				}
 			}
@@ -110,10 +123,14 @@ public class UsuarioController {
 								
 			AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
 			List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
+			
+			AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+			List<AlunoNota> pontuacao = alunoNotaDao.getPontuacao(usuario, turma);
 
 			model.addAttribute("usuario", usuario);
 			model.addAttribute("turma", turma);
 			model.addAttribute("listaAluno", listaAluno);
+			model.addAttribute("pontuacao", pontuacao);
 			return "aluno/telaAlunoParticipantes";
 		}
 		model.addAttribute("link", "usuario");
@@ -121,7 +138,6 @@ public class UsuarioController {
 		return "mensagem";
 		
 	}
-	
 	
 	@RequestMapping("professor/mural")
 	public String professorMural(@RequestParam("id") int id, HttpSession session, Model model) {
@@ -181,7 +197,6 @@ public class UsuarioController {
 		return "mensagem";
 	}
 	
-	
 	@RequestMapping("professor/participantes")
 	public String professorParticipantes(@RequestParam("id") int id, HttpSession session, Model model) {
 		
@@ -207,7 +222,6 @@ public class UsuarioController {
 		return "mensagem";
 	}
 	
-	
 	@RequestMapping("aluno/ranking")
 	public String ranking(@RequestParam int idTurma, HttpSession session, Model model) {
 		
@@ -219,7 +233,10 @@ public class UsuarioController {
 		if(turma != null) {
 			
 			AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
-			List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(turma, null);
+			List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(turma, null, null);
+			List<AlunoNota> pontuacao = alunoNotaDao.getPontuacao(usuario, turma);
+			
+			model.addAttribute("pontuacao", pontuacao);
 			model.addAttribute("turma", turma);
 			model.addAttribute("listaAlunoNota", listaAlunoNota);
 			return "aluno/ranking";
@@ -228,7 +245,6 @@ public class UsuarioController {
 		model.addAttribute("mensagem", "Esta turma não existe!");
 		return "mensagem";
 	}
-	
 	
 	@RequestMapping("professor/desempenho")
 	public String desempenho(@RequestParam int idTurma, HttpSession session, Model model) {
@@ -241,7 +257,7 @@ public class UsuarioController {
 		if(turma != null) {
 			if(turma.getProfessor().getIdUsuario() == usuario.getIdUsuario()) {
 				AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
-				List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(turma, null);
+				List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(turma, null, null);
 				
 				AtividadeDao atividadeDao =  new AtividadeDao();
 				List<Atividade> listaAtividade = atividadeDao.getlistAtividade(turma, null);
@@ -268,27 +284,25 @@ public class UsuarioController {
 		Turma turma = turmaDao.buscarPorId(idTurma);
 		
 		AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
-		List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(turma, pesquisarNome);
+		List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(turma, pesquisarNome, null);
 		
 		return new Gson().toJson(listaAlunoNota);
 	}
 	
-	
 	@RequestMapping("alterarnome")
-	public String alterarNome(@RequestParam Integer idUsuario, @RequestParam Integer idTurma, @RequestParam String nome, HttpSession session) {
+	public String alterarNome(@RequestParam Integer idUsuario, @RequestParam Integer idTurma, @RequestParam String nome, HttpSession session, HttpServletRequest request) {
 		
 		UsuarioDao usuarioDao = new UsuarioDao();
 		Usuario usuario = usuarioDao.buscarPorId(idUsuario);
 		usuario.setNome(nome);
 		usuarioDao.atualizar(usuario);
 		session.setAttribute("usuario", usuario);
-		
-		return "redirect:usuario";
+		String referer = request.getHeader("Referer");
+	    return "redirect:"+ referer;
 	}
 	
-	
 	@RequestMapping("alterarsenha")
-	public String alterarSenha(@RequestParam Integer idUsuario, @RequestParam Integer idTurma, @RequestParam String senhaAtual, @RequestParam String senhaNova, HttpSession session) {
+	public String alterarSenha(@RequestParam Integer idUsuario, @RequestParam Integer idTurma, @RequestParam String senhaAtual, @RequestParam String senhaNova, HttpSession session, HttpServletRequest request) {
 		
 		UsuarioDao usuarioDao = new UsuarioDao();
 		Usuario usuario = usuarioDao.buscarPorId(idUsuario);
@@ -304,7 +318,8 @@ public class UsuarioController {
 			session.setAttribute("usuario", usuario);
 		}
 	
-		return "redirect:usuario";
+		String referer = request.getHeader("Referer");
+	    return "redirect:"+ referer;
 	}
 	
 	@RequestMapping("logout")
@@ -312,4 +327,5 @@ public class UsuarioController {
 		session.invalidate();
 		return "index";
 	}
+
 }
