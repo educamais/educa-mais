@@ -174,4 +174,20 @@ public class AtividadeController {
 		model.addAttribute("mensagem", "Esta turma não existe!");
 		return "mensagem";
 	}
+	
+	
+	@RequestMapping(value="atividade/atividades", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String atividades(@RequestParam int idUsuario, @RequestParam int idTurma) {
+		
+		UsuarioDao usuarioDao = new UsuarioDao();
+		Usuario usuario = usuarioDao.buscarPorId(idUsuario);
+		
+		TurmaDao turmaDao = new TurmaDao();
+		Turma turma = turmaDao.buscarPorId(idTurma);
+		
+		AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+		List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(turma, null, usuario);
+		
+		return new Gson().toJson(listaAlunoNota);
+	}
 }

@@ -1,0 +1,7 @@
+@font-face {
+    font-family:releway;
+    src: url('fonts/Releway-Medium.ttf');
+}
+div {
+  font-family: releway;
+}

@@ -17,8 +17,8 @@ function filtrarTabelaRanking() {
 					
 		$(dados).each(function (i) {
 			
-			linhas += "<tr>";
-	    	linhas += "<td>"+ dados[i][0].nome +"</td>";
+			linhas += "<tr onclick='desempenho("+dados[i][0].idUsuario+")'>";
+	    	linhas += "<td>"+ dados[i][0].nome.toUpperCase() +"</td>";
 	    	linhas += "<td>"+ dados[i][1].toFixed(1) +"</td>";
 	    	linhas += "</tr>";
 		});

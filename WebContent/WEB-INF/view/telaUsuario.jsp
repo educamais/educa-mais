@@ -41,15 +41,15 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" href="/educa-mais/usuario">Home</a>                 
-                    	<a class="dropdown-item" href="/educa-mais/turma/minhasturmas">Minhas Turmas</a>
+						<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>                 
+                    	<a class="dropdown-item font-1" href="/educa-mais/turma/minhasturmas">Minhas Turmas</a>
                         <a class="dropdown-item d-sm-none" href="#criarTurma">Criar Turma</a>
                         <a class="dropdown-item d-sm-none" href="#participar">Participar</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
                         <a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/educa-mais/logout">Sair</a>
+                        <a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
 
                     </div>
                 </div>
@@ -69,7 +69,7 @@
 					<div class="col-md-4">
 						
 						<div class="card border-secondary mb-3">
-							<div class="card-body bg-transparent border-muted text-center p-2">
+							<div class="card-body bg-transparent border-muted text-center p-2" id="idB_${turma.idTurma}">
 
 								${ turma.nomeTurma }
 
@@ -77,16 +77,15 @@
 									<div class="nav-item dropdown">
 										<a class="nav-link dropdown-toggle text-roxo p-0 pl-2 pr-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"></a>
 										<div class="dropdown-menu dropdown-menu-right">
-											<a class="dropdown-item font-1" href="#">Editar</a> <a class="dropdown-item font-1" href="/educa-mais/turma/remover?id=${turma.idTurma}">Excluir</a>
+											<a class="dropdown-item font-1" href="/educa-mais/turma/remover?id=${turma.idTurma}">Excluir</a>
 										</div>
 									</div>
 								</div>
 							</div>
 
-							<div class="card-footer">
+							<div class="card-footer" id="idF_${turma.idTurma}">
 								<div class="text-center d-flex justify-content-around">
-									<a class=""
-										href="/educa-mais/professor/mural?id=${turma.idTurma }">Entrar</a>
+									<a href="/educa-mais/professor/mural?id=${turma.idTurma }">Entrar</a>
 								</div>
 							</div>
 						</div>
@@ -119,6 +118,7 @@
 	<c:import url="/WEB-INF/view/modais/criarTurma.jsp"/>
 	<c:import url="/WEB-INF/view/modais/alterarNome.jsp"/>
 	<c:import url="/WEB-INF/view/modais/alterarSenha.jsp"/>
+	<c:import url="/WEB-INF/view/modais/alterarNomeTurma.jsp"/>
 
 	<script src="<%=request.getContextPath()%>/resources/jquery.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.bundle.min.js"></script>

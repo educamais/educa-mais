@@ -36,39 +36,34 @@ public class PostagemController {
 	public String salvar(@RequestParam("id") int idTurma, 
 		@RequestParam("file") MultipartFile[] files, 
 		@RequestParam("aluno") int[] idAlunos,
-		Postagem post) {
+		Postagem post,
+		HttpSession session,
+		Model model) {
+		
+		Usuario usuario = (Usuario)session.getAttribute("usuario");
 		
 		TurmaDao dao = new TurmaDao();
 		Turma turma = dao.buscarPorId(idTurma);
 		
-		post.setTurma(turma);
-		Date date = new Date();
-		post.setDataPostagem(date);
+		if(turma != null) {
+			if(usuario.getIdUsuario() == turma.getProfessor().getIdUsuario()) {
+				
+				post.setTurma(turma);
+				Date date = new Date();
+				post.setDataPostagem(date);
+				
+				PostagemDao postDao = new PostagemDao();
+				postDao.salvar(post, idAlunos, files);
 		
-		PostagemDao postDao = new PostagemDao();
-		postDao.salvar(post);
-		
-		Postagem postagem = postDao.buscarPostagem(post);
-		
-		AlunoPostagemDao alunoPostagemDao = new AlunoPostagemDao();
-		UsuarioDao usuarioDao = new UsuarioDao();
-		
-		for(int id : idAlunos) {
-			Usuario aluno = usuarioDao.buscarPorId(id);
-			alunoPostagemDao.salvar(aluno, postagem);
-		}
-		
-		if(files.length != 0) {
-			ArquivoPostagemDao arquivoPostagemDao = new ArquivoPostagemDao();
-			for(MultipartFile file : files) {
-				if (Util.fazerUploadImagem(file)) {
-					String arquivo = Util.obterMomentoAtual() + " - " + file.getOriginalFilename();
-					arquivoPostagemDao.salvar(post, arquivo);
-				}
+				return "redirect:/professor/mural?id="+idTurma;
 			}
+			model.addAttribute("link", "usuario");
+			model.addAttribute("mensagem", "Você não é professor dessa turma!");
+			return "mensagem";
 		}
-		
-		return "redirect:/professor/mural?id="+idTurma;
+		model.addAttribute("link", "usuario");
+		model.addAttribute("mensagem", "Esta turma não existe!");
+		return "mensagem";
 	}
 	
 	@RequestMapping("postagem/alterar")
@@ -110,6 +105,7 @@ public class PostagemController {
 			return "redirect:/professor/mural?id="+idTurma;
 		}
 	}
+
 	
 	@RequestMapping("postagem/remove")
 	public String remover(@RequestParam("id") int idPostagem) {

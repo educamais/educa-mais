@@ -25,13 +25,13 @@
 			</a>
 
 				<div class="font-2">
-					<a class="nav-link d-none d-sm-block text-roxo p-0 text-center" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
+					<a class="nav-link d-none d-sm-block p-0 text-center" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
 				</div>
 				
 				<!-- Dropdown-->
 				<div class="nav-item dropdown">
 
-					<a class="nav-link dropdown-toggle text-roxo p-0 font-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> ${usuario.nome} </a>
+					<a class="nav-link dropdown-toggle p-0 font-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> ${usuario.nome} </a>
 
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
@@ -53,17 +53,17 @@
         <!-- MENU SECUNDÃRIO -->
         <ul class="nav nav-tabs nav-justified" id="lista-menu">
             <li class="nav-item">
-                <a class="nav-link border bg-roxo text-white font-weight-bold" style="font-family:Gravity;" href="mural?id=${turma.idTurma}">
+                <a class="nav-link border font-weight-bold" style="font-family:Gravity;" href="mural?id=${turma.idTurma}">
                     Mural
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link border bg-roxo text-white font-weight-bold" id="participanteTab" style="font-family:Gravity;" href="atividade?id=${turma.idTurma}">
+                <a class="nav-link border font-weight-bold" id="participanteTab" style="font-family:Gravity;" href="atividade?id=${turma.idTurma}">
                     Atividades
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-roxo border font-weight-bold" style="font-family:Gravity;" href="participantes?id=${turma.idTurma}">
+                <a class="nav-link border font-weight-bold" style="font-family:Gravity;" href="participantes?id=${turma.idTurma}">
                     Participantes
                 </a>
             </li>
@@ -80,7 +80,7 @@
                             <!-- TABELA PROFESSORES -->
                             <table class="table table-striped">
                                 
-                                <thead class="thead-rosa">
+                                <thead>
                                     <tr>
                                         <th scope="col">
                                             PROFESSOR
@@ -99,7 +99,7 @@
                        	 	<!-- TABELA ALUNOS -->
 							<table class="table table-striped">
                                 
-                                <thead class="thead-rosa">
+                                <thead>
                                     <tr>
                                         <th scope="col">
                                             ALUNOS

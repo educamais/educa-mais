@@ -29,8 +29,8 @@
 			</div>
 
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-				<button type="submit" class="btn btn-primary" id="btn_alterarSenha">Alterar Senha</button>
+				<button type="button" class="btn" data-dismiss="modal">Fechar</button>
+				<button type="submit" class="btn" id="btn_alterarSenha">Alterar Senha</button>
 			</div>
 		</div>
 	</div>

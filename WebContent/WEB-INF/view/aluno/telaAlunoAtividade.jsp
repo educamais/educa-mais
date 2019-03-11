@@ -26,7 +26,7 @@
 			</a>
 
 			<div class="font-2">
-				<a class="nav-link d-none d-sm-block text-roxo p-0 text-center" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Minha Pontuação: ${pontuacao.get(0)}</a>
+				<a class="nav-link d-none d-sm-block p-0 text-center" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Minha Pontuação: ${pontuacao.get(0)}</a>
 			</div>
 
 			<div class="row font-2">
@@ -34,7 +34,7 @@
 				<!-- Dropdown-->
 				<div class="nav-item dropdown">
 
-					<a class="nav-link dropdown-toggle text-roxo" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 						 ${usuario.nome}
 					</a>
 
@@ -58,17 +58,17 @@
 		<!-- MENU SECUNDÁRIO -->
 		<ul class="nav nav-tabs nav-justified" id="lista-menu">
 			<li class="nav-item">
-				<a class="nav-link bg-roxo text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/mural?id=${turma.idTurma}">
+				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/mural?id=${turma.idTurma}">
 					Mural
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link text-roxo border font-weight-bold" style="font-family: Gravity;" href="#">
+				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="#">
 					Atividades
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link bg-roxo text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/participantes?id=${turma.idTurma}">
+				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/participantes?id=${turma.idTurma}">
 					Participantes
 				</a>
 			</li>
@@ -81,8 +81,8 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th scope="col">Nome &nbsp;<i class="fas fa-sort"></i></th>
-								<th scope="col">Data &nbsp;<i class="fas fa-sort"></i></th>
+								<th scope="col">Nome</th>
+								<th scope="col">Data</th>
 								<th scope="col" style="vertical-align: middle; text-align: center;">Nota</th>
 							</tr>
 						</thead>

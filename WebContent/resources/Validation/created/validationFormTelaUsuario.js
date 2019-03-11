@@ -17,4 +17,13 @@ $(document).ready(function(){
             }
         }
     });
+	
+	$("#alterarNomeTurmaForm").validate({
+		rules : {
+			nomeTurma : {
+				required : true,
+                rangelength : [3,45]
+			}
+		}
+	});
 });

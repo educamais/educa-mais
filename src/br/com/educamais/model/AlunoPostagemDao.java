@@ -12,25 +12,23 @@ public class AlunoPostagemDao {
 
 	private static final String PERSISTENCE_UNIT = "educa-mais";
 
-	public List<Usuario> getListaAluno(Postagem postagem){
+	public List<AlunoPostagem> getListaAluno(Postagem postagem){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		
 		Query query = manager.createQuery("FROM AlunoPostagem WHERE postagem = :paramPostagem");
 		query.setParameter("paramPostagem", postagem);
 		
-		List<AlunoPostagem> result = query.getResultList();
+		List<AlunoPostagem> listaAlunoPostagem = query.getResultList();
 		
 		manager.close();
 		factory.close();
 		
-		List<Usuario> listaAluno = new ArrayList<Usuario>();
-		
-		for(AlunoPostagem alunoPostagem : result) {
-			listaAluno.add(alunoPostagem.getAluno());
+		if(listaAlunoPostagem.isEmpty()) {
+			return null;
 		}
 		
-		return listaAluno;
+		return listaAlunoPostagem;
 	}
 	
 	public List<Postagem> getListaPostagem(Usuario aluno, Turma turma, int inicio){

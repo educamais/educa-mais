@@ -26,9 +26,14 @@ public class TurmaController {
 		Usuario professor = (Usuario) session.getAttribute("usuario");
 		turma.setProfessor(professor);
 		
-		turmaDao.salvar(turma);
+		if(turmaDao.verificarExistencia(turma) == null) {
 		
-		return "redirect:/usuario";
+			turmaDao.salvar(turma);
+			return "redirect:/usuario";
+		}
+		model.addAttribute("mensagem", "Não pode criar duas turmas com o mesmo nome!");
+		model.addAttribute("link", "usuario");
+		return "mensagem";
 	}
 	
 	@RequestMapping("turma/participar")
@@ -66,7 +71,6 @@ public class TurmaController {
 		List<Turma> turmasProfessor = turmaDao.listar(usuario);
 		
 		model.addAttribute("turmasProfessor", turmasProfessor);
-		model.addAttribute("usuario", usuario);
 		return "telaUsuario";
 	}
 	

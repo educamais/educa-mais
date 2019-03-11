@@ -28,8 +28,8 @@ function carregaTabelaAlterarNota(idAtividade) {
 		});
 		linhas += "</tbody>";
 		linhas += "</table>";
-		linhas += "<button id='btnAlterar' class='btn btn-primary my-2 mr-1' type='submit'>Alterar</button>";
-		linhas += "<button id='btnVoltar' class='btn btn-secondary my-2' type='button' onclick='carregaDiv()'>Cancelar</button>";
+		linhas += "<button id='btnAlterar' class='btn my-2 mr-1' type='submit'>Alterar</button>";
+		linhas += "<button id='btnVoltar' class='btn my-2' type='button' onclick='carregaDiv()'>Cancelar</button>";
 		linhas += "</form>"
 		$("#crudAtividade").html(linhas);
 	});

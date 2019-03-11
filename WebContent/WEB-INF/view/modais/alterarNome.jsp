@@ -20,8 +20,8 @@
 			</div>
 
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-				<button type="submit" class="btn btn-primary" id="btn_alterarNome">Alterar Nome</button>
+				<button type="submit" class="btn" data-dismiss="modal">Fechar</button>
+				<button type="submit" class="btn" id="btn_alterarNome">Alterar Nome</button>
 			</div>
 		</div>
 	</div>

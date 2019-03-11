@@ -15,7 +15,7 @@ function veAtividade(idAtividade){
 			
 			linhas += "<tr id='tr_"+idAtividade+"'>";
 	    	linhas += "<td colspan='2' style='vertical-align: middle;'>"+aluno[i].aluno.nome.toUpperCase()+"</td>";
-	    	linhas += "<td style='vertical-align: middle; text-align: center;'>"+aluno[i].nota+"</td>";
+	    	linhas += "<td >"+aluno[i].nota+"</td>";
 	    	linhas += "</tr>";
 		});
 		

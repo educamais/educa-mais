@@ -16,8 +16,8 @@
 			</div>
 
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-				<button type="button" class="btn btn-primary" id="btn_participar">Participar</button>
+				<button type="button" class="btn" data-dismiss="modal">Fechar</button>
+				<button type="button" class="btn" id="btn_participar">Participar</button>
 			</div>
 
 		</div>

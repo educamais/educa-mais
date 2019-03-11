@@ -25,7 +25,7 @@
 			</a>
 
 			<div class="font-2">
-				<a class="nav-link d-none d-sm-block text-roxo p-0 text-center" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Minha Pontuação: ${pontuacao.get(0)}</a>
+				<a class="nav-link d-none d-sm-block p-0 text-center" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Minha Pontuação: ${pontuacao.get(0)}</a>
 			</div>
 
 			<div class="row font-2">
@@ -33,7 +33,7 @@
 				<!-- Dropdown-->
 				<div class="nav-item dropdown">
 
-					<a class="nav-link dropdown-toggle text-roxo" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 						 ${usuario.nome}
 					</a>
 
@@ -58,17 +58,17 @@
 		<!-- MENU SECUNDÁRIO -->
 		<ul class="nav nav-tabs nav-justified" id="lista-menu">
 			<li class="nav-item">
-				<a class="nav-link text-roxo border font-weight-bold" style="font-family: Gravity;" href="#">
+				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="#">
 					Mural
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link bg-roxo text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/atividades?id=${turma.idTurma}">
+				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/atividades?id=${turma.idTurma}">
 					Atividades
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link bg-roxo text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/participantes?id=${turma.idTurma}">
+				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/participantes?id=${turma.idTurma}">
 					Participantes
 				</a>
 			</li>
@@ -77,7 +77,7 @@
 		<!-- CORPO DO SITE -->
 		<div class="tab-content bg-white">
 
-			<div class="tab-pane  container active border shadow p-4" id="mural">
+			<div class="tab-pane container active border shadow p-4" id="mural">
 
 				<!-- FEED 3 -->
 				<div class="capsula" id="feed">
@@ -86,7 +86,7 @@
 	                    
 	                    <ul class="nav nav-tabs">
 	                        <li class="nav-item">
-	                            <a class="nav-link active border font-weight-bold bg-azulc text-white" style="font-family:Gravity;" data-toggle="tab" id="titulo_postagem">
+	                            <a class="nav-link border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" id="titulo_postagem">
 	                                ${postagem.tituloPostagem}
 	                            </a>
 	                        </li>

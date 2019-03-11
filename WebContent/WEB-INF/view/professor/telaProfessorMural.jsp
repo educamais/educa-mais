@@ -14,35 +14,29 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
 </head>
 <body>
-    
     <!-- MENU PRINCIPAL -->
-    <nav class="navbar bg-white border">
+    <nav class="navbar bg-one border">
 		<div class="container">
 
-			<a class="navbar-brand p-0" href="/educa-mais/usuario">
-				<img src="<%=request.getContextPath()%>/resources/img/logo3.png" width="100"/>
-			</a>
+			<a class="navbar-brand p-0 font-2 font-weight-bold text-white" href="/educa-mais/usuario">EDUCA+</a>
 
-				<div class="font-2">
-					<a class="nav-link d-none d-sm-block text-roxo p-0 text-center" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
+			<div class="font-2">
+				<a class="nav-link d-none d-sm-block p-0 text-center text-white" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
+			</div>
+			
+			<!-- Dropdown-->
+			<div class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle p-0 font-2 text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> ${usuario.nome} </a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
+					<a class="dropdown-item font-1" href="/educa-mais/turma/minhasturmas">Minhas Turmas</a>
+					<a class="dropdown-item font-1" href="/educa-mais/professor/desempenho?idTurma=${turma.idTurma}">Desempenho</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
+					<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
 				</div>
-				
-				<!-- Dropdown-->
-				<div class="nav-item dropdown">
-
-					<a class="nav-link dropdown-toggle text-roxo p-0 font-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> ${usuario.nome} </a>
-
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
-						<a class="dropdown-item font-1" href="/educa-mais/turma/minhasturmas">Minhas Turmas</a>
-						<a class="dropdown-item font-1" href="/educa-mais/professor/desempenho?idTurma=${turma.idTurma}">Desempenho</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
-						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
-					</div>
-
 			</div>
 		</div>
 	</nav>
@@ -52,17 +46,17 @@
         <!-- MENU SECUNDÁRIO -->
         <ul class="nav nav-tabs nav-justified" id="lista-menu">
             <li class="nav-item">
-                <a class="nav-link active border text-roxo font-weight-bold" style="font-family:Gravity;" href="mural?id=${turma.idTurma}">
+                <a class="nav-link text-one border font-weight-bold" style="font-family:Gravity;" href="#">
                     Mural
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link border bg-roxo text-white font-weight-bold" id="participanteTab" style="font-family:Gravity;" href="atividade?id=${turma.idTurma}">
+                <a class="nav-link text-white bg-one border font-weight-bold" id="participanteTab" style="font-family:Gravity;" href="atividade?id=${turma.idTurma}">
                     Atividades
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link border bg-roxo text-white font-weight-bold" style="font-family:Gravity;" href="participantes?id=${turma.idTurma}">
+                <a class="nav-link text-white bg-one border font-weight-bold" style="font-family:Gravity;" href="participantes?id=${turma.idTurma}">
                     Participantes
                 </a>
             </li>
@@ -88,7 +82,7 @@
                             <div class="col-sm-4">
                             
                             	<!-- Button trigger modal -->
-								<button type="button" class="btn btn-rosa btn-block" data-toggle="modal" data-target="#alunos">Lista de alunos</button>
+								<button type="button" class="btn btn-three btn-block" data-toggle="modal" data-target="#alunos">Lista de alunos</button>
 									
 								<!-- Participantes Modal -->
 								<div class="modal fade" id="alunos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -131,7 +125,7 @@
 						</div>
 
 						<div class="d-flex justify-content-end">
-                            <button id="btnPublicar" type="submit" class="btn btn-rosa btn-block">Publicar</button>
+                            <button id="btnPublicar" type="submit" class="btn btn-three btn-block">Publicar</button>
                         </div>
                     </form>
                 </div>
@@ -147,7 +141,7 @@
 	                    
 	                    <ul class="nav nav-tabs">
 	                        <li class="nav-item">
-	                            <a class="nav-link active border font-weight-bold bg-azulc text-white" style="font-family:Gravity;" data-toggle="tab" id="titulo_postagem">
+	                            <a class="nav-link bg-two text-white border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" id="titulo_postagem">
 	                                ${postagem.tituloPostagem}
 	                            </a>
 	                        </li>
@@ -156,7 +150,7 @@
 	                    <div class="card gedf-card">
 	                        <div class="card-body"  id="descricao_postagem">
 	                       		<div class="float-right">
-									<button type="button" class="btn btn-link dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<button type="button" class="btn btn-link dropdown-toggle p-0 text-two" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<i class="fa fa-ellipsis-h"></i>
 									</button>
 									<div class="dropdown-menu">
@@ -206,7 +200,7 @@
         </div>
 	</div>
 	</div>
-
+	
 	<c:import url="/WEB-INF/view/modais/alterarNome.jsp"/>
 	<c:import url="/WEB-INF/view/modais/alterarSenha.jsp"/>
 	<c:import url="/WEB-INF/view/modais/avisoAlunoObrigatorio.jsp"/>
@@ -293,7 +287,7 @@
 	    	
 	    	linhas = "<div class='card-header'>";
 	    	linhas += "<div class='col-lx-6'>";
-	    	linhas += '<button type="button" class="btn btn-rosa btn-block" data-toggle="modal" data-target="#alterarAlunos">Lista de alunos</button>';
+	    	linhas += '<button type="button" class="btn btn-three btn-block" data-toggle="modal" data-target="#alterarAlunos">Lista de alunos</button>';
 	    	linhas += '<div class="modal fade" id="alterarAlunos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
 	    	linhas += '<div class="modal-dialog" role="document">';
 	    	linhas += '<div class="modal-content">';
@@ -327,7 +321,7 @@
 	    	linhas += '<button id="btnCancelar" type="button" class="btn btn-block" onclick="cancelar('+idPostagem+')">Cancelar</button>';
 	    	linhas += "</div>";
 	    	linhas += "<div class='col-6'>";
-	    	linhas += '<button id="btnPublicar" type="button" onclick="validaAluno()" class="btn btn-rosa btn-block">Publicar</button>';
+	    	linhas += '<button id="btnPublicar" type="button" onclick="validaAluno()" class="btn btn-three btn-block">Publicar</button>';
 	    	linhas += "</div>";
 	    	linhas += "</div>";
 	    	linhas += "</div>";
@@ -355,7 +349,7 @@
             		linhas += '<div class="mb-3 feed" id="id_'+postagem[i].idPostagem+'">';
             		linhas += '<ul class="nav nav-tabs">';
             		linhas += '<li class="nav-item">';
-            		linhas += '<a class="nav-link active border font-weight-bold bg-azulc text-white" style="font-family:Gravity;" data-toggle="tab" id="titulo_postagem">';
+            		linhas += '<a class="nav-link active bg-two text-white border font-weight-bold bg-azulc text-white" style="font-family:Gravity;" data-toggle="tab" id="titulo_postagem">';
             		linhas += postagem[i].tituloPostagem;
             		linhas += '</a>';
             		linhas += '</li>';
@@ -364,11 +358,11 @@
             		linhas += '<div class="card gedf-card">';
             		linhas += '<div class="card-body"  id="descricao_postagem">';
             		linhas += '<div class="float-right">';
-            		linhas += '<button type="button" class="btn btn-link dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+            		linhas += '<button type="button" class="btn text-two btn-link dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
             		linhas += '<i class="fa fa-ellipsis-h"></i>';
             		linhas += '</button>';
             		linhas += '<div class="dropdown-menu">';
-            		linhas += '<button class="btn btn-link dropdown-item" type="button" onclick="alterarPostagem('+postagem[i].idPostagem+', '+idTurma+', '+postagem[i].turma.professor.idUsuario+')">Editar</button>';
+            		linhas += '<button class="btn btn-link dropdown-item" type="button" onclick="alterarPostagem('+postagem[i].idPostagem+', '+postagem[i].turma.idTurma+', '+postagem[i].turma.professor.idUsuario+')">Editar</button>';
             		linhas += '<div class="dropdown-divider"></div>';
             		linhas += '<a class="dropdown-item" href="/educa-mais/postagem/remove?id='+postagem[i].idPostagem+'">Excluir</a>';
             		linhas += '</div>';

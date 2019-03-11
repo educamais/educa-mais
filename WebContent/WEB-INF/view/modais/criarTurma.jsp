@@ -16,8 +16,8 @@
 			</div>
 
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-				<button type="button" class="btn btn-primary" id="btn_criarTurma">Criar Turma</button>
+				<button type="button" class="btn" data-dismiss="modal">Fechar</button>
+				<button type="button" class="btn" id="btn_criarTurma">Criar Turma</button>
 			</div>
 		</div>
 	</div>

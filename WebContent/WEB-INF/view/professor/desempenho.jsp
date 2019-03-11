@@ -25,13 +25,13 @@
 			</a>
 
 				<div class="font-2">
-					<a class="nav-link d-none d-sm-block text-roxo p-0 text-center" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
+					<a class="nav-link d-none d-sm-block p-0 text-center" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
 				</div>
 				
 				<!-- Dropdown-->
 				<div class="nav-item dropdown">
 
-					<a class="nav-link dropdown-toggle text-roxo p-0 font-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> ${usuario.nome} </a>
+					<a class="nav-link dropdown-toggle p-0 font-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> ${usuario.nome} </a>
 
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
@@ -53,17 +53,17 @@
 		<!-- MENU SECUNDÁRIO -->
 		<ul class="nav nav-tabs nav-justified" id="lista-menu">
 			<li class="nav-item">
-				<a class="nav-link bg-roxo text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/professor/mural?id=${turma.idTurma}">
+				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/professor/mural?id=${turma.idTurma}">
 					Mural
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link bg-roxo text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/professor/atividade?id=${turma.idTurma}">
+				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/professor/atividade?id=${turma.idTurma}">
 					Atividades
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link bg-roxo text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/professor/participantes?id=${turma.idTurma}">
+				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/professor/participantes?id=${turma.idTurma}">
 					Participantes
 				</a>
 			</li>
@@ -71,11 +71,11 @@
 	
 		<div class="container border shadow">
 		  
-			<div class="capsula mb-5 p-5">
+			<div class="mb-5 p-5">
 				<div class="card">
 				
 					<div class="card-header" data-toggle="collapse" data-target="#desempenhoGeral" aria-expanded="true">
-						<h5 class="mb-0  text-center">
+						<h5 class="mb-0 text-center">
 							<button class="btn btn-link"><span class="font-weight-bold" style="font-family: Gravity;">Desempenho Individual</span></button>
 						</h5>
 					</div>
@@ -87,16 +87,23 @@
 									<input type="text" id="pesquisarNome" class="form-control form-control-lg text-center" placeholder="Pesquisar..." required>
 								</div>
 							</div>
+							
+							<div class="grafico">
+								
+								<canvas id="myChart"></canvas>
+								
+							</div>
+							
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th scope="col">Nome &nbsp;<i class="fas fa-sort"></i></th>
-										<th scope="col">Nota &nbsp;<i class="fas fa-sort"></i></th>
+										<th scope="col">Nome</th>
+										<th scope="col">Nota</th>
 									</tr>
 								</thead>
-								<tbody id="desempenhoGeralTBody">
+								<tbody id="ranking">
 									<c:forEach var="alunoNota" items="${listaAlunoNota}">
-										<tr>
+										<tr onclick="desempenho(${alunoNota[0].idUsuario})">
 											<td>${alunoNota[0].nome.toUpperCase()}</td>
 											<td>${alunoNota[1]}</td>
 										</tr>
@@ -143,8 +150,8 @@
 										<table class="table table-striped">
 											<thead>
 												<tr>
-													<th scope="col" colspan="2">Nome &nbsp;<i class="fas fa-sort"></i></th>
-													<th scope="col">Nota &nbsp;<i class="fas fa-sort"></i></th>
+													<th scope="col" colspan="2">Nome</th>
+													<th scope="col">Nota</th>
 												</tr>
 											</thead>
 											<tbody id="tr_${atividade.idAtividade}">
@@ -181,6 +188,75 @@
 	<script src="<%=request.getContextPath()%>/resources/js/filtrarTabelaRanking.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/veAtividade.js"></script>
 	
+	<script src="<%=request.getContextPath()%>/resources/js/Chart.min.js"></script>
+	<script>
+	
+	function desempenho(id){
+		var idUsuario = id;
+		var idTurma = $("#idTurma").val();
+	
+		$.post("/educa-mais/atividade/atividades",{
+			
+			idUsuario : idUsuario,
+			idTurma : idTurma
+			
+		}, function(atividades) {
+			
+			var data = [];
+			var labels = [];
+			
+			atividades.forEach(function(atividade, index) {
+				data[index] = atividade.nota;
+				labels[index] = atividade.atividade.nomeAtividade;
+			});
+			
+			var ctx = document.getElementById("myChart").getContext('2d');
+			var myChart = new Chart(ctx, {
+			    type: 'line',
+			    data: {
+			        labels: labels,
+			        datasets: [{
+			            label: 'Desempenho nas atividades',
+			            data: data,
+			            borderWidth: 2
+			        }]
+			    },
+			    options: {
+			        scales: {
+			            yAxes: [{
+			                ticks: {
+			                    beginAtZero:true
+			                }
+			            }]
+			        }
+			    }
+			});
+		});
+	}
+	
+	var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+	    type: 'line',
+	    data: {
+	        labels: [""],
+	        datasets: [{
+	            label: 'Desempenho nas atividades',
+	            data: [0, 0, 0, 0, 0, 0],
+	            borderWidth: 2
+	        }]
+	    },
+	    options: {
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        }
+	    }
+	});
+	</script>
+	
     <script>
 	    function verAtividade(idAtividade) {
 	    	veAtividade(idAtividade);
@@ -189,15 +265,17 @@
 		$(document).ready(function(){
 			
 			
-			var arrayNota = $("#desempenhoGeralTBody tr td:last-child").text().split(".");
+			var arrayNota = $("#ranking tr td:last-child").text().split(".");
 			var soma = 0;
 				
 			arrayNota.forEach(function(index){
 				soma += parseInt(index);
 			});
+			if(!(isNaN(soma))){
+				$("#desempenhoGeralTotal").text(soma.toFixed(1));
+				$("#desempenhoGeralMedia").text(soma/arrayNota.length);
+			}
 			
-			$("#desempenhoGeralTotal").text(soma.toFixed(1));
-			$("#desempenhoGeralMedia").text(soma/arrayNota.length);
 			
     		$("#pesquisarNome").keyup(function() {
     			filtrarTabelaRanking();

@@ -44,7 +44,6 @@ public class UsuarioController {
 		AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
 		List<Turma> turmasAluno = alunoTurmaDao.getListaTurma(usuario);
 		
-		model.addAttribute("usuario", usuario);
 		model.addAttribute("turmasProfessor", turmasProfessor);
 		model.addAttribute("turmasAluno", turmasAluno);
 		
@@ -60,17 +59,27 @@ public class UsuarioController {
 		Turma turma = turmaDao.buscarPorId(id);
 		
 		if(turma != null) {
-			AlunoPostagemDao alunoPostagemDao = new AlunoPostagemDao();
-			List<Postagem> listaPostagem = alunoPostagemDao.getListaPostagem(usuario, turma, 0);
+			AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
+			List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
 			
-			AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
-			List<AlunoNota> pontuacao = alunoNotaDao.getPontuacao(usuario, turma);
+			for(Usuario aluno : listaAluno) {
+				if(aluno.getIdUsuario() == usuario.getIdUsuario()) {
+					AlunoPostagemDao alunoPostagemDao = new AlunoPostagemDao();
+					List<Postagem> listaPostagem = alunoPostagemDao.getListaPostagem(usuario, turma, 0);
+					
+					AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+					List<AlunoNota> pontuacao = alunoNotaDao.getPontuacao(usuario, turma);
+					
+					model.addAttribute("pontuacao", pontuacao);
+					model.addAttribute("turma", turma);
+					model.addAttribute("listaPostagem", listaPostagem);
+					return "aluno/telaAlunoMural";
+				}
+			}
 			
-			model.addAttribute("pontuacao", pontuacao);
-			model.addAttribute("usuario", usuario);
-			model.addAttribute("turma", turma);
-			model.addAttribute("listaPostagem", listaPostagem);
-			return "aluno/telaAlunoMural";
+			model.addAttribute("link", "usuario");
+			model.addAttribute("mensagem", "Você não é aluno dessa turma!");
+			return "mensagem";
 		}
 		model.addAttribute("link", "usuario");
 		model.addAttribute("mensagem", "Esta turma não existe!");
@@ -82,13 +91,15 @@ public class UsuarioController {
 	public String alunoAtividades(@RequestParam("id") int id, HttpSession session, Model model) {
 		
 		Usuario usuario = (Usuario)session.getAttribute("usuario");
+		
 		TurmaDao dao = new TurmaDao();
 		Turma turma = dao.buscarPorId(id);
 		
-		AlunoNotaDao alunoTurmaDao = new AlunoNotaDao();
-		List<AlunoNota> listaAlunoNota = alunoTurmaDao.getListaAlunoNota(turma, null, usuario);
-		
 		if(turma != null) {
+			
+			AlunoNotaDao alunoTurmaDao = new AlunoNotaDao();
+			List<AlunoNota> listaAlunoNota = alunoTurmaDao.getListaAlunoNota(turma, null, usuario);
+			
 			for(Usuario u : alunoTurmaDao.getListaAluno(turma)) {
 				if(u.getIdUsuario() == usuario.getIdUsuario()) {
 					
@@ -97,7 +108,6 @@ public class UsuarioController {
 					
 					model.addAttribute("pontuacao", pontuacao);
 					model.addAttribute("turma", turma);
-					model.addAttribute("usuario", usuario);
 					model.addAttribute("listaAlunoNota", listaAlunoNota);
 					
 					return "aluno/telaAlunoAtividade";
@@ -120,18 +130,25 @@ public class UsuarioController {
 		Turma turma = turmaDao.buscarPorId(id);
 		
 		if(turma != null) {
-								
 			AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
 			List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
 			
-			AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
-			List<AlunoNota> pontuacao = alunoNotaDao.getPontuacao(usuario, turma);
-
-			model.addAttribute("usuario", usuario);
-			model.addAttribute("turma", turma);
-			model.addAttribute("listaAluno", listaAluno);
-			model.addAttribute("pontuacao", pontuacao);
-			return "aluno/telaAlunoParticipantes";
+			for(Usuario aluno : listaAluno) {
+				if(aluno.getIdUsuario() == usuario.getIdUsuario()) {
+					
+					AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+					List<AlunoNota> pontuacao = alunoNotaDao.getPontuacao(usuario, turma);
+		
+					model.addAttribute("turma", turma);
+					model.addAttribute("listaAluno", listaAluno);
+					model.addAttribute("pontuacao", pontuacao);
+					return "aluno/telaAlunoParticipantes";
+				}
+			}
+			
+			model.addAttribute("link", "usuario");
+			model.addAttribute("mensagem", "Você não é aluno dessa turma!");
+			return "mensagem";
 		}
 		model.addAttribute("link", "usuario");
 		model.addAttribute("mensagem", "Esta turma não existe!");
@@ -156,12 +173,14 @@ public class UsuarioController {
 				AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
 				List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
 				
-				model.addAttribute("usuario", usuario);
 				model.addAttribute("turma", turma);
 				model.addAttribute("listaPostagem", listaPostagem);
 				model.addAttribute("listaAluno", listaAluno);
 				return "professor/telaProfessorMural";
 			}
+			model.addAttribute("link", "usuario");
+			model.addAttribute("mensagem", "Você não é professor dessa turma!");
+			return "mensagem";
 		}
 		model.addAttribute("link", "usuario");
 		model.addAttribute("mensagem", "Esta turma não existe!");
@@ -185,12 +204,14 @@ public class UsuarioController {
 				AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
 				List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
 				
-				model.addAttribute("usuario", usuario);
 				model.addAttribute("turma", turma);
 				model.addAttribute("listaAtividade", listaAtividade);
 				model.addAttribute("listaAluno", listaAluno);
 				return "professor/telaProfessorAtividade";
 			}
+			model.addAttribute("link", "usuario");
+			model.addAttribute("mensagem", "Você não é professor dessa turma!");
+			return "mensagem";
 		}
 		model.addAttribute("link", "usuario");
 		model.addAttribute("mensagem", "Esta turma não existe!");
@@ -211,11 +232,13 @@ public class UsuarioController {
 				AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
 				List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
 				
-				model.addAttribute("usuario", usuario);
 				model.addAttribute("turma", turma);
 				model.addAttribute("listaAluno", listaAluno);
 				return "professor/telaProfessorParticipantes";
 			}
+			model.addAttribute("link", "usuario");
+			model.addAttribute("mensagem", "Você não é professor dessa turma!");
+			return "mensagem";
 		}
 		model.addAttribute("link", "usuario");
 		model.addAttribute("mensagem", "Esta turma não existe!");
@@ -232,15 +255,27 @@ public class UsuarioController {
 		
 		if(turma != null) {
 			
-			AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
-			List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(turma, null, null);
-			List<AlunoNota> pontuacao = alunoNotaDao.getPontuacao(usuario, turma);
+			AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
+			List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
 			
-			model.addAttribute("pontuacao", pontuacao);
-			model.addAttribute("turma", turma);
-			model.addAttribute("listaAlunoNota", listaAlunoNota);
-			return "aluno/ranking";
+			for(Usuario aluno : listaAluno) {
+				if(aluno.getIdUsuario() == usuario.getIdUsuario()) {
+					AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
+					List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(turma, null, null);
+					List<AlunoNota> pontuacao = alunoNotaDao.getPontuacao(usuario, turma);
+					
+					model.addAttribute("pontuacao", pontuacao);
+					model.addAttribute("turma", turma);
+					model.addAttribute("listaAlunoNota", listaAlunoNota);
+					return "aluno/ranking";
+				}
+			}
+			
+			model.addAttribute("link", "usuario");
+			model.addAttribute("mensagem", "Você não é aluno dessa turma!");
+			return "mensagem";
 		}
+		
 		model.addAttribute("link", "usuario");
 		model.addAttribute("mensagem", "Esta turma não existe!");
 		return "mensagem";
