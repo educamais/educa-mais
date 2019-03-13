@@ -17,15 +17,13 @@
 <body>
     
     <!-- MENU PRINCIPAL -->
-	<nav class="navbar bg-white border">
+	<nav class="navbar bg-one border">
 		<div class="container">
 
-			<a class="navbar-brand p-0" href="/educa-mais/usuario">
-				<img src="<%=request.getContextPath()%>/resources/img/logo3.png" width="100"/>
-			</a>
+			<a class="navbar-brand p-0 font-2 font-weight-bold text-white" href="/educa-mais/usuario">EDUCA+</a>
 
 			<div class="font-2">
-				<a class="nav-link d-none d-sm-block p-0 text-center" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Minha Pontuação: ${pontuacao.get(0)}</a>
+				<a class="nav-link d-none d-sm-block p-0 text-center text-white" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Minha Pontuação: ${pontuacao.get(0)}</a>
 			</div>
 
 			<div class="row font-2">
@@ -33,7 +31,7 @@
 				<!-- Dropdown-->
 				<div class="nav-item dropdown">
 
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 						 ${usuario.nome}
 					</a>
 
@@ -58,17 +56,17 @@
 		<!-- MENU SECUNDÁRIO -->
 		<ul class="nav nav-tabs nav-justified" id="lista-menu">
 			<li class="nav-item">
-				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/mural?id=${turma.idTurma}">
+				<a class="nav-link bg-one text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/mural?id=${turma.idTurma}">
 					Mural
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/atividades?id=${turma.idTurma}">
+				<a class="nav-link bg-one text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/atividades?id=${turma.idTurma}">
 					Atividades
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/participantes?id=${turma.idTurma}">
+				<a class="nav-link bg-one text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/participantes?id=${turma.idTurma}">
 					Participantes
 				</a>
 			</li>
@@ -85,7 +83,7 @@
 				</div>
 
 				<table class="table table-striped">
-					<thead>
+					<thead class="bg-two text-white">
 						<tr>
 							<th scope="col">Nome &nbsp;<i class="fas fa-sort"></i></th>
 							<th scope="col">Nota &nbsp;<i class="fas fa-sort"></i></th>

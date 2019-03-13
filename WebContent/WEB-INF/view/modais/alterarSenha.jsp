@@ -2,7 +2,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 
-			<div class="modal-header">
+			<div class="modal-header bg-one text-white">
 				<h5 class="modal-title" id="exampleModalLabel">Alterar Senha</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
 					<span aria-hidden="true">&times;</span>
@@ -29,8 +29,8 @@
 			</div>
 
 			<div class="modal-footer">
-				<button type="button" class="btn" data-dismiss="modal">Fechar</button>
-				<button type="submit" class="btn" id="btn_alterarSenha">Alterar Senha</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+				<button type="submit" class="btn btn-three" id="btn_alterarSenha">Alterar Senha</button>
 			</div>
 		</div>
 	</div>

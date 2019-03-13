@@ -40,7 +40,12 @@
 
 .font-1 {
     font-size: 1.2em;
+    color: black;
 }
+ .font-1:hover {
+ 	color: white;
+ 	background-color:#908D5E!important;
+ }
 .font-2 {
     font-size: 1.4em;
 }

@@ -2,7 +2,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 
-			<div class="modal-header">
+			<div class="modal-header bg-one text-white">
 				<h5 class="modal-title" id="exampleModalLabel">Alterar Nome</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
 					<span aria-hidden="true">&times;</span>
@@ -20,8 +20,8 @@
 			</div>
 
 			<div class="modal-footer">
-				<button type="submit" class="btn" data-dismiss="modal">Fechar</button>
-				<button type="submit" class="btn" id="btn_alterarNome">Alterar Nome</button>
+				<button type="submit" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+				<button type="submit" class="btn btn-three" id="btn_alterarNome">Alterar Nome</button>
 			</div>
 		</div>
 	</div>

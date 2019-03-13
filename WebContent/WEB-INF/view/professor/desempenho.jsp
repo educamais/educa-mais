@@ -17,67 +17,60 @@
 <body>
     
     <!-- MENU PRINCIPAL -->
-    <nav class="navbar bg-white border">
+    <nav class="navbar bg-one border">
 		<div class="container">
 
-			<a class="navbar-brand p-0" href="/educa-mais/usuario">
-				<img src="<%=request.getContextPath()%>/resources/img/logo3.png" width="100"/>
-			</a>
+			<a class="navbar-brand p-0 font-2 font-weight-bold text-white" href="/educa-mais/usuario">EDUCA+</a>
 
-				<div class="font-2">
-					<a class="nav-link d-none d-sm-block p-0 text-center" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
+			<div class="font-2">
+				<a class="nav-link d-none d-sm-block p-0 text-center text-white" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
+			</div>
+			
+			<!-- Dropdown-->
+			<div class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle p-0 font-2 text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> ${usuario.nome} </a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
+					<a class="dropdown-item font-1" href="/educa-mais/turma/minhasturmas">Minhas Turmas</a>
+					<a class="dropdown-item font-1" href="/educa-mais/professor/desempenho?idTurma=${turma.idTurma}">Desempenho</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
+					<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
 				</div>
-				
-				<!-- Dropdown-->
-				<div class="nav-item dropdown">
-
-					<a class="nav-link dropdown-toggle p-0 font-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> ${usuario.nome} </a>
-
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
-						<a class="dropdown-item font-1" href="/educa-mais/turma/minhasturmas">Minhas Turmas</a>
-						<a class="dropdown-item font-1" href="/educa-mais/professor/desempenho?idTurma=${turma.idTurma}">Desempenho</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
-						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item font-1" href="/educa-mais/logout">Sair</a>
-					</div>
-
 			</div>
 		</div>
 	</nav>
-
-	<div class="container my-5">
 	
-		<!-- MENU SECUNDÁRIO -->
-		<ul class="nav nav-tabs nav-justified" id="lista-menu">
-			<li class="nav-item">
-				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/professor/mural?id=${turma.idTurma}">
-					Mural
-				</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/professor/atividade?id=${turma.idTurma}">
-					Atividades
-				</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/professor/participantes?id=${turma.idTurma}">
-					Participantes
-				</a>
-			</li>
-		</ul>
+    <div class="container my-5">
+        
+        <!-- MENU SECUNDÁRIO -->
+        <ul class="nav nav-tabs nav-justified" id="lista-menu">
+            <li class="nav-item">
+                <a class="nav-link text-white bg-one border font-weight-bold" style="font-family:Gravity;" href="mural?id=${turma.idTurma}">
+                    Mural
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-one border font-weight-bold" id="participanteTab" style="font-family:Gravity;" href="atividade?id=${turma.idTurma}">
+                    Atividades
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-one border font-weight-bold" style="font-family:Gravity;" href="participantes?id=${turma.idTurma}">
+                    Participantes
+                </a>
+            </li>
+        </ul>
 	
 		<div class="container border shadow">
 		  
 			<div class="mb-5 p-5">
 				<div class="card">
 				
-					<div class="card-header" data-toggle="collapse" data-target="#desempenhoGeral" aria-expanded="true">
-						<h5 class="mb-0 text-center">
-							<button class="btn btn-link"><span class="font-weight-bold" style="font-family: Gravity;">Desempenho Individual</span></button>
-						</h5>
+					<div class="card-header bg-two mb-0 text-center" data-toggle="collapse" data-target="#desempenhoGeral" aria-expanded="true">
+						<span class="font-weight-bold text-white" style="font-family: Gravity;">Desempenho Individual</span>
 					</div>
 					<div id="desempenhoGeral" class="collapse">
 						<div class="card-body">
@@ -95,7 +88,7 @@
 							</div>
 							
 							<table class="table table-striped">
-								<thead>
+								<thead class="bg-two text-white">
 									<tr>
 										<th scope="col">Nome</th>
 										<th scope="col">Nota</th>
@@ -126,12 +119,8 @@
 				
 				<div class="card">
 				
-					<div class="card-header" data-toggle="collapse" data-target="#desempenhoAtividade" aria-expanded="true">
-						<h5 class="mb-0 text-center">
-							<button class="btn btn-link" type="button">
-								<span class="font-weight-bold" style="font-family: Gravity;">Desempenho por Atividade</span>
-							</button>
-						</h5>
+					<div class="card-header bg-two text-center" data-toggle="collapse" data-target="#desempenhoAtividade" aria-expanded="true">
+						<span class="font-weight-bold text-white mb-0" style="font-family: Gravity;">Desempenho por Atividade</span>
 					</div>
 					<div id="desempenhoAtividade" class="collapse">
 						<div class="card-body">

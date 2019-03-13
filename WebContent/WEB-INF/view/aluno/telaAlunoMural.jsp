@@ -17,15 +17,13 @@
 <body>
 
 	<!-- MENU PRINCIPAL -->
-	<nav class="navbar bg-white border">
+	<nav class="navbar bg-one border">
 		<div class="container">
 
-			<a class="navbar-brand p-0" href="/educa-mais/usuario">
-				<img src="<%=request.getContextPath()%>/resources/img/logo3.png" width="100"/>
-			</a>
+			<a class="navbar-brand p-0 font-2 font-weight-bold text-white" href="/educa-mais/usuario">EDUCA+</a>
 
 			<div class="font-2">
-				<a class="nav-link d-none d-sm-block p-0 text-center" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Minha Pontuação: ${pontuacao.get(0)}</a>
+				<a class="nav-link d-none d-sm-block p-0 text-center text-white" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Minha Pontuação: ${pontuacao.get(0)}</a>
 			</div>
 
 			<div class="row font-2">
@@ -33,7 +31,7 @@
 				<!-- Dropdown-->
 				<div class="nav-item dropdown">
 
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 						 ${usuario.nome}
 					</a>
 
@@ -58,17 +56,17 @@
 		<!-- MENU SECUNDÁRIO -->
 		<ul class="nav nav-tabs nav-justified" id="lista-menu">
 			<li class="nav-item">
-				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="#">
+				<a class="nav-link text-one border font-weight-bold" style="font-family: Gravity;" href="#">
 					Mural
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/atividades?id=${turma.idTurma}">
+				<a class="nav-link bg-one text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/atividades?id=${turma.idTurma}">
 					Atividades
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/participantes?id=${turma.idTurma}">
+				<a class="nav-link bg-one text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/participantes?id=${turma.idTurma}">
 					Participantes
 				</a>
 			</li>
@@ -86,7 +84,7 @@
 	                    
 	                    <ul class="nav nav-tabs">
 	                        <li class="nav-item">
-	                            <a class="nav-link border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" id="titulo_postagem">
+	                            <a class="nav-link bg-two text-white border font-weight-bold" style="font-family:Gravity;" data-toggle="tab" id="titulo_postagem">
 	                                ${postagem.tituloPostagem}
 	                            </a>
 	                        </li>
@@ -182,7 +180,7 @@
             		linhas += '<div class="mb-3 feed" id="id_'+postagem[i].idPostagem+'">';
             		linhas += '<ul class="nav nav-tabs">';
             		linhas += '<li class="nav-item">';
-            		linhas += '<a class="nav-link active border font-weight-bold bg-azulc text-white" style="font-family:Gravity;" data-toggle="tab" id="titulo_postagem">';
+            		linhas += '<a class="nav-link bg-two text-white active border font-weight-bold bg-azulc text-white" style="font-family:Gravity;" data-toggle="tab" id="titulo_postagem">';
             		linhas += postagem[i].tituloPostagem;
             		linhas += '</a>';
             		linhas += '</li>';
@@ -190,16 +188,7 @@
                     
             		linhas += '<div class="card gedf-card">';
             		linhas += '<div class="card-body"  id="descricao_postagem">';
-            		linhas += '<div class="float-right">';
-            		linhas += '<button type="button" class="btn btn-link dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-            		linhas += '<i class="fa fa-ellipsis-h"></i>';
-            		linhas += '</button>';
-            		linhas += '<div class="dropdown-menu">';
-            		linhas += '<button class="btn btn-link dropdown-item" type="button" onclick="alterarPostagem('+postagem[i].idPostagem+', '+idTurma+', '+postagem[i].turma.professor.idUsuario+')">Editar</button>';
-            		linhas += '<div class="dropdown-divider"></div>';
-            		linhas += '<a class="dropdown-item" href="/educa-mais/postagem/remove?id='+postagem[i].idPostagem+'">Excluir</a>';
-            		linhas += '</div>';
-            		linhas += '</div>';
+            		
             		linhas += '<div class="row">';
             		linhas += '<div class="p-1">';
             		linhas += '<p class="card-text">';

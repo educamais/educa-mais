@@ -18,15 +18,13 @@
 <body>
 
 	<!-- MENU PRINCIPAL -->
-	<nav class="navbar bg-white border">
+	<nav class="navbar bg-one border">
 		<div class="container">
 
-			<a class="navbar-brand p-0" href="/educa-mais/usuario">
-				<img src="<%=request.getContextPath()%>/resources/img/logo3.png" width="100"/>
-			</a>
+			<a class="navbar-brand p-0 font-2 font-weight-bold text-white" href="/educa-mais/usuario">EDUCA+</a>
 
 			<div class="font-2">
-				<a class="nav-link d-none d-sm-block p-0 text-center" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Minha Pontuação: ${pontuacao.get(0)}</a>
+				<a class="nav-link d-none d-sm-block p-0 text-center text-white" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Minha Pontuação: ${pontuacao.get(0)}</a>
 			</div>
 
 			<div class="row font-2">
@@ -34,7 +32,7 @@
 				<!-- Dropdown-->
 				<div class="nav-item dropdown">
 
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 						 ${usuario.nome}
 					</a>
 
@@ -58,17 +56,17 @@
 		<!-- MENU SECUNDÁRIO -->
 		<ul class="nav nav-tabs nav-justified" id="lista-menu">
 			<li class="nav-item">
-				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/mural?id=${turma.idTurma}">
+				<a class="nav-link bg-one text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/mural?id=${turma.idTurma}">
 					Mural
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="#">
+				<a class="nav-link text-one border font-weight-bold" style="font-family: Gravity;" href="#">
 					Atividades
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/participantes?id=${turma.idTurma}">
+				<a class="nav-link bg-one text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/participantes?id=${turma.idTurma}">
 					Participantes
 				</a>
 			</li>
@@ -79,7 +77,7 @@
 				<div class="capsula border p-4">
 											
 					<table class="table table-striped">
-						<thead>
+						<thead class="bg-two text-white">
 							<tr>
 								<th scope="col">Nome</th>
 								<th scope="col">Data</th>
@@ -89,7 +87,7 @@
 						<tbody id="tabelaAtividadeBody">
 							<c:forEach var="alunoNota" items="${listaAlunoNota}">
 								<tr>
-									<td style='vertical-align: middle;'><button class="btn btn-link">${alunoNota.atividade.nomeAtividade}</button></td>
+									<td style='vertical-align: middle;'>${alunoNota.atividade.nomeAtividade}</td>
 									<td style='vertical-align: middle;'><fmt:formatDate value="${alunoNota.atividade.dataAtividade}" pattern="dd/MM/yyyy" /></td>
 									<td style='vertical-align: middle;'>${alunoNota.nota}</td>
 								</tr>

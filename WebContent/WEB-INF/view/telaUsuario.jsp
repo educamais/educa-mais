@@ -16,28 +16,26 @@
 <body>
 
 	<!-- MENU PRINCIPAL -->
-    <nav class="navbar bg-white border">
+    <nav class="navbar bg-one border">
 		<div class="container">
 
-			<a class="navbar-brand p-0" href="/educa-mais/usuario">
-				<img src="<%=request.getContextPath()%>/resources/img/logo3.png" width="100"/>
-			</a>
+			<a class="navbar-brand p-0 font-2 font-weight-bold text-white" href="/educa-mais/usuario">EDUCA+</a>
+			
 			<div class="row">
             <div class="col-auto d-none d-sm-block">
-                <a class="nav-link text-roxo p-0 font-2" href="#" data-toggle="modal" data-target="#criarTurma">Criar Turma</a>
+                <a class="nav-link text-white p-0 font-2" href="#" data-toggle="modal" data-target="#criarTurma">Criar Turma</a>
             </div>
             
             <div class="col-auto d-none d-sm-block ">
-                <a class="nav-link text-roxo p-0 font-2" href="#" data-toggle="modal" data-target="#participar">Participar</a>
+                <a class="nav-link text-white p-0 font-2" href="#" data-toggle="modal" data-target="#participar">Participar</a>
             </div>
 
             <div class="col-auto">
                 <!-- Dropdown-->
                 <div class="nav-item dropdown">
 
-                    <a class="nav-link dropdown-toggle text-roxo p-0 font-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-
-                        ${usuario.nome}
+                    <a class="nav-link dropdown-toggle text-white p-0 font-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+						${usuario.nome}
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right">
@@ -61,12 +59,15 @@
 	<div class="container-fluid">
 	
 	    <!-- CONTEÚDO -->
-		<div class="container mt-5 pt-5 ">
+		<div class="container pt-5 ">
 			<div class="row">
+				<div class="col-12">
+				<h1>Professor</h1>
+				</div>
 				
 				<c:forEach var="turma" items="${turmasProfessor}">
 					
-					<div class="col-md-4">
+					<div class="col-md-4" onclick="window.location.replace('/educa-mais/professor/mural?id=${turma.idTurma }')">
 						
 						<div class="card border-secondary mb-3">
 							<div class="card-body bg-transparent border-muted text-center p-2" id="idB_${turma.idTurma}">
@@ -92,11 +93,16 @@
 					</div>
 				</c:forEach>
 				
+			</div>
+			<div class="row">
 				<!-- ALUNOS -->
+				<div class="col-12">
+				<h1>Aluno</h1>
+				</div>
 				
 				<c:forEach var="turma" items="${turmasAluno}">
 
-					<div class="col-md-4">
+					<div class="col-md-4" onclick="window.location.replace('/educa-mais/aluno/mural?id=${turma.idTurma }')">
 	
 						<div class="card border-secondary mb-3">
 							<div class="card-header bg-transparent border-muted text-center p-2">

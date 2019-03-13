@@ -8,7 +8,7 @@ function carregaTabelaAlterarNota(idAtividade) {
 		linhas += "<form action='/educa-mais/atividade/alterar'>"
 		linhas += "<input type='hidden' name='idTurma' value='"+alunosNota[0].atividade.turma.idTurma+"'>";
 		linhas += "<table  class='table table-striped'>";
-		linhas += "<thead>";
+		linhas += "<thead class='bg-two text-white'>";
 		linhas += "<tr>";
 		linhas += "<th scope='col'>Nome</th>";
 		linhas += "<th scope='col'>Nota</th>";
@@ -28,8 +28,8 @@ function carregaTabelaAlterarNota(idAtividade) {
 		});
 		linhas += "</tbody>";
 		linhas += "</table>";
-		linhas += "<button id='btnAlterar' class='btn my-2 mr-1' type='submit'>Alterar</button>";
-		linhas += "<button id='btnVoltar' class='btn my-2' type='button' onclick='carregaDiv()'>Cancelar</button>";
+		linhas += "<button id='btnAlterar' class='btn btn-three my-2 mr-1' type='submit'>Alterar</button>";
+		linhas += "<button id='btnVoltar' class='btn btn-secondary my-2' type='button' onclick='carregaDiv()'>Cancelar</button>";
 		linhas += "</form>"
 		$("#crudAtividade").html(linhas);
 	});
