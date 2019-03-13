@@ -12,49 +12,58 @@ public class AlunoPostagemDao {
 
 	private static final String PERSISTENCE_UNIT = "educa-mais";
 
-	public List<Usuario> getListaAluno(Postagem postagem){
+	public List<AlunoPostagem> getListaAluno(Postagem postagem){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		
 		Query query = manager.createQuery("FROM AlunoPostagem WHERE postagem = :paramPostagem");
 		query.setParameter("paramPostagem", postagem);
 		
-		List<AlunoPostagem> result = query.getResultList();
+		List<AlunoPostagem> listaAlunoPostagem = query.getResultList();
 		
 		manager.close();
 		factory.close();
 		
-		List<Usuario> listaAluno = new ArrayList<Usuario>();
-		
-		for(AlunoPostagem alunoPostagem : result) {
-			listaAluno.add(alunoPostagem.getAluno());
+		if(listaAlunoPostagem.isEmpty()) {
+			return null;
 		}
 		
-		return listaAluno;
+		return listaAlunoPostagem;
 	}
 	
-	public List<Postagem> getListaPostagem(Usuario aluno){
+	public List<Postagem> getListaPostagem(Usuario aluno, Turma turma, int inicio){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		
-		Query query = manager.createQuery("FROM AlunoPostagem WHERE aluno = :paramAluno");
+		Query query = manager.createQuery("FROM AlunoPostagem WHERE aluno = :paramAluno AND postagem.turma = :paramTurma ORDER BY postagem.dataPostagem DESC, postagem.idPostagem DESC");
 		query.setParameter("paramAluno", aluno);
+		query.setParameter("paramTurma", turma);
 		
+		query.setFirstResult(inicio);
+		query.setMaxResults(5);
 		List<AlunoPostagem> result = query.getResultList();
 		
 		manager.close();
 		factory.close();
+		
+		if(result.isEmpty()) {
+			return null;
+		}
 		
 		List<Postagem> listaPostagem = new ArrayList<Postagem>();
 			
 		for(AlunoPostagem alunoPostagem : result) {
-			Postagem postagem = alunoPostagem.getPostagem();
-			listaPostagem.add(postagem);
+			
+			if(alunoPostagem.getPostagem().getTurma().getIdTurma() == turma.getIdTurma()) {
+				Postagem postagem = alunoPostagem.getPostagem();
+				listaPostagem.add(postagem);
+			}
 		}
+		
 		return listaPostagem;
 	}
 	
-	public void salvar(Usuario usuario, Postagem postagem) {
+public void salvar(Usuario usuario, Postagem postagem) {
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
@@ -71,7 +80,7 @@ public class AlunoPostagemDao {
 		
 		manager.close();
 		factory.close();
-	}
+}
 	
 	public void remover(Postagem postagem){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);

@@ -15,23 +15,7 @@
         left: 20%;
     }
 }
-.navbar-border {
-    box-shadow: 1px 2px 5px black;
-}
 
-.logo{
-    font-family: CaviarDreamsBold;
-    font-weight: bolder;
-    font-size: 1.8em;
-    width :30%;
-   
-}
-.logo:hover {
-    text-decoration: none;
-}
-a:active {
-    background-color: #d3d7cf;
-}
 /* FONTS */
 @font-face {
     font-family: CaviarDreams;
@@ -56,7 +40,12 @@ a:active {
 
 .font-1 {
     font-size: 1.2em;
+    color: black;
 }
+ .font-1:hover {
+ 	color: white;
+ 	background-color:#908D5E!important;
+ }
 .font-2 {
     font-size: 1.4em;
 }
@@ -70,202 +59,73 @@ a:active {
     font-size: 2em;
 }
 
-/* Background */
-.bg-cf{
-    background-image: linear-gradient(to left, #548FCE,#3F4AD8,#6F42C1,#B949D8,#CE3F96); 
-}
-.ctp-0 {
-    background-color: rgba(255,255,255, .95);
-}
-
-.bg-verde{
-    background-color:#243f11!important
-}
-a.bg-verde:focus,a.bg-roxo:hover,button.bg-roxo:focus,button.bg-roxo:hover{
-    background-color:#243f11!important
-}
-
-.bg-azulc{
-    background-color:#548FCE!important
-}
-
-.bg-azul{
-    background-color:#204a87!important
-}
-
-.thead-azul{
-    background-color:#204a87!important;
-    border: 2px solid #204a87;
-    color: white;
-}
-
-/* TEXTO COLORIDO */
-/*verde*/
-.text-verde{
-    color:#243f11!important
-}
-
-/*roxo*/
-.text-clilas{
-    color:#5c3566!important
-}
-
-/*azul*/
-.text-azul{
-    color:#204a87!important
-}
-
-/*amarelo - escuro*/
-.text-cazule{
-    color:#8f5902!important
-}
-
-/*azul claro*/
-.text-cazulc{
-    color:#548FCE!important
-}
-
 /* Texto */
-
-
-
-text-roxo{
-    color:#243F11!important
+.text-one{
+    color:#52834d!important
 }
-a.text-roxo:focus,a.text-roxo:hover{
-    color:#243F11!important
+
+.text-two {
+	color:#908D5E!important;
+}
+
+.text-three {
+	color: #819A53!important;
 }
 
 /* Background color */
-.bg-verde{
-    background-color:#243F11!important
+.bg-one {
+    background-color:#52834d!important;
 }
-a.bg-roxo:focus,a.bg-roxo:hover,button.bg-roxo:focus,button.bg-roxo:hover{
-    background-color:#6f42c1!important
+
+.bg-two {
+	background-color:#908D5E!important;
 }
+
+.bg-three {
+	background-color:#819A53!important;
+}
+
 /* Botão */
-.btn-azul{
+.btn-one{
     color:#fff;
-    background-color:#204a87;
-    border-color:#204a87
+    background-color:#52834d;
+    border-color:#52834d;
 }
-.btn-azul:hover{
-    color:#204a87;
+.btn-one:hover{
+    color:#52834d;
     background-color:#fff;
-    border-color:#204a87
-}
-.btn-roxo.focus,.btn-roxo:focus{
-    box-shadow:0 0 0 .2rem #6ff0000
-}
-.btn-roxo.disabled,.btn-roxo:disabled{
-    color:#fff;
-    background-color:#6ff0000 ;
-    border-color:#6f42c1
-}
-.btn-roxo:not(:disabled):not(.disabled).active,.btn-roxo:not(:disabled):not(.disabled):active,.show>.btn-roxo.dropdown-toggle{
-    color:#fff;
-    background-color:#6ff0000;
-    border-color:#6f42c1
-}
-.btn-roxo:not(:disabled):not(.disabled).active:focus,.btn-roxo:not(:disabled):not(.disabled):active:focus,.show>.btn-roxo.dropdown-toggle:focus{
-    box-shadow:0 0 0 .2rem #6f42c1
+    border-color:#52834d;
 }
 
-/********** FIM DAS ALTERAÇõES ***************/
-
-
-.btn-verde{
+.btn-two{
     color:#fff;
-    background-color:#243F11;
-    border-color:#243F11
+    background-color:#908D5E;
+    border-color:#908D5E;
 }
-.btn-verde:hover{
-    color:#243F11;
+.btn-two:hover{
+    color:#908D5E;
     background-color:#fff;
-    border-color:#243F11
-}
-.btn-rosa.focus,.btn-rosa:focus{
-    box-shadow:0 0 0 .2rem #243F11be
-}
-.btn-verde.disabled,.btn-rosa:disabled{
-    color:#fff;
-    background-color:#243F11be;
-    border-color:#243F11be;
-}
-.btn-rosa:not(:disabled):not(.disabled).active,.btn-rosa:not(:disabled):not(.disabled):active,.show>.btn-rosa.dropdown-toggle{
-    color:#fff;
-    background-color:#243F11;
-    border-color:#243F11
-}
-.btn-rosa:not(:disabled):not(.disabled).active:focus,.btn-rosa:not(:disabled):not(.disabled):active:focus,.show>.btn-rosa.dropdown-toggle:focus{
-    box-shadow:0 0 0 .2rem #243F11be
+    border-color:#908D5E;
 }
 
-
-.btn-verde{
+.btn-three{
     color:#fff;
-    background-color:#243F11;
-    border-color:#243F11
+    background-color: #819A53;
+    border-color: #819A53;
 }
-.btn-vinho{
-	 color:#fff;
-    background-color:#4f1e3a;
-    border-color:#4f1e3a
-}
-.btn-vinho:hover{
-    color:#4f1e3a;
+.btn-three:hover{
+    color: #819A53;
     background-color:#fff;
-    border-color:#4f1e3a
-}
-.btn-vinho.focus,.btn-azulc:focus{
-    box-shadow:0 0 0 .2rem #4f1e3a
-}
-.btn-verde:hover{
-    color:#243F11;
-    background-color:#fff;
-    border-color:#243F11
-}
-.btn-verde.focus,.btn-azulc:focus{
-    box-shadow:0 0 0 .2rem #243F11
-}
-.btn-azulc.disabled,.btn-azulc:disabled{
-    color:#fff;
-    background-color:#548FCEbe;
-    border-color:#548FCEbe;
-}
-.btn-verdec:not(:disabled):not(.disabled).active,.btn-azulc:not(:disabled):not(.disabled):active,.show>.btn-azulc.dropdown-toggle{
-    color:#fff;
-    background-color:#243F11;
-    border-color:#243F11
-}
-.btn-azulc:not(:disabled):not(.disabled).active:focus,.btn-azulc:not(:disabled):not(.disabled):active:focus,.show>.btn-azulc.dropdown-toggle:focus{
-    box-shadow:0 0 0 .2rem #548FCEbe
+    border-color: #819A53;
 }
 
-.btn-azule{
+.btn-four{
     color:#fff;
-    background-color:#3F4AD8;
-    border-color:#3F4AD8
+    background-color:;
+    border-color:;
 }
-.btn-verde:hover{
-    color:#243F11;
+.btn-four:hover{
+    color:;
     background-color:#fff;
-    border-color:#243F11
+    border-color:;
 }
-.btn-azule.focus,.btn-azule:focus{
-    box-shadow:0 0 0 .2rem #3F4AD8be
-}
-.btn-azule.disabled,.btn-azule:disabled{
-    color:#fff;
-    background-color:#3F4AD8be;
-    border-color:#3F4AD8be;
-}
-.btn-azule:not(:disabled):not(.disabled).active,.btn-azule:not(:disabled):not(.disabled):active,.show>.btn-azule.dropdown-toggle{
-    color:#fff;
-    background-color:#3F4AD8;
-    border-color:#3F4AD8
-}
-.btn-azule:not(:disabled):not(.disabled).active:focus,.btn-azule:not(:disabled):not(.disabled):active:focus,.show>.btn-azule.dropdown-toggle:focus{
-    box-shadow:0 0 0 .2rem #3F4AD8be
-}
-/********** FIM DAS ALTERAÇõES ***************/

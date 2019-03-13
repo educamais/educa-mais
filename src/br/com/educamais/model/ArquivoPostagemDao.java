@@ -14,28 +14,7 @@ public class ArquivoPostagemDao {
 
 	private static final String PERSISTENCE_UNIT = "educa-mais";
 
-	public List<String> getListaArquivo(Postagem postagem){
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-		EntityManager manager = factory.createEntityManager();
-		
-		Query query = manager.createQuery("FROM ArquivoPostagem WHERE postagem = :paramPostagem");
-		query.setParameter("paramPostagem", postagem);
-		
-		List<ArquivoPostagem> result = query.getResultList();
-		
-		manager.close();
-		factory.close();
-		
-		List<String> listaArquivo = new ArrayList<String>();
-			
-		for(ArquivoPostagem alunoPostagem : result) {
-			String arquivo = alunoPostagem.getArquivo();
-			listaArquivo.add(arquivo);
-		}
-		return listaArquivo;
-	}
-	
-	public void salvar(Postagem postagem, String arquivo) {
+	public ArquivoPostagem salvar(Postagem postagem, String arquivo) {
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
@@ -52,6 +31,8 @@ public class ArquivoPostagemDao {
 		
 		manager.close();
 		factory.close();
+		
+		return arquivoPostagem;
 	}
 	
 	public void remover(Postagem postagem){
@@ -85,6 +66,46 @@ public class ArquivoPostagemDao {
 		
 		manager.close();
 		factory.close();
+	}
+	
+	public List<String> getListaArquivo(Postagem postagem){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		
+		Query query = manager.createQuery("FROM ArquivoPostagem WHERE postagem = :paramPostagem");
+		query.setParameter("paramPostagem", postagem);
+		
+		List<ArquivoPostagem> result = query.getResultList();
+		
+		manager.close();
+		factory.close();
+		
+		List<String> listaArquivo = new ArrayList<String>();
+			
+		for(ArquivoPostagem alunoPostagem : result) {
+			String arquivo = alunoPostagem.getArquivo();
+			listaArquivo.add(arquivo);
+		}
+		return listaArquivo;
+	}
+	
+	public List<ArquivoPostagem> getListaArquivoPostagem(Postagem postagem){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		
+		Query query = manager.createQuery("FROM ArquivoPostagem WHERE postagem = :paramPostagem");
+		query.setParameter("paramPostagem", postagem);
+		
+		List<ArquivoPostagem> listaArquivoPostagem = query.getResultList();
+		
+		manager.close();
+		factory.close();
+		
+		if(listaArquivoPostagem.isEmpty()) {
+			return null;
+		}
+		
+		return listaArquivoPostagem;
 	}
 
 	public boolean verificarExistencia(String arquivo) {

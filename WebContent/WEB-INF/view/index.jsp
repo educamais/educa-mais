@@ -123,6 +123,11 @@
                             <div class="tab-pane container active border shadow p-4" id="login">
                                 
                                 <form id="formLogin" method="post" action="autenticar">
+                                	<c:if test="${not empty mensagem}">
+                                		<div class="alert alert-danger">
+                                			${mensagem}
+                                		</div>
+                                	</c:if>
 									
 									<!-- E-mail -->                                
                                     <div class="input-group mb-3">
@@ -225,6 +230,7 @@
     
     <script src="<%=request.getContextPath()%>/resources/Validation/jquery.validate.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/localization/messages_pt_BR.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/Validation/additional-methods.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormIndex.js"></script>
 </body>
 </html>

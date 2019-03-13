@@ -27,11 +27,8 @@ public class Atividade {
 	private Date dataAtividade;
 	
 	@ManyToOne
-	@JoinColumn(name="id_turma")
+	@JoinColumn(name="turma")
 	private Turma turma;
-	
-	@Column
-	private double nota;
 
 	// GET's E SET's
 	
@@ -59,11 +56,11 @@ public class Atividade {
 		this.dataAtividade = dataAtividade;
 	}
 
-	public double getNota() {
-		return nota;
+	public Turma getTurma() {
+		return turma;
 	}
 
-	public void setNota(double nota) {
-		this.nota = nota;
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 }

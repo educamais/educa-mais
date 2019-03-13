@@ -26,13 +26,18 @@ public class TurmaController {
 		Usuario professor = (Usuario) session.getAttribute("usuario");
 		turma.setProfessor(professor);
 		
-		turmaDao.salvar(turma);
+		if(turmaDao.verificarExistencia(turma) == null) {
 		
-		return "redirect:/usuario";
+			turmaDao.salvar(turma);
+			return "redirect:/usuario";
+		}
+		model.addAttribute("mensagem", "Não pode criar duas turmas com o mesmo nome!");
+		model.addAttribute("link", "usuario");
+		return "mensagem";
 	}
 	
 	@RequestMapping("turma/participar")
-	public String entraSala(@RequestParam("codigo") String codigo, HttpSession session, Model model) {
+	public String entraSala(@RequestParam String codigo, HttpSession session, Model model) {
 		
 		Usuario usuario = (Usuario)session.getAttribute("usuario");
 		
@@ -54,7 +59,7 @@ public class TurmaController {
 		AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
 		alunoTurmaDao.participar(usuario, turma);
 		
-		return "redirect:/aluno?id="+turma.getIdTurma();
+		return "redirect:/aluno/mural?id="+turma.getIdTurma();
 	}
 	
 	@RequestMapping("turma/minhasturmas")
@@ -66,7 +71,6 @@ public class TurmaController {
 		List<Turma> turmasProfessor = turmaDao.listar(usuario);
 		
 		model.addAttribute("turmasProfessor", turmasProfessor);
-		model.addAttribute("usuario", usuario);
 		return "telaUsuario";
 	}
 	
@@ -81,22 +85,5 @@ public class TurmaController {
 		turmaDao.remover(id);
 		
 		return "redirect:/usuario";
-	}
-	
-	
-	@RequestMapping("test")
-	public String test(){
-		
-		return "mensagem";
-	}
-	@RequestMapping("test2")
-	public String test2(){
-		
-		return "erros/erro";
-	}
-	@RequestMapping("test3")
-	public String test3(){
-		
-		return "erros/404";
 	}
 }

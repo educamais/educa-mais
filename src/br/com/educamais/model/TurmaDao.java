@@ -16,12 +16,16 @@ public class TurmaDao {
 		EntityManager manager = factory.createEntityManager();
 		
 		String codigoTurma = turma.getCodigoTurma() != null ? turma.getCodigoTurma() : "";
+		String nomeTurma = turma.getNomeTurma() != null ? turma.getNomeTurma() : "";
+		Usuario professor = turma.getProfessor() != null ? turma.getProfessor() : null;
 		
 		Query query = null;
 		
 		if(!codigoTurma.equals("")) {
 			manager.getTransaction().begin();
-			query = manager.createQuery("FROM Turma WHERE codigoTurma = :codigoTurma");
+			query = manager.createQuery("FROM Turma WHERE nomeTurma = :nomeTurma AND professor = :professor OR codigoTurma = :codigoTurma");
+			query.setParameter("nomeTurma", nomeTurma);
+			query.setParameter("professor", professor);
 			query.setParameter("codigoTurma", codigoTurma);
 		}
 		
@@ -90,12 +94,16 @@ public class TurmaDao {
 		Query query = manager.createQuery("FROM Turma WHERE codigoTurma = :paramCodigo");
 		query.setParameter("paramCodigo", codigo);
 		
-		Turma turma = (Turma)query.getSingleResult();
+		List<Turma> turma = query.getResultList();
 		
 		manager.close();
 		factory.close();
 		
-		return  turma;
+		if(turma.isEmpty()) {
+			return null;
+		}
+		
+		return  turma.get(0);
 	}
 	
 	public void remover(int id) {
