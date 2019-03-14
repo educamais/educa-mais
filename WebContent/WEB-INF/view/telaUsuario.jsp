@@ -63,8 +63,10 @@
 			<div class="row">
 				<div class="col-12">
 				<h1>Professor</h1>
+				<hr>
 				</div>
-				
+				<c:choose>
+				<c:when test="${not empty turmasProfessor}">
 				<c:forEach var="turma" items="${turmasProfessor}">
 					
 					<div class="col-md-4" onclick="window.location.replace('/educa-mais/professor/mural?id=${turma.idTurma }')">
@@ -92,14 +94,21 @@
 						</div>
 					</div>
 				</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<span class="mb-5 ml-3">Não existe turmas cadastradas.</span>
+				</c:otherwise>
+				</c:choose>
 				
 			</div>
 			<div class="row">
 				<!-- ALUNOS -->
 				<div class="col-12">
 				<h1>Aluno</h1>
+				<hr>
 				</div>
-				
+				<c:choose>
+				<c:when test="${not empty turmasProfessor}">
 				<c:forEach var="turma" items="${turmasAluno}">
 
 					<div class="col-md-4" onclick="window.location.replace('/educa-mais/aluno/mural?id=${turma.idTurma }')">
@@ -115,7 +124,11 @@
 						</div>
 					</div>
 				</c:forEach>
-	
+				</c:when>
+				<c:otherwise>
+					<span class="ml-3">Você não participa de nenhuma turma.</span>
+				</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

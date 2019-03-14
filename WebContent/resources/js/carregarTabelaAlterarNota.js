@@ -22,7 +22,7 @@ function carregaTabelaAlterarNota(idAtividade) {
 	    	linhas += "<td style='vertical-align: middle;'>"+alunosNota[i].aluno.nome+"</td>";
 	    	linhas += "<td>";
 	    	linhas += "<input class='form-input form-control' type='hidden' name='idAlunoNota' value='"+alunosNota[i].idAlunoNota+"'>";
-	    	linhas += "<input class='form-input form-control' type='text' name='nota' value='"+alunosNota[i].nota+"'>";
+	    	linhas += "<input class='form-input form-control' type='number' max='999999999' name='nota' value='"+alunosNota[i].nota+"'>";
 	    	linhas += "</td>";
 	    	linhas += "</tr>";
 		});

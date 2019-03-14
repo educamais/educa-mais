@@ -145,31 +145,14 @@
                                         <input type="password" class="form-control w-75" id="senhaLogin" name="senha" placeholder="Digite a sua senha...">
                                     </div>
                                     
-                                    <!-- Botões e links -->
-                                    <a class="float-right text-roxo mb-2" href="#"><i>Esqueceu a senha?</i></a><br>
-                                    
-                                    <button id="botaoEntrar" type="submit" class="btn btn-roxo btn-lg btn-block">
+                                   
+                                    <button id="botaoEntrar" type="submit" class="btn btn-roxo btn-lg btn-block my-4">
                                         <span style="font-family:Gravity;">
                                             Entrar
                                         </span>
                                     </button>
                                     
                                 </form>
-                                
-                                <div class="row justify-content-md-center">
-                                    <div class="col-md-6 text-center my-2">
-                                        OU
-                                        <div class="row">
-                                            <div class="col">
-                                                <i class="fab fa-facebook-square text-primary" style="font-size: 48px;"></i>
-                                            </div>
-                                            <div class="col">
-                                                <i class="fab fa-google-plus-square text-danger" style="font-size: 48px;"></i>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
                                 
                             </div>
                             

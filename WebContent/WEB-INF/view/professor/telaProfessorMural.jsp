@@ -19,6 +19,8 @@
 		<div class="container">
 
 			<a class="navbar-brand p-0 font-2 font-weight-bold text-white" href="/educa-mais/usuario">EDUCA+</a>
+			
+			<a class="navbar-brand p-0 font-2 text-white" href="#">${turma.nomeTurma}</a>
 
 			<div class="font-2">
 				<a class="nav-link d-none d-sm-block p-0 text-center text-white" href="#">Código da Turma: ${turma.codigoTurma.toUpperCase()}</a>
@@ -30,7 +32,6 @@
 				<div class="dropdown-menu dropdown-menu-right">
 					<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
 					<a class="dropdown-item font-1" href="/educa-mais/turma/minhasturmas">Minhas Turmas</a>
-					<a class="dropdown-item font-1" href="/educa-mais/professor/desempenho?idTurma=${turma.idTurma}">Desempenho</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
 					<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
@@ -53,6 +54,11 @@
             <li class="nav-item">
                 <a class="nav-link text-white bg-one border font-weight-bold" id="participanteTab" style="font-family:Gravity;" href="atividade?id=${turma.idTurma}">
                     Atividades
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-one border font-weight-bold" style="font-family:Gravity;" href="desempenho?idTurma=${turma.idTurma}">
+                    Desempenho
                 </a>
             </li>
             <li class="nav-item">

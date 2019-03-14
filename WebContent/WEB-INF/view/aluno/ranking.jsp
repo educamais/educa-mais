@@ -21,6 +21,8 @@
 		<div class="container">
 
 			<a class="navbar-brand p-0 font-2 font-weight-bold text-white" href="/educa-mais/usuario">EDUCA+</a>
+			
+			<a class="navbar-brand p-0 font-2 text-white" href="/educa-mais/usuario">${turma.nomeTurma }</a>
 
 			<div class="font-2">
 				<a class="nav-link d-none d-sm-block p-0 text-center text-white" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Minha Pontuação: ${pontuacao.get(0)}</a>
@@ -38,7 +40,6 @@
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item font-1" href="/educa-mais/usuario">Home</a>
 						<a class="dropdown-item font-1" href="/educa-mais/turma/minhasturmas">Minhas Turmas</a>
-						<a class="dropdown-item d-sm-none font-1" href="/educa-mais/aluno/ranking?idTurma=${turma.idTurma}">Ranking</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarNome">Alterar Nome</a>
 						<a class="dropdown-item font-1" href="#" data-toggle="modal" data-target="#alterarSenha">Alterar Senha</a>
@@ -66,6 +67,11 @@
 				</a>
 			</li>
 			<li class="nav-item">
+				<a class="nav-link text-one border font-weight-bold" style="font-family: Gravity;" href="#">
+					Ranking
+				</a>
+			</li>
+			<li class="nav-item">
 				<a class="nav-link bg-one text-white border font-weight-bold" style="font-family: Gravity;" href="/educa-mais/aluno/participantes?id=${turma.idTurma}">
 					Participantes
 				</a>
@@ -75,12 +81,6 @@
 		<div class="container border shadow">
 
 			<div class="capsula mb-5 p-5">
-
-				<div class="d-flex justify-content-center mx-auto mb-3">
-					<div class="col-9">
-						<input type="text" id="pesquisarNome" class="form-control form-control-lg text-center" placeholder="Pesquisar..." required>
-					</div>
-				</div>
 
 				<table class="table table-striped">
 					<thead class="bg-two text-white">
@@ -92,7 +92,7 @@
 					<tbody  id="ranking">
 						<c:forEach var="alunoNota" items="${listaAlunoNota}">
 							<tr>
-								<td>${alunoNota[0].nome}</td>
+								<td>${alunoNota[0].nome.toUpperCase()}</td>
 								<td>${alunoNota[1]}</td>
 							</tr>
 						</c:forEach>
@@ -111,15 +111,10 @@
     <script src="<%=request.getContextPath()%>/resources/Validation/jquery.validate.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/localization/messages_pt_BR.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/Validation/created/validationFormAlterarUsuario.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/filtrarTabelaRanking.js"></script>
 	
     <script>
 		$(document).ready(function(){
 			
-    		$("#pesquisarNome").keyup(function() {
-    			filtrarTabelaRanking();
-    		});
-    		
     		$("#btn_alterarNome").click(function() {
     			$("#alterarNomeForm").submit();
     		});
