@@ -16,7 +16,7 @@
 </head>
 <body>
     
-    <div class="container my-5 rounded">
+    <div class="container my-3 rounded">
         
         <div class="row p-3 pb-5">
             
@@ -36,7 +36,7 @@
                 <hr>
                 
                 <!-- CONTEÚDO -->
-                <div class="row d-flex justify-content-center">
+                <div class="row my-5 d-flex justify-content-center">
                     
                     <!-- FORMULÁRIO -->
                     <div class="col-lg-5">
@@ -45,14 +45,14 @@
                         <ul class="nav nav-tabs nav-justified">
                             <li class="nav-item" id="loginNav">
                                 <a class="nav-link active font-weight-bold " data-toggle="tab" href="#login">
-                                    <span style="font-family:Gravity;">
+                                    <span>
                                         Login
                                     </span>
                                 </a>
                             </li>
                             <li class="nav-item" id="cadastroNav">
                                 <a class="nav-link font-weight-bold " data-toggle="tab" href="#cadastro">
-                                    <span style="font-family:Gravity;">
+                                    <span>
                                         Cadastro
                                     </span>
                                 </a>
@@ -63,7 +63,7 @@
                         <div class="tab-content bg-white">
                             
                             <!--Login-->
-                            <div class="tab-pane container active border shadow p-4" id="login">
+                            <div class="tab-pane container active border-right border-left shadow p-4" id="login">
                                 
                                 <form id="formularioLogin" method="post" action="autenticar">
                                 	
@@ -93,7 +93,7 @@
                                     <a class="float-right mb-2" href="#"><i>Esqueceu a senha?</i></a><br>
                                     
                                     <button id="botaoEntrar" type="submit" class="btn  btn-lg btn-block">
-                                        <span style="font-family:Gravity;">
+                                        <span>
                                             Entrar
                                         </span>
                                     </button>
@@ -118,7 +118,7 @@
                             </div>
                             
                             <!--Cadastro-->
-                            <div class="tab-pane container fade border shadow p-4" id="cadastro">
+                            <div class="tab-pane container fade border-right border-left shadow p-4" id="cadastro">
                             	
                             	<form id="formularioCadastro" method="post" action="save">
                                     
@@ -156,7 +156,7 @@
                                     
                                     <!-- Botão -->
                                     <button id="botaoCadastrar" type="submit" class="btn  btn-lg btn-block">
-                                        <span style="font-family:Gravity;">
+                                        <span>
                                             Cadastrar
                                         </span>
                                     </button>

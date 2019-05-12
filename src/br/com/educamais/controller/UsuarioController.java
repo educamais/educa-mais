@@ -20,10 +20,7 @@ import br.com.educamais.model.AlunoNota;
 import br.com.educamais.model.AlunoNotaDao;
 import br.com.educamais.model.AlunoPostagemDao;
 import br.com.educamais.model.AlunoTurmaDao;
-import br.com.educamais.model.Atividade;
-import br.com.educamais.model.AtividadeDao;
 import br.com.educamais.model.Postagem;
-import br.com.educamais.model.PostagemDao;
 import br.com.educamais.model.Turma;
 import br.com.educamais.model.TurmaDao;
 import br.com.educamais.model.Usuario;
@@ -156,94 +153,6 @@ public class UsuarioController {
 		
 	}
 	
-	@RequestMapping("professor/mural")
-	public String professorMural(@RequestParam("id") int id, HttpSession session, Model model) {
-		
-		Usuario usuario = (Usuario)session.getAttribute("usuario");
-		
-		TurmaDao turmaDao = new TurmaDao();
-		Turma turma = turmaDao.buscarPorId(id);
-		
-		if(turma != null) {
-			if(usuario.getIdUsuario() == turma.getProfessor().getIdUsuario()) {
-				
-				PostagemDao postagemDao = new PostagemDao();
-				List<Postagem> listaPostagem = postagemDao.getListaPostagem(turma, 0);
-				
-				AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
-				List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
-				
-				model.addAttribute("turma", turma);
-				model.addAttribute("listaPostagem", listaPostagem);
-				model.addAttribute("listaAluno", listaAluno);
-				return "professor/telaProfessorMural";
-			}
-			model.addAttribute("link", "usuario");
-			model.addAttribute("mensagem", "Você não é professor dessa turma!");
-			return "mensagem";
-		}
-		model.addAttribute("link", "usuario");
-		model.addAttribute("mensagem", "Esta turma não existe!");
-		return "mensagem";
-	}
-	
-	@RequestMapping("professor/atividade")
-	public String professorAtividade(@RequestParam("id") int id, HttpSession session, Model model) {
-		
-		Usuario usuario = (Usuario)session.getAttribute("usuario");
-		
-		TurmaDao turmaDao = new TurmaDao();
-		Turma turma = turmaDao.buscarPorId(id);
-		
-		if(turma != null) {
-			if(usuario.getIdUsuario() == turma.getProfessor().getIdUsuario()) {
-				
-				AtividadeDao atividadeDao = new AtividadeDao();
-				List<Atividade> listaAtividade = atividadeDao.getlistAtividade(turma, null);
-				
-				AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
-				List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
-				
-				model.addAttribute("turma", turma);
-				model.addAttribute("listaAtividade", listaAtividade);
-				model.addAttribute("listaAluno", listaAluno);
-				return "professor/telaProfessorAtividade";
-			}
-			model.addAttribute("link", "usuario");
-			model.addAttribute("mensagem", "Você não é professor dessa turma!");
-			return "mensagem";
-		}
-		model.addAttribute("link", "usuario");
-		model.addAttribute("mensagem", "Esta turma não existe!");
-		return "mensagem";
-	}
-	
-	@RequestMapping("professor/participantes")
-	public String professorParticipantes(@RequestParam("id") int id, HttpSession session, Model model) {
-		
-		Usuario usuario = (Usuario)session.getAttribute("usuario");
-		
-		TurmaDao turmaDao = new TurmaDao();
-		Turma turma = turmaDao.buscarPorId(id);
-		
-		if(turma != null) {
-			if(usuario.getIdUsuario() == turma.getProfessor().getIdUsuario()) {
-								
-				AlunoTurmaDao alunoTurmaDao = new AlunoTurmaDao();
-				List<Usuario> listaAluno = alunoTurmaDao.getListaAluno(turma);
-				
-				model.addAttribute("turma", turma);
-				model.addAttribute("listaAluno", listaAluno);
-				return "professor/telaProfessorParticipantes";
-			}
-			model.addAttribute("link", "usuario");
-			model.addAttribute("mensagem", "Você não é professor dessa turma!");
-			return "mensagem";
-		}
-		model.addAttribute("link", "usuario");
-		model.addAttribute("mensagem", "Esta turma não existe!");
-		return "mensagem";
-	}
 	
 	@RequestMapping("aluno/ranking")
 	public String ranking(@RequestParam int idTurma, HttpSession session, Model model) {
@@ -281,36 +190,7 @@ public class UsuarioController {
 		return "mensagem";
 	}
 	
-	@RequestMapping("professor/desempenho")
-	public String desempenho(@RequestParam int idTurma, HttpSession session, Model model) {
-		
-		Usuario usuario = (Usuario)session.getAttribute("usuario");
-		
-		TurmaDao turmaDao = new TurmaDao();
-		Turma turma = turmaDao.buscarPorId(idTurma);
-		
-		if(turma != null) {
-			if(turma.getProfessor().getIdUsuario() == usuario.getIdUsuario()) {
-				AlunoNotaDao alunoNotaDao = new AlunoNotaDao();
-				List<AlunoNota> listaAlunoNota = alunoNotaDao.getListaAlunoNota(turma, null, null);
-				
-				AtividadeDao atividadeDao =  new AtividadeDao();
-				List<Atividade> listaAtividade = atividadeDao.getlistAtividade(turma, null);
-				
-				model.addAttribute("turma", turma);
-				model.addAttribute("listaAlunoNota", listaAlunoNota);
-				model.addAttribute("listaAtividade", listaAtividade);
-				
-				return "professor/desempenho";
-			}
-			model.addAttribute("link", "usuario");
-			model.addAttribute("mensagem", "Você não é professor dessa turma!");
-			return "mensagem";
-		}
-		model.addAttribute("link", "usuario");
-		model.addAttribute("mensagem", "Esta turma não existe!");
-		return "mensagem";
-	}
+	
 	
 	@RequestMapping(value = "ranking/filter", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String rankingFilter(@RequestParam int idTurma, @RequestParam String pesquisarNome, HttpSession session, Model model) {

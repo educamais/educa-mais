@@ -8,9 +8,12 @@
 	<welcome-file-list>
 		<welcome-file>/WEB-INF/view/index.jsp</welcome-file>
 	</welcome-file-list>
-
-	<!-- <error-page> <exception-type>java.lang.Exception</exception-type> <location>/WEB-INF/view/erros/erro.jsp</location> 
-		</error-page> -->
+	<!--
+	 <error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/WEB-INF/view/erros/erro.jsp</location> 
+	</error-page>
+	-->
 	<error-page>
 		<error-code>404</error-code>
 		<location>/WEB-INF/view/erros/404.jsp</location>

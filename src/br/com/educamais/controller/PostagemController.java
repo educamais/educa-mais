@@ -16,13 +16,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import br.com.educamais.model.AlunoPostagemDao;
 import br.com.educamais.model.ArquivoPostagem;
 import br.com.educamais.model.ArquivoPostagemDao;
+import br.com.educamais.model.Exclude;
 import br.com.educamais.model.Postagem;
-import br.com.educamais.model.PostagemDao;
+import br.com.educamais.model.PostagemDAO;
 import br.com.educamais.model.Turma;
 import br.com.educamais.model.TurmaDao;
 import br.com.educamais.model.Usuario;
@@ -52,7 +56,7 @@ public class PostagemController {
 				Date date = new Date();
 				post.setDataPostagem(date);
 				
-				PostagemDao postDao = new PostagemDao();
+				PostagemDAO postDao = new PostagemDAO();
 				postDao.salvar(post, idAlunos, files);
 		
 				return "redirect:/professor/mural?id="+idTurma;
@@ -69,7 +73,7 @@ public class PostagemController {
 	@RequestMapping("postagem/alterar")
 	public String atualizar(Postagem postagem, @RequestParam int idTurma, @RequestParam Integer[] alunos, @RequestParam List<MultipartFile> files, Model model) {
 				
-		PostagemDao postagemDao = new PostagemDao();
+		PostagemDAO postagemDao = new PostagemDAO();
 		postagem.setDataPostagem(postagemDao.buscarPorId(postagem.getIdPostagem()).getDataPostagem());
 		postagem.setTurma(postagemDao.buscarPorId(postagem.getIdPostagem()).getTurma());
 		
@@ -105,12 +109,11 @@ public class PostagemController {
 			return "redirect:/professor/mural?id="+idTurma;
 		}
 	}
-
 	
 	@RequestMapping("postagem/remove")
 	public String remover(@RequestParam("id") int idPostagem) {
 		
-		PostagemDao daoPostagem = new PostagemDao();
+		PostagemDAO daoPostagem = new PostagemDAO();
 		Postagem postagem = daoPostagem.buscarPorId(idPostagem);
 		int idTurma = postagem.getTurma().getIdTurma();
 		
@@ -131,10 +134,16 @@ public class PostagemController {
 		TurmaDao turmaDao = new TurmaDao();
 		Turma turma = turmaDao.buscarPorId(idTurma);
 		
-		PostagemDao postagemDao = new PostagemDao();
+		PostagemDAO postagemDao = new PostagemDAO();
 		List<Postagem> listaPostagem = postagemDao.getListaPostagem(turma, inicio);
 		
-		return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(listaPostagem);
+		ExclusionStrategy strategy = Util.getStrategy();
+		
+		Gson gson = new GsonBuilder()
+				  .addSerializationExclusionStrategy(strategy)
+				  .create();
+		
+		return gson.toJson(listaPostagem);
 	}
 	
 	@RequestMapping(value = "/alunopostagem", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -148,6 +157,12 @@ public class PostagemController {
 		AlunoPostagemDao alunoPostagemDao = new AlunoPostagemDao();
 		List<Postagem> listaPostagem = alunoPostagemDao.getListaPostagem(usuario, turma, inicio);
 		
-		return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(listaPostagem);
+		ExclusionStrategy strategy = Util.getStrategy();
+		
+		Gson gson = new GsonBuilder()
+				  .addSerializationExclusionStrategy(strategy)
+				  .create();
+		
+		return gson.toJson(listaPostagem);
 	}
 }

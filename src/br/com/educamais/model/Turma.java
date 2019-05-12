@@ -10,8 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.google.gson.annotations.Expose;
-
 @Entity
 @Table(name="turma")
 public class Turma {
@@ -19,20 +17,16 @@ public class Turma {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_turma")
-	@Expose
 	private int idTurma;
 	
 	@Column(name="nome_turma")
-	@Expose
 	private String nomeTurma;
 	
 	@ManyToOne
 	@JoinColumn(name = "professor")
-	@Expose
 	private Usuario professor;
 	
 	@Column(name="codigo_turma")
-	@Expose
 	private String codigoTurma;
 
 	//GET E SET

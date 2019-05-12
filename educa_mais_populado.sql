@@ -396,7 +396,5 @@ INSERT INTO aluno_nota VALUES
 
 CREATE TABLE arquivo_postagem(
 	id_arquivo_postagem INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	arquivo VARCHAR(100) NOT NULL,
-	postagem INT NOT NULL,
-	CONSTRAINT fk_postagem_arquivo_postagem FOREIGN KEY (postagem) REFERENCES postagem(id_postagem)
+	arquivo VARCHAR(100) NOT NULL
 )CHARACTER SET utf8 COLLATE utf8_general_ci;

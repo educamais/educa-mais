@@ -8,6 +8,11 @@ import java.util.Random;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+
+import br.com.educamais.model.Exclude;
+
 public class Util {
 
 	public static String obterMomentoAtual() {
@@ -69,5 +74,18 @@ public class Util {
 	public static void main(String[] args) {
 		System.out.println(System.getProperty("user.dir"));
 	}
-
+	
+	public static ExclusionStrategy getStrategy() {
+		return new ExclusionStrategy() {
+		    @Override
+		    public boolean shouldSkipClass(Class<?> clazz) {
+		        return false;
+		    }
+		 
+		    @Override
+		    public boolean shouldSkipField(FieldAttributes field) {
+		        return field.getAnnotation(Exclude.class) != null;
+		    }
+		};
+	}
 }

@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.google.gson.annotations.Expose;
-
 @Entity
 @Table(name="usuario")
 public class Usuario {
@@ -16,11 +14,9 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_usuario")
-	@Expose
 	private int idUsuario;
 	
 	@Column
-	@Expose
 	private String nome;
 	
 	@Column

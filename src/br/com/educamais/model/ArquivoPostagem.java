@@ -5,11 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.google.gson.annotations.Expose;
 
 @Entity
 @Table(name="arquivo_postagem")
@@ -18,15 +15,13 @@ public class ArquivoPostagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_arquivo_postagem")
-	@Expose
 	private int idArquivoPostagem;
 	
 	@ManyToOne
-    @JoinColumn(name="postagem")
+	@Exclude
 	private Postagem postagem;
 	
 	@Column
-	@Expose
     private String arquivo;
 
 	public int getIdArquivoPostagem() {

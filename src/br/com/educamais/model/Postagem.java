@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,8 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.google.gson.annotations.Expose;
-
 @Entity
 @Table(name="postagem")
 public class Postagem {
@@ -23,29 +20,22 @@ public class Postagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_postagem")
-	@Expose
 	private int idPostagem;
 	
 	@ManyToOne
     @JoinColumn(name="turma")
-	@Expose
     private Turma turma;
 	
 	@Column(name="titulo_postagem")
-	@Expose
 	private String tituloPostagem;
 	
 	@Column(name="descricao_postagem")
-	@Expose
 	private String descricaoPostagem;
 	
-	@Expose
 	@Column(name="data_postagem")
 	private Date dataPostagem;
 	
-	@Expose
-	@OneToMany(fetch=FetchType.EAGER)
-	@JoinColumn(name="postagem")
+	@OneToMany(mappedBy="postagem")
 	private List<ArquivoPostagem> listaArquivo;
 	
 	// GET E SET
